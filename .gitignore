@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+app/static/css/tailwind.css
+app/staticfiles/
+frontend/node_modules/
+frontend/package-lock.json
+*.sqlite3
