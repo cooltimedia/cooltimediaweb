@@ -5,7 +5,7 @@ from decouple import config
 DEBUG = True
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config("DBNAME")
+SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: define the correct hosts in production!
 ALLOWED_HOSTS = ["*"]
