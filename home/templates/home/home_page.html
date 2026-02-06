@@ -1,21 +1,65 @@
 {% extends "base.html" %}
 {% load static %}
+{% load static wagtailcore_tags %}
 
 {% block body_class %}template-homepage{% endblock %}
 
 {% block extra_css %}
-
-{% comment %}
-Delete the line below if you're just getting started and want to remove the welcome screen!
-{% endcomment %}
 <link rel="stylesheet" href="{% static 'css/welcome_page.css' %}">
 {% endblock extra_css %}
 
 {% block content %}
 
-{% comment %}
-Delete the line below if you're just getting started and want to remove the welcome screen!
-{% endcomment %}
-{% include 'home/welcome_page.html' %}
+<!-- Header wrapper with vertical gradient background -->
+<header class="bg-gradient-to-b from-[#142e6e] to-[#edf2ff]">
+    <!-- This container controls the visual height of the header/hero area -->
+    <div class="min-h-[220px]">    
+        <!-- Floating header (fixed to the top of the screen) -->
+        <div class="fixed top-0 left-0 right-0 z-50">
+            <!-- Centered content container -->
+            <div class="mx-auto max-w-6xl px-4">
+                <!-- Header bar with transparency and blur effect -->
+                <div class="mt-4 rounded-2xl bg-white/90 backdrop-blur shadow-sm">
+                    <div class="flex items-center justify-between px-4 py-3">
+                        
+                        <!-- Logo / Project name -->
+                        <a href="/" class="text-lg font-semibold text-slate-900">
+                        Cooltimedia
+                        </a>
+
+                        <!-- Desktop navigation menu (hidden on small screens) -->
+                        <nav class="hidden md:flex items-center gap-6 text-sm text-slate-700">
+                        <a href="#" class="hover:text-slate-900">Inicio</a>
+                        <a href="#" class="hover:text-slate-900">Servicios</a>
+                        <a href="#" class="hover:text-slate-900">Blog</a>
+                        <a href="#" class="hover:text-slate-900">Contacto</a>
+                        </nav>
+
+                        <!-- Mobile menu button (visible only on small screens) -->
+                        <button
+                        type="button"
+                        class="md:hidden inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm font-medium text-slate-800 hover:bg-slate-100"
+                        aria-label="Open menu"
+                        >
+                        Menu
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Spacer to prevent content from being hidden under the fixed header -->
+        <div class="pt-24"></div>
+        <!-- Temporary home content to visualize the section -->
+        <div class="mx-auto max-w-6xl px-4 pb-12">
+            <h1 class="text-3xl md:text-4xl font-bold text-white">
+                Home
+            </h1>
+            <p class="mt-2 max-w-xl text-white/80">
+                This is the starting point. Next, we will build the rest of the homepage sections.
+            </p>
+        </div>
+    </div>
+</header>
 
 {% endblock content %}
