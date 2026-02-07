@@ -1,12 +1,5 @@
 {% extends "base.html" %}
-{% load static %}
 {% load static wagtailcore_tags %}
-
-{% block body_class %}template-homepage{% endblock %}
-
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/welcome_page.css' %}">
-{% endblock extra_css %}
 
 {% block content %}
 
@@ -15,7 +8,7 @@
     <!-- This container controls the visual height of the header/hero area -->
     <div class="min-h-[220px]">    
         <!-- Floating header (fixed to the top of the screen) -->
-        <div class="fixed top-0 left-0 right-0 z-50">
+        <div class="fixed top-0 left-0 right-0 z-50 animate-fade-in-blur">
             <!-- Centered content container -->
             <div class="mx-auto max-w-6xl px-4">
                 <!-- Header bar with transparency and blur effect -->
