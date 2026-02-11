@@ -5,6 +5,34 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        // Primary font: Inter Tight; fallback: system sans-serif stack
+        sans: [
+          '"Inter Tight"',
+          "ui-sans-serif",
+          "system-ui",
+          "-apple-system",
+          "Segoe UI",
+          "Roboto",
+          "Helvetica",
+          "Arial",
+          "Noto Sans",
+          "sans-serif",
+        ],
+      },
+      fontSize: {
+        // Large headings
+        h1: ["3rem",   { lineHeight: "1.1",  letterSpacing: "-0.02em" }], // 48px
+        h2: ["2.25rem",{ lineHeight: "1.15", letterSpacing: "-0.02em" }], // 36px
+        h3: ["1.75rem",{ lineHeight: "1.2",  letterSpacing: "-0.015em" }], // 28px
+        h4: ["1.375rem",{ lineHeight: "1.3", letterSpacing: "-0.01em" }], // 22px
+        h5: ["1.125rem",{ lineHeight: "1.4", letterSpacing: "-0.005em" }], // 18px
+        h6: ["1rem",   { lineHeight: "1.5",  letterSpacing: "0em" }], // 16px
+        // Supporting text sizes
+        lead: ["1.125rem", { lineHeight: "1.7" }], // 18px
+        body: ["1rem", { lineHeight: "1.65" }],    // 16px
+        small: ["0.875rem", { lineHeight: "1.6" }], // 14px
+      },      
       keyframes: {
         "fade-in-blur": {
           "0%": {

@@ -1,0 +1,48 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: ${DBNAME}
+      POSTGRES_USER: ${DBUSER}
+      POSTGRES_PASSWORD: ${DBPASSWORD}
+    container_name: cooltimedia_db
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  web:
+    build: .
+    container_name: cooltimedia_web
+    command: python manage.py runserver 0.0.0.0:8000
+    environment:
+      DJANGO_SETTINGS_MODULE: app.settings.dev
+      POSTGRES_DB: ${DBNAME}
+      POSTGRES_USER: ${DBUSER}
+      POSTGRES_PASSWORD: '${DBPASSWORD}'
+      DBPORT: ${DBPORT}
+      DBHOST: db
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+
+  frontend:
+    image: node:20-alpine
+    container_name: cooltimedia_frontend
+    working_dir: /app/frontend
+    command: sh -c "npm install && npm run dev"
+    volumes:
+      - .:/app
+    tty: true
+    stdin_open: true
+    restart: unless-stopped
+    depends_on:
+      - web
+
+volumes:
+  pgdata:

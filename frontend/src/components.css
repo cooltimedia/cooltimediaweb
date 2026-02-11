@@ -1,0 +1,14 @@
+/* Component-level classes using Tailwind */
+@layer components {
+  .container-page {
+    @apply mx-auto max-w-6xl px-4;
+  }
+
+  .nav-link {
+    @apply text-sm text-slate-700 hover:text-slate-900;
+  }
+
+  .header-shell {
+    @apply mt-4 rounded-2xl bg-white/90 backdrop-blur shadow-sm;
+  }
+}

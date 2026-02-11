@@ -24,6 +24,11 @@
         {% endif %}
 
         {# Global stylesheets #}
+        <!-- Font load -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
         <link rel="stylesheet" type="text/css" href="{% static 'css/app.css' %}">
         <link rel="stylesheet" href="{% static 'css/tailwind.css' %}">
         
@@ -32,7 +37,7 @@
         {% endblock %}
     </head>
 
-    <body class="{% block body_class %}{% endblock %} bg-red-500">
+    <body class="{% block body_class %}{% endblock %} font-sans text-slate-900 bg-white">
         {% wagtailuserbar %}
 
         {% block content %}{% endblock %}
@@ -42,6 +47,17 @@
 
         {% block extra_js %}
         {# Override this in templates to add extra javascript #}
+        <script>
+        // Apply animation delays based on data-delay="0.2" (seconds)
+        window.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll("[data-delay]").forEach((el) => {
+            const delay = parseFloat(el.getAttribute("data-delay"));
+            if (!Number.isNaN(delay)) {
+                el.style.animationDelay = `${delay}s`;
+            }
+            });
+        });
+        </script>        
         {% endblock %}
     </body>
 </html>
