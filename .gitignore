@@ -7,3 +7,5 @@ app/staticfiles/
 frontend/node_modules/
 frontend/package-lock.json
 *.sqlite3
+# macOS
+.DS_Store
