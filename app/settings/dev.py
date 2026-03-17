@@ -11,8 +11,6 @@ SECRET_KEY = config("SECRET_KEY")
 ALLOWED_HOSTS = ["*"]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://www.cooltimedia.com',
-    'https://cooltimedia.com',
     'http://localhost:8000', # For local development if using http
 ]
 
