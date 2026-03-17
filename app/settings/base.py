@@ -139,10 +139,10 @@ STATICFILES_FINDERS = [
 ]
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    PROJECT_DIR / "static",
 ]
 
-STATIC_ROOT = PROJECT_DIR / "static"
+STATIC_ROOT = BASE_DIR / "static"
 STATIC_URL = "/static/"
 
 MEDIA_ROOT = PROJECT_DIR / "media"
