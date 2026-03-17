@@ -35,6 +35,16 @@
 	{% block extra_css %}
         {# Override this in templates to add extra stylesheets #}
     {% endblock %}
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9WGQKBP207"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-9WGQKBP207');
+    </script>    
     </head>
 
     <body class="{% block body_class %}{% endblock %} font-sans text-slate-900 bg-white">
