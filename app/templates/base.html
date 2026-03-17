@@ -15,6 +15,16 @@
         </title>
         {% if page.search_description %}
         <meta name="description" content="{{ page.search_description }}" />
+        <meta name="keywords" content="Web Engineering, Data Architecture, Data Pipelines, Python, Django, Data Consulting Panama, Software Development, Process Automation">
+        <meta property="og:title" content="            
+            {% block title %}
+            {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}
+            {% endblock %}
+            {% block title_suffix %}
+            {% wagtail_site as current_site %}
+            {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
+            {% endblock %}">
+        <meta property="og:description" content="{{ page.search_description }}" />
         {% endif %}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
