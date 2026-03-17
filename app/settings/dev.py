@@ -14,6 +14,16 @@ CSRF_TRUSTED_ORIGINS = [
     'http://localhost:8000', # For local development if using http
 ]
 
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+STATIC_ROOT = PROJECT_DIR / "static"
+STATIC_URL = "/static/"
+
+MEDIA_ROOT = PROJECT_DIR / "media"
+MEDIA_URL = "/media/"
+
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 
