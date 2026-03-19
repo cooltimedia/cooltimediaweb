@@ -16,7 +16,7 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 STATICFILES_DIRS = [
-    Path("/var/www/cooltimedia/app/static"),
+    BASE_DIR / "static",
 ]
 
 STATIC_ROOT = Path("/var/www/cooltimedia/app/static")
