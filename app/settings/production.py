@@ -16,6 +16,7 @@ CSRF_TRUSTED_ORIGINS = [
 
 STATICFILES_DIRS = [
     PROJECT_DIR / "static",
+    BASE_DIR / "static"
 ]
 
 STATIC_ROOT = BASE_DIR / "static"
