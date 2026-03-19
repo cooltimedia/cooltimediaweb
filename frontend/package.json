@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tailwindcss -i ./src/input.css -o ../static/css/tailwind.css --minify",
-    "dev": "tailwindcss -i ./src/input.css -o ../static/css/tailwind.css --watch --poll"
+    "build": "tailwindcss -i ./src/input.css -o ../app/static/css/tailwind.css --minify",
+    "dev": "tailwindcss -i ./src/input.css -o ../app/static/css/tailwind.css --watch --poll"
   },
   "keywords": [],
   "author": "",
