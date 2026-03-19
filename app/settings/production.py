@@ -1,5 +1,6 @@
 from .base import *
 from decouple import config
+from pathlib import Path
 
 DEBUG = False
 
@@ -14,15 +15,11 @@ CSRF_TRUSTED_ORIGINS = [
     'https://cooltimedia.com',
 ]
 
-PROJECT_DIR = Path(__file__).resolve().parent.parent
-BASE_DIR = PROJECT_DIR.parent
-
 STATICFILES_DIRS = [
-    PROJECT_DIR / "static",
-    BASE_DIR / "static"
+    Path("/var/www/cooltimedia/app/static"),
 ]
 
-STATIC_ROOT = BASE_DIR / "static"
+STATIC_ROOT = Path("/var/www/cooltimedia/app/static")
 STATIC_URL = "/static/"
 
 MEDIA_ROOT = BASE_DIR / "media"

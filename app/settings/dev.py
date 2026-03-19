@@ -14,9 +14,6 @@ CSRF_TRUSTED_ORIGINS = [
     'http://localhost:8000', # For local development if using http
 ]
 
-PROJECT_DIR = Path(__file__).resolve().parent.parent
-BASE_DIR = PROJECT_DIR.parent
-
 STATICFILES_DIRS = [
     PROJECT_DIR / "static",
 ]
