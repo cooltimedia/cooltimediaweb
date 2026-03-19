@@ -8,5 +8,6 @@ frontend/node_modules/
 frontend/package-lock.json
 *.sqlite3
 app/settings/wsgi.py
+home/migrations/*
 # macOS
 .DS_Store
