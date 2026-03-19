@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8" />
-        <title>Internal server error</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-    </head>
-    <body>
-        <h1>Internal server error</h1>
+{% extends "base.html" %}
 
-        <h2>Sorry, there seems to be an error. Please try again soon.</h2>
-    </body>
-</html>
+{% block content %}
+    <div class="container" style="text-align: center; padding: 50px;">
+        <h1>500 - Error del servidor</h1>
+        <p>Estamos experimentando problemas técnicos. Por favor, intenta más tarde.</p>
+    </div>
+{% endblock %}
