@@ -14,6 +14,9 @@ CSRF_TRUSTED_ORIGINS = [
     'https://cooltimedia.com',
 ]
 
+PROJECT_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = PROJECT_DIR.parent
+
 STATICFILES_DIRS = [
     PROJECT_DIR / "static",
     BASE_DIR / "static"
