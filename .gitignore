@@ -7,6 +7,7 @@ app/staticfiles/
 frontend/*
 *.sqlite3
 app/settings/wsgi.py
+app/wsgi.py
 home/migrations/*
 # macOS
 .DS_Store
