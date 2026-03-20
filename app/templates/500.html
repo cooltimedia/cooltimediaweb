@@ -1,8 +1,49 @@
 {% extends "base.html" %}
+{% load static wagtailcore_tags %}
+{% block title %}
+    500 - Internal Server Error
+{% endblock %}
 
+{% block extra_css %}
+<style>
+    main{
+        background-color: #0e0b14;
+    }
+    @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+    }
+    .animate-float {
+        animation: float 6s ease-in-out infinite;
+    }
+    html {
+        scroll-behavior: smooth;
+    }   
+</style>
+{% endblock %}
 {% block content %}
-    <div class="container" style="text-align: center; padding: 50px;">
-        <h1>500 - Error del servidor</h1>
-        <p>Estamos experimentando problemas técnicos. Por favor, intenta más tarde.</p>
+<main class="flex min-h-screen w-full items-center justify-center bg-[#000000] px-6 py-12 text-white overflow-hidden">
+    <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        
+        <div class="text-center md:text-left space-y-6 animate-fade-in-blur" data-delay="0.2">
+            <h1 class="text-4xl md:text-8xl font-bold tracking-tighter uppercase">
+                500-error
+            </h1>
+            <h2 class="text-4xl md:text-6xl font-bold text-gray-300 uppercase text-transparent bg-clip-text bg-gradient-to-r from-emerald-100 to-green-500">
+                Internal Server Error
+            </h2>
+            <p class="text-gray-400 text-lg font-medium max-w-md mx-auto md:mx-0">
+                Something went wrong in the logic. Our secure, Python-powered engine encountered an internal error. Rest assured, we are already re-engineering this page to get back on track.
+            </p>
+        </div>
+
+        <div class="flex justify-center md:justify-end animate-fade-in-blur" data-delay="0.2">
+            <div class="absolute w-64 h-64 bg-purple-900/20 rounded-full blur-[100px] -z-10"></div>
+            <img src="{% static 'images/500.png' %}" 
+                 alt="500 Internal Server Error" 
+                 class="w-full max-w-sm md:max-w-md animate-[float_6s_ease-in-out_infinite]">
+        </div>
+
     </div>
+</main>
 {% endblock %}
