@@ -17,10 +17,13 @@
     .animate-float {
         animation: float 6s ease-in-out infinite;
     }
+    html {
+        scroll-behavior: smooth;
+    }   
 </style>
 {% endblock %}
 {% block content %}
-<main class="min-h-screen bg-black text-white flex items-center justify-center">
+<main class="flex min-h-screen w-full items-center justify-center bg-[#000000] px-6 py-12 text-white overflow-hidden">
     <div class="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         
         <div class="text-center md:text-left space-y-6 bg-black animate-fade-in-blur" data-delay="0.2">

@@ -2,8 +2,6 @@
 __pycache__/
 *.pyc
 .env
-app/static/css/tailwind.css
-app/staticfiles/
 frontend/*
 *.sqlite3
 app/settings/wsgi.py
