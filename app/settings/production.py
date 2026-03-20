@@ -19,10 +19,10 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-STATIC_ROOT = Path("/var/www/cooltimedia/app/static")
+STATIC_ROOT = PROJECT_DIR / "static"
 STATIC_URL = "/static/"
 
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT = PROJECT_DIR / "media"
 MEDIA_URL = "/media/"
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
