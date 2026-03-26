@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static wagtailcore_tags %}
+{% load wagtailcore_tags %}
 {% block extra_css %}
 <style>
     .perspective {
@@ -31,27 +32,6 @@
 {% block content %}
 <!-- Hero Cooltimedia -->
 <header class="bg-gradient-to-b from-[#03a071] to-[#00E09D]">
-    <!-- Fixed floating header (existing) -->
-    <div class="fixed top-0 left-0 right-0 z-50 animate-fade-in-blur" data-delay="0.2">
-        <div class="mx-auto max-w-6xl px-4">
-            <div class="mt-4 rounded-2xl bg-white/90 backdrop-blur shadow-sm">
-                <div class="flex items-center justify-between px-4 py-3">
-                    <a href="/" class="text-lg font-semibold text-slate-900">
-                        Cooltimedia
-                    </a>
-                    <nav class="hidden md:flex items-center gap-6 text-sm text-slate-700">
-                        <a href="#contact-cooltimedia" class="hover:text-slate-900">Contact</a>
-                    </nav>
-                    <button
-                        type="button"
-                        class="md:hidden inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm font-medium text-slate-800 hover:bg-slate-100"
-                        aria-label="Open menu">
-                        Menu
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- Spacer for fixed header -->
     <div class="pt-32"></div>
     <!-- Hero content -->

@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags %}
+{% block extra_css %}
+<style>
+    .perspective {
+        perspective: 1500px;
+        -webkit-perspective: 1500px;
+    }
+    .preserve-3d {
+        transform-style: preserve-3d;
+        -webkit-transform-style: preserve-3d;
+    }
+    .group-hover\:rotate-y-180 {
+        transform: rotateY(180deg);
+        -webkit-transform: rotateY(180deg);
+    }
+    .rotate-y-180 {
+        transform: rotateY(180deg);
+        -webkit-transform: rotateY(180deg);
+    }
+    .backface-hidden {
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+    }
+    html {
+        scroll-behavior: smooth;
+    }    
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="py-24 bg-slate-900 text-white">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    
+    <div class="mb-16">
+      <h2 class="text-blue-400 text-sm font-bold uppercase tracking-widest mb-4">
+        Giving Back
+      </h2>
+      <h3 class="text-3xl md:text-5xl font-tight text-white mb-6">
+        Building the <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-blue-400">Human Infrastructure</span> of Panama
+      </h3>
+      <p class="text-slate-400 text-lg max-w-3xl">
+        True growth is measured by the impact we have on our community. We are proud to support local talent and promote healthy, active lifestyles for the youth of Panama.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <div class="group">
+        <div class="aspect-video rounded-3xl overflow-hidden bg-slate-800 mb-6 border border-slate-700">
+          <img src="/static/images/rse-chapala.jpg" alt="Chapala FC Soccer Academy" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+        </div>
+        <h4 class="text-xl font-bold mb-2">Chapala FC Soccer Academy</h4>
+        <p class="text-slate-400 text-sm leading-relaxed">
+          Supporting the creation and development of local soccer talent. We provide equipment and resources to ensure young athletes have a safe, professional space to train and compete.
+        </p>
+      </div>
+
+      <div class="group">
+        <div class="aspect-video rounded-3xl overflow-hidden bg-slate-800 mb-6 border border-slate-700">
+          <img src="/static/images/rse-villas.jpg" alt="Villas de la Alameda Basketball" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+        </div>
+        <h4 class="text-xl font-bold mb-2">Villas de la Alameda Basketball</h4>
+        <p class="text-slate-400 text-sm leading-relaxed">
+          Promoting discipline and teamwork through basketball. Our partnership helps maintain high-quality sports facilities for kids and teenagers in the local community.
+        </p>
+      </div>
+
+      <div class="group">
+        <div class="aspect-video rounded-3xl overflow-hidden bg-slate-800 mb-6 border border-slate-700">
+          <img src="/static/images/rse-race.jpg" alt="2K Youth Race Organization" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+        </div>
+        <h4 class="text-xl font-bold mb-2">Community 2K Youth Races</h4>
+        <p class="text-slate-400 text-sm leading-relaxed">
+          Organizing annual 2-kilometer races to encourage active habits from an early age. We believe physical health is the best "operating system" for a successful future.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="mt-20 p-8 md:p-12 rounded-[2rem] bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700 text-center">
+      <h3 class="text-2xl font-bold mb-4 italic">"Engineering success, one community at a time."</h3>
+      <p class="text-slate-400 max-w-2xl mx-auto mb-8">
+        At Cooltimedia, our commitment to quality extends far beyond our code[cite: 195, 196]. We will continue to invest time and resources into these programs, ensuring that our digital excellence contributes directly to the social well-being of Panama[cite: 90, 99].
+      </p>
+    </div>
+
+  </div>
+</section>
+{% endblock content %}
+{% block extra_js %}
+
+{% endblock extra_js%}

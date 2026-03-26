@@ -15,7 +15,7 @@ class HomePage(Page):
     ]
 
     # Limit which pages can be created below the Home page
-    subpage_types = ['home.ServicePage', 'home.ContactPage']
+    subpage_types = ['home.ServicePage', 'home.ContactPage', 'home.CorporateSocialResponsibility']
 
 class ServicePage(Page):
     """Page to detail individual services."""
@@ -36,6 +36,18 @@ class ContactPage(Page):
     
     content_panels = Page.content_panels + [
         FieldPanel('address'),
+    ]
+
+    # Prevent the creation of sub-pages under the contact page
+    subpage_types = []
+
+class CorporateSocialResponsibility(Page):
+    """Corporate Social Responsibility."""
+    template = "home/crs.html"
+    description = RichTextField(blank=True)
+    
+    content_panels = Page.content_panels + [
+        FieldPanel('description'),
     ]
 
     # Prevent the creation of sub-pages under the contact page

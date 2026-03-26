@@ -1,5 +1,4 @@
 {% load static wagtailcore_tags wagtailuserbar %}
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -58,9 +57,11 @@
 
     <body class="{% block body_class %}{% endblock %}font-sans text-slate-900">
         {% wagtailuserbar %}
-
+        {% include "includes/top_menu.html" %}
         {% block content %}{% endblock %}
 
+        {% include "includes/footer.html" %}
+        
         {# Global javascript #}
         <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
 

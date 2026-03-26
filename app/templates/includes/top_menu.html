@@ -1,0 +1,22 @@
+{% load wagtailcore_tags navigation_tags %}
+{% get_site_root as site_root %}
+<!-- Fixed floating header (existing) -->
+<div class="fixed top-0 left-0 right-0 z-50 animate-fade-in-blur" data-delay="0.2">
+    <div class="mx-auto max-w-6xl px-4">
+        <div class="mt-4 rounded-2xl bg-white/90 backdrop-blur shadow-sm">
+            <div class="flex items-center justify-between px-4 py-3">
+                <a href="/" class="text-lg font-semibold text-slate-900">
+                    Cooltimedia
+                </a>
+                    {% for menuitem in site_root.get_children.live.in_menu %} 
+                    <nav class="md:flex items-center gap-6 text-sm text-slate-700">
+                        <a href="{% pageurl menuitem %}" class="hover:text-slate-900">{{ menuitem.title }}</a>
+                    </nav>  
+                {% endfor %}              
+                <nav class="md:flex items-center gap-6 text-sm text-slate-700">
+                    <a href="#contact-cooltimedia" class="hover:text-slate-900">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
