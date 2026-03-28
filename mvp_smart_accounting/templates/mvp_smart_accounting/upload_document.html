@@ -1,0 +1,126 @@
+{% extends "mvp_smart_accounting/base_demo.html" %}
+{% load static %}
+
+{% block custom_title %}Upload Document | Smart Accounting MVP{% endblock %}
+
+{% block demo_content %}
+<div class="max-w-3xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+    <div class="md:flex md:items-center md:justify-between mb-8">
+        <div class="flex-1 min-w-0">
+            <h2 class="text-3xl font-bold leading-7 text-slate-900 sm:text-4xl sm:truncate tracking-tight">
+                Process <span class="text-emerald-600">New Document</span>
+            </h2>
+            <p class="mt-2 text-sm text-slate-500 font-medium">
+                Upload your Panamanian Electronic Invoice or POS Receipt (PDF).
+            </p>
+        </div>
+    </div>
+
+    <div class="bg-white shadow-xl shadow-slate-200/50 rounded-3xl border border-slate-100 overflow-hidden" data-delay="0.2">
+        <form action="{% url 'mvp_smart_accounting:document_upload' %}" method="POST" enctype="multipart/form-data" class="p-8">
+            {% csrf_token %}
+
+            {% if form.errors %}
+                <div class="rounded-xl bg-red-50 p-4 mb-6 ring-1 ring-red-200">
+                    <p class="text-sm font-semibold text-red-800">{{ form.original_file.errors|striptags }}</p>
+                </div>
+            {% endif %}
+
+            <div id="drop-zone" class="relative group mt-1 flex justify-center px-6 pt-10 pb-10 border-2 border-slate-300 border-dashed rounded-2xl hover:border-emerald-500 hover:bg-emerald-50/30 transition-all duration-300">
+                <div class="space-y-2 text-center">
+                    <div class="mx-auto h-16 w-16 text-slate-400 group-hover:text-emerald-500 transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
+                        </svg>
+                    </div>
+                    
+                    <div class="flex text-sm text-slate-600">
+                        <label for="{{ form.original_file.id_for_label }}" class="relative cursor-pointer rounded-md font-bold text-emerald-600 hover:text-emerald-500 focus-within:outline-none">
+                            <span>Upload a file</span>
+                            {{ form.original_file }}
+                        </label>
+                        <p class="pl-1">or drag and drop</p>
+                    </div>
+                    <p class="text-xs text-slate-400 font-medium">
+                        PDF up to 10MB
+                    </p>
+                    <p id="file-name-display" class="mt-4 text-sm font-bold text-emerald-700 hidden bg-emerald-100 py-1 px-3 rounded-full inline-block"></p>
+                </div>
+            </div>
+
+            <div class="mt-8">
+                <button type="submit" id="submit-btn" disabled
+                        class="w-full flex justify-center py-4 px-4 border border-transparent rounded-xl shadow-lg text-sm font-bold text-white bg-slate-300 cursor-not-allowed transition-all duration-200 transform">
+                    Start Automation Process
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="mt-6 flex items-start space-x-3 text-slate-400">
+        <svg class="h-5 w-5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+        </svg>
+        <p class="text-xs italic">
+            Note: The system automatically identifies key information from the document, including RUC, DV, and the unique CUFE identifier.
+        </p>
+    </div>
+</div>
+
+<style>
+    /* Custom style for the hidden file input */
+    input[type="file"] {
+        display: none;
+    }
+    .btn-active {
+        @apply bg-emerald-600 hover:bg-emerald-700 cursor-pointer hover:-translate-y-0.5;
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+<script>
+    const fileInput = document.querySelector('input[type="file"]');
+    const dropZone = document.getElementById('drop-zone');
+    const fileNameDisplay = document.getElementById('file-name-display');
+    const submitBtn = document.getElementById('submit-btn');
+
+    // Update UI when file is selected
+    fileInput.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) {
+            const fileName = e.target.files[0].name;
+            fileNameDisplay.textContent = `Selected: ${fileName}`;
+            fileNameDisplay.classList.remove('hidden');
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('bg-slate-300', 'cursor-not-allowed');
+            submitBtn.classList.add('bg-emerald-600', 'hover:bg-emerald-700', 'cursor-pointer');
+        }
+    });
+
+    // Drag and Drop Logic
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, preventDefaults, false);
+    });
+
+    function preventDefaults (e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+        dropZone.addEventListener(eventName, () => dropZone.classList.add('border-emerald-500', 'bg-emerald-50'), false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, () => dropZone.classList.remove('border-emerald-500', 'bg-emerald-50'), false);
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        fileInput.files = files;
+        fileInput.dispatchEvent(new Event('change'));
+    });
+</script>
+{% endblock %}

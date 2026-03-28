@@ -1,0 +1,143 @@
+{% extends "mvp_smart_accounting/base_demo.html" %}
+{% load static %}
+
+{% block custom_title %}Document Details | {{ document.document_number }}{% endblock %}
+
+{% block demo_content %}
+<div class="space-y-6">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
+        <nav class="flex" aria-label="Breadcrumb">
+            <ol class="flex items-center space-x-2 text-sm font-medium text-slate-500">
+                <li><a href="{% url 'mvp_smart_accounting:dashboard' %}" class="hover:text-emerald-600 transition-colors">Dashboard</a></li>
+                <li><svg class="h-5 w-5 flex-shrink-0 text-slate-300" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.21 14.71a.75.75 0 010-1.06l2.72-2.72-2.72-2.72a.75.75 0 111.06-1.06l3.25 3.25a.75.75 0 010 1.06l-3.25 3.25a.75.75 0 01-1.06 0z" clip-rule="evenodd" /></svg></li>
+                <li class="text-slate-900 font-bold">Document Details</li>
+            </ol>
+        </nav>
+        <div class="flex space-x-3">
+            <span class="inline-flex items-center rounded-full bg-emerald-100 px-3 py-0.5 text-sm font-bold text-emerald-800">
+                Status: {{ document.get_processing_status_display }}
+            </span>
+            <a href="{{ document.original_file.url }}" target="_blank" class="inline-flex items-center px-4 py-2 text-sm font-bold rounded-xl text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 transition-all">
+                Download Original
+            </a>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
+        
+        <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden h-[600px] lg:h-[800px]">
+            <div class="bg-slate-50 px-6 py-3 border-b border-slate-100 flex justify-between items-center">
+                <span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Original Document View</span>
+            </div>
+            {% if ".pdf" in document.original_file.name %}
+                <iframe src="{{ document.original_file.url }}" class="w-full h-full" frameborder="0"></iframe>
+            {% else %}
+                <div class="flex flex-col items-center justify-center h-full text-slate-400 space-y-4">
+                    <svg class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg>
+                    <p class="font-medium text-sm text-center px-6">Preview not available for Excel files.<br>Please download the file to view.</p>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="space-y-6">
+            
+            <div class="bg-white rounded-3xl shadow-sm border border-slate-100 p-6 flex items-center justify-between overflow-hidden relative">
+                <div class="z-10">
+                    <h3 class="text-sm font-bold text-slate-500 uppercase tracking-widest">Extraction Confidence</h3>
+                    <p class="text-4xl font-black text-emerald-600">{% widthratio document.parsed_data.extraction_confidence 1 100 %}%</p>
+                </div>
+                <div class="absolute -right-4 -bottom-4 opacity-10 text-emerald-600">
+                    <svg class="h-32 w-32" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" /></svg>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-3xl shadow-sm border border-slate-100 overflow-hidden">
+                <div class="px-6 py-5 border-b border-slate-100">
+                    <h3 class="text-lg font-bold text-slate-900">Fiscal Data <span class="text-emerald-600">(Panamá)</span></h3>
+                </div>
+                <div class="px-6 py-6 space-y-6">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase">Document No.</label>
+                            <p class="mt-1 text-sm font-bold text-slate-900">{{ document.parsed_data.document_number|default:"Not Detected" }}</p>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase">Issue Date</label>
+                            <p class="mt-1 text-sm font-bold text-slate-900">{{ document.parsed_data.issue_date|default:"Not Detected" }}</p>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase">CUFE</label>
+                        <p class="mt-1 text-[10px] font-mono font-bold text-slate-700 break-all bg-slate-50 p-2 rounded-lg">{{ document.parsed_data.cufe|default:"N/A" }}</p>
+                    </div>
+
+                    <hr class="border-slate-100">
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="p-5 bg-emerald-50/40 rounded-2xl border border-emerald-100 relative overflow-hidden">
+                            <label class="block text-[10px] font-black text-emerald-600 uppercase tracking-widest mb-2">Issuer (Emisor)</label>
+                            <p class="text-sm font-black text-slate-900 leading-tight">{{ document.parsed_data.issuer_name|default:"Unknown Issuer" }}</p>
+                            <div class="mt-2 flex items-center space-x-2">
+                                <span class="text-xs font-bold text-slate-500 bg-white px-2 py-0.5 rounded border border-slate-200">
+                                    RUC: {{ document.parsed_data.issuer_ruc }}
+                                </span>
+                                <span class="text-xs font-bold text-slate-500 bg-white px-2 py-0.5 rounded border border-slate-200">
+                                    DV: {{ document.parsed_data.issuer_dv }}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="p-5 bg-slate-50 rounded-2xl border border-slate-100 relative">
+                            <label class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2">Receiver (Receptor)</label>
+                            
+                            {% if document.parsed_data.receiver_type %}
+                            <span class="absolute top-4 right-4 inline-flex items-center rounded-md bg-slate-200 px-2 py-1 text-[10px] font-bold text-slate-600 uppercase">
+                                {{ document.parsed_data.receiver_type }}
+                            </span>
+                            {% endif %}
+
+                            <p class="text-sm font-black text-slate-900 leading-tight pr-16">{{ document.parsed_data.receiver_name|default:"Not Detected" }}</p>
+                            
+                            <div class="mt-2 flex items-center space-x-2">
+                                <span class="text-xs font-bold text-slate-500">
+                                    RUC: {{ document.parsed_data.receiver_ruc|default:"---" }}
+                                </span>
+                                {% if document.parsed_data.receiver_dv %}
+                                <span class="text-xs font-bold text-slate-400">
+                                    DV: {{ document.parsed_data.receiver_dv }}
+                                </span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-900 rounded-2xl p-6 text-white">
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-xs font-bold text-slate-400 uppercase">Financial Breakdown</span>
+                            <span class="text-[10px] bg-emerald-600 px-2 py-0.5 rounded font-bold">PAB / USD</span>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-slate-400 font-medium">Subtotal</span>
+                                <span class="font-bold">${{ document.parsed_data.subtotal }}</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-slate-400 font-medium">ITBMS</span>
+                                <span class="font-bold text-emerald-400">+ ${{ document.parsed_data.tax_amount }}</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-slate-400 font-medium">Discount</span>
+                                <span class="font-bold text-red-400">- ${{ document.parsed_data.discount }}</span>
+                            </div>
+                            <div class="pt-3 border-t border-slate-700 flex justify-between items-center">
+                                <span class="text-base font-black">Total Paid</span>
+                                <span class="text-2xl font-black text-emerald-400">${{ document.parsed_data.total_paid }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -27,6 +27,7 @@ BASE_DIR = PROJECT_DIR.parent
 INSTALLED_APPS = [
     "home",
     "base",
+    "mvp_smart_accounting",
     "search",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.postgres",
+    "django.contrib.humanize",
     "wagtail.contrib.settings",
 ]
 
@@ -64,6 +66,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "app.urls"
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+LOGIN_REDIRECT_URL = '/demo/smart-accounting/dashboard/'
+LOGIN_URL = '/demo/smart-accounting/login/'
 
 TEMPLATES = [
     {
@@ -132,6 +139,9 @@ USE_I18N = True
 
 USE_TZ = True
 
+USE_L10N = True
+
+USE_THOUSAND_SEPARATOR = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
@@ -187,3 +197,11 @@ WAGTAILADMIN_BASE_URL = "https://cooltimedia.com"
 # if untrusted users are allowed to upload files -
 # see https://docs.wagtail.org/en/stable/advanced_topics/deploying.html#user-uploaded-files
 WAGTAILDOCS_EXTENSIONS = ['csv', 'docx', 'key', 'odt', 'pdf', 'pptx', 'rtf', 'txt', 'xlsx', 'zip']
+
+#Email
+SENDGRID_API_KEY_ENV = config('SENDGRID_API_KEY_VALUE')
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = str(SENDGRID_API_KEY_ENV)
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

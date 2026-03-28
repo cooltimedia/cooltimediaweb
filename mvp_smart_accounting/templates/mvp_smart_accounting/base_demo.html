@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    {% if custom_title %}{{ custom_title }}{% else %}Smart Accounting MVP{% endif %}
+{% endblock %}
+
+{% block extra_css %}
+    <style>
+        [v-cloak] { display: none; }
+        #main_menu{
+            display: none;
+        }
+
+    </style>
+{% endblock %}
+
+{% block body_class %}bg-slate-50 {% endblock %}
+
+{% block content %}
+<div class="min-h-screen flex flex-col lg:flex-row">
+    <main class="flex-1 p-4 md:p-8 lg:p-12">
+        <div class="max-w-7xl mx-auto">
+            {% block demo_content %}{% endblock %}
+        </div>
+    </main>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}

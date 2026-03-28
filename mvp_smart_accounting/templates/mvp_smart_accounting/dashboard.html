@@ -1,0 +1,89 @@
+{% extends "mvp_smart_accounting/base_demo.html" %}
+{% load humanize %}
+{% block custom_title %}Dashboard | Smart Accounting MVP{% endblock %}
+
+{% block demo_content %}
+<div class="space-y-8">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between border-b border-slate-200 pb-5">
+        <div>
+            <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight">Smart Accounting Automation (Panama Demo)</h1>
+            <p class="mt-2 text-sm text-slate-500 font-medium italic">Real-time automation metrics and extraction confidence.</p>
+        </div>
+        <div class="mt-4 md:mt-0 flex space-x-3">
+            <a href="{% url 'mvp_smart_accounting:document_upload' %}" 
+               class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-bold rounded-xl text-white bg-emerald-600 hover:bg-emerald-700 transition-all">
+               + Upload Document
+            </a>
+            <a href="{% url 'mvp_smart_accounting:documents_excel_export' %}" 
+               class="inline-flex items-center px-4 py-2 border border-slate-300 shadow-sm text-sm font-bold rounded-xl text-slate-700 bg-white hover:bg-slate-50">
+               Export to Excel
+            </a>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="bg-white overflow-hidden shadow-sm rounded-2xl border border-slate-100 p-6">
+            <dt class="text-sm font-semibold text-slate-500 truncate uppercase tracking-wider">Total Amount (Processed)</dt>
+            <dd class="mt-2 text-3xl font-bold text-slate-900">${{ dashboard_summary.financial_overview.total|floatformat:2|intcomma }}</dd>
+        </div>
+        <div class="bg-white overflow-hidden shadow-sm rounded-2xl border border-slate-100 p-6">
+            <dt class="text-sm font-semibold text-slate-500 truncate uppercase tracking-wider">Total ITBMS (7%)</dt>
+            <dd class="mt-2 text-3xl font-bold text-emerald-600">${{ dashboard_summary.financial_overview.itbms|floatformat:2|intcomma }}</dd>
+        </div>
+        <div class="bg-white overflow-hidden shadow-sm rounded-2xl border border-slate-100 p-6">
+            <dt class="text-sm font-semibold text-slate-500 truncate uppercase tracking-wider">Documents Processed</dt>
+            <dd class="mt-2 text-3xl font-bold text-slate-900">{{ dashboard_summary.total_documents_processed }}</dd>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
+        <div class="bg-white p-6 shadow-sm rounded-2xl border border-slate-100">
+            <h3 class="text-lg font-bold text-slate-900 mb-4">Top Suppliers (Emisores)</h3>
+            <canvas id="issuersChart" height="200"></canvas>
+        </div>
+        <div class="bg-white p-6 shadow-sm rounded-2xl border border-slate-100">
+            <h3 class="text-lg font-bold text-slate-900 mb-4">System Health (Processing Status)</h3>
+            <div class="max-w-[250px] mx-auto">
+                <canvas id="statusChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+<script>
+    // Data from Django Context
+    const topIssuers = {{ dashboard_summary.top_issuers|safe }};
+    const statusData = {{ dashboard_summary.status_distribution|safe }};
+
+    // 1. Top Issuers Chart
+    new Chart(document.getElementById('issuersChart'), {
+        type: 'bar',
+        data: {
+            labels: topIssuers.map(item => item.issuer_name),
+            datasets: [{
+                label: 'Total Paid ($)',
+                data: topIssuers.map(item => item.total),
+                backgroundColor: '#2563eb',
+                borderRadius: 8
+            }]
+        },
+        options: { responsive: true, plugins: { legend: { display: false } } }
+    });
+
+    // 2. Status Distribution Chart
+    new Chart(document.getElementById('statusChart'), {
+        type: 'doughnut',
+        data: {
+            labels: Object.keys(statusData),
+            datasets: [{
+                data: Object.values(statusData),
+                backgroundColor: ['#10b981', '#f59e0b', '#ef4444', '#6366f1']
+            }]
+        },
+        options: { cutout: '70%', plugins: { legend: { position: 'bottom' } } }
+    });
+</script>
+{% endblock %}

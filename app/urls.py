@@ -1,3 +1,9 @@
+"""
+Main URL Configuration for Cooltimedia Project.
+Integrates Wagtail CMS with the 'Demo' ecosystem, specifically 
+routing the Smart Accounting Automation MVP under the 'demo/' prefix.
+"""
+
 from django.conf import settings
 from django.urls import include, path, re_path
 from django.contrib import admin
@@ -14,8 +20,16 @@ urlpatterns = [
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
     path("search/", search_views.search, name="search"),
-]
 
+    # --- Cooltimedia Demo Ecosystem ---
+    # Prefixing with 'demo/' allows multiple MVPs to coexist without 
+    # interfering with Wagtail's page tree.
+    path(
+        "demo/smart-accounting/",
+        include("mvp_smart_accounting.urls", namespace="mvp_smart_accounting"),
+    ),
+
+]
 
 if settings.DEBUG:
     from django.conf.urls.static import static
@@ -31,12 +45,7 @@ if not settings.DEBUG:
         re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
     ]
 
+# Wagtail catch-all (Must always be the last pattern)
 urlpatterns = urlpatterns + [
-    # For anything not caught by a more specific rule above, hand over to
-    # Wagtail's page serving mechanism. This should be the last pattern in
-    # the list:
     path("", include(wagtail_urls)),
-    # Alternatively, if you want Wagtail pages to be served from a subpath
-    # of your site, rather than the site root:
-    #    path("pages/", include(wagtail_urls)),
 ]
