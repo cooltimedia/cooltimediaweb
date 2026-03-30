@@ -15,7 +15,20 @@ class HomePage(Page):
     ]
 
     # Limit which pages can be created below the Home page
-    subpage_types = ['home.ServicePage', 'home.ContactPage', 'home.CorporateSocialResponsibility']
+    subpage_types = ['home.SolutionsPage', 'home.ServicePage', 'home.ContactPage', 'home.CorporateSocialResponsibility']
+
+
+class SolutionsPage(Page):
+    """Page to detail individual solutions."""
+    template = "home/solutions_page.html"
+    description = RichTextField(blank=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('description'),
+    ]
+
+    # This page shouldn't have children
+    subpage_types = []
 
 class ServicePage(Page):
     """Page to detail individual services."""
