@@ -3,11 +3,11 @@ __pycache__/
 *.pyc
 .env
 frontend/*
+frontend/tailwind.config.js
 *.sqlite3
 app/settings/wsgi.py
 app/wsgi.py
 home/migrations/*
-*/migrations/*
 *manage.py*
 manage.py
 # macOS
