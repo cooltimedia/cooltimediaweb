@@ -52,3 +52,8 @@ if not settings.DEBUG:
 urlpatterns = urlpatterns + [
     path("", include(wagtail_urls)),
 ]
+
+#Custom Admin Titles
+admin.site.site_header = 'Cooltimedia Panamá'
+admin.site.index_title = 'Portal Web'
+admin.site.site_title = 'Administración del Cooltimedia'
