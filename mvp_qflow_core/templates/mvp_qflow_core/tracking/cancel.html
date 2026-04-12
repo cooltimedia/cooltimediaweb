@@ -1,0 +1,257 @@
+{% extends "mvp_qflow_core/base_qflow_core.html" %}
+
+{% block qflow_page_title %}
+    Cancel Ticket
+{% endblock %}
+
+{% block qflow_page_description %}
+    Confirm whether you want to cancel your current ticket from the queue tracking page.
+{% endblock %}
+
+{% block demo_content %}
+<div class="grid grid-cols-1 gap-6 xl:grid-cols-3">
+    <!-- Main confirmation content -->
+    <section class="xl:col-span-2">
+        <div class="overflow-hidden rounded-3xl border border-amber-200 bg-white shadow-sm">
+            <div class="border-b border-amber-100 bg-amber-50 px-6 py-5 md:px-8">
+                <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                    <div>
+                        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-amber-700">
+                            Ticket Cancellation
+                        </p>
+                        <h2 class="mt-2 text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
+                            {{ tracking_data.ticket_code }}
+                        </h2>
+                        <p class="mt-2 text-sm leading-6 text-slate-700 md:text-base">
+                            You are about to remove this ticket from the active queue.
+                        </p>
+                    </div>
+
+                    <div class="inline-flex items-center rounded-2xl border border-amber-200 bg-white px-4 py-2 text-sm font-semibold text-amber-800 shadow-sm">
+                        Confirmation required
+                    </div>
+                </div>
+            </div>
+
+            <div class="px-6 py-6 md:px-8 md:py-8">
+                <div class="rounded-2xl border border-amber-200 bg-amber-50 p-5">
+                    <h3 class="text-lg font-bold text-amber-900">
+                        Before you continue
+                    </h3>
+                    <div class="mt-3 space-y-3 text-sm leading-6 text-amber-900/90">
+                        <p>
+                            Cancelling this ticket will remove it from the current queue.
+                        </p>
+                        <p>
+                            If you still need the service later, you may need to create a new ticket and join the queue again.
+                        </p>
+                        <p>
+                            Please confirm only if you are sure you no longer want to keep this turn.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+                    <div class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4">
+                        <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                            Ticket
+                        </p>
+                        <p class="mt-2 text-base font-bold text-slate-900">
+                            {{ tracking_data.ticket_code }}
+                        </p>
+                    </div>
+
+                    <div class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4">
+                        <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                            Service
+                        </p>
+                        <p class="mt-2 text-base font-bold text-slate-900">
+                            {{ tracking_data.service_name }}
+                        </p>
+                    </div>
+
+                    <div class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4">
+                        <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                            Status
+                        </p>
+                        <p class="mt-2 text-base font-bold text-slate-900">
+                            {{ ticket.get_status_display }}
+                        </p>
+                    </div>
+
+                    <div class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4">
+                        <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                            People ahead
+                        </p>
+                        <p class="mt-2 text-base font-bold text-slate-900">
+                            {{ tracking_data.people_ahead }}
+                        </p>
+                    </div>
+                </div>
+
+                <form method="post" novalidate class="mt-8 space-y-6">
+                    {% csrf_token %}
+
+                    {% if form.non_field_errors %}
+                        <div class="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
+                            {% for error in form.non_field_errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <div class="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                        <div class="flex items-start gap-3">
+                            <div class="pt-1">
+                                {{ form.confirm_cancel }}
+                            </div>
+                            <div>
+                                <label for="{{ form.confirm_cancel.id_for_label }}" class="block text-sm font-semibold text-slate-800">
+                                    {{ form.confirm_cancel.label }}
+                                </label>
+                                <p class="mt-1 text-sm leading-6 text-slate-600">
+                                    This action will cancel your active ticket from the queue.
+                                </p>
+                                {% if form.confirm_cancel.errors %}
+                                    <div class="mt-2 text-sm text-red-700">
+                                        {% for error in form.confirm_cancel.errors %}
+                                            <p>{{ error }}</p>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col gap-4 border-t border-slate-100 pt-6 sm:flex-row sm:items-center sm:justify-between">
+                        <a
+                            href="{% url 'mvp_qflow_core:ticket_tracking' tracking_data.internal_token %}"
+                            class="flex w-full justify-center rounded-xl border border-slate-300 bg-white px-4 py-4 text-sm font-bold text-slate-800 shadow-sm transition-all duration-200 hover:border-slate-400 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 sm:w-auto sm:min-w-[220px]"
+                        >
+                            Go Back
+                        </a>
+
+                        <button
+                            type="submit"
+                            class="flex w-full justify-center rounded-xl bg-amber-600 px-4 py-4 text-sm font-bold text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2 sm:w-auto sm:min-w-[220px]"
+                        >
+                            Confirm Cancellation
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Right column -->
+    <aside class="space-y-6">
+        <section class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+            <div class="border-b border-slate-100 px-6 py-5">
+                <h3 class="text-lg font-bold text-slate-900">
+                    Ticket summary
+                </h3>
+                <p class="mt-2 text-sm text-slate-600">
+                    Current ticket information before cancellation.
+                </p>
+            </div>
+
+            <div class="space-y-4 px-6 py-6">
+                <div class="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4">
+                    <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                        Ticket number
+                    </p>
+                    <p class="mt-2 text-2xl font-bold tracking-tight text-slate-900">
+                        {{ tracking_data.ticket_code }}
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 gap-3">
+                    <div class="rounded-2xl border border-slate-200 bg-white px-4 py-4">
+                        <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                            Branch
+                        </p>
+                        <p class="mt-2 text-sm font-semibold text-slate-900">
+                            {{ tracking_data.branch_name }}
+                        </p>
+                    </div>
+
+                    <div class="rounded-2xl border border-slate-200 bg-white px-4 py-4">
+                        <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                            Service prefix
+                        </p>
+                        <p class="mt-2 text-sm font-semibold text-slate-900">
+                            {{ tracking_data.service_prefix }}
+                        </p>
+                    </div>
+
+                    <div class="rounded-2xl border border-slate-200 bg-white px-4 py-4">
+                        <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                            Priority
+                        </p>
+                        <p class="mt-2 text-sm font-semibold text-slate-900">
+                            {% if tracking_data.is_priority %}
+                                Yes
+                            {% else %}
+                                No
+                            {% endif %}
+                        </p>
+                    </div>
+
+                    <div class="rounded-2xl border border-slate-200 bg-white px-4 py-4">
+                        <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                            Issued
+                        </p>
+                        <p class="mt-2 text-sm font-semibold text-slate-900">
+                            {{ ticket.created_at|date:"M d, Y h:i A" }}
+                        </p>
+                    </div>
+
+                    {% if ticket.customer_name %}
+                        <div class="rounded-2xl border border-slate-200 bg-white px-4 py-4">
+                            <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                                Customer name
+                            </p>
+                            <p class="mt-2 text-sm font-semibold text-slate-900">
+                                {{ ticket.customer_name }}
+                            </p>
+                        </div>
+                    {% endif %}
+
+                    {% if ticket.customer_id %}
+                        <div class="rounded-2xl border border-slate-200 bg-white px-4 py-4">
+                            <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                                Identification
+                            </p>
+                            <p class="mt-2 text-sm font-semibold text-slate-900">
+                                {{ ticket.customer_id }}
+                            </p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+
+        {% if tracking_data.public_message or tracking_data.secondary_message %}
+            <section class="overflow-hidden rounded-3xl border border-emerald-100 bg-emerald-50 shadow-sm">
+                <div class="px-6 py-5">
+                    <h3 class="text-lg font-bold text-emerald-900">
+                        Branch information
+                    </h3>
+
+                    {% if tracking_data.public_message %}
+                        <p class="mt-3 text-sm leading-6 text-emerald-800">
+                            {{ tracking_data.public_message }}
+                        </p>
+                    {% endif %}
+
+                    {% if tracking_data.secondary_message %}
+                        <p class="mt-3 text-sm leading-6 text-emerald-700">
+                            {{ tracking_data.secondary_message }}
+                        </p>
+                    {% endif %}
+                </div>
+            </section>
+        {% endif %}
+    </aside>
+</div>
+{% endblock %}

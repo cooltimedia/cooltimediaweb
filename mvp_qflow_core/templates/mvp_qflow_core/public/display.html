@@ -1,0 +1,220 @@
+{% extends "mvp_qflow_core/base_qflow_core.html" %}
+
+{% block title %}
+    {% if custom_title %}{{ custom_title }}{% else %}Live Demo: Smart Queue & Flow Management System{% endif %}
+{% endblock %}
+
+{% block demo_content %}
+<div class="space-y-6">
+    <!-- Global summary -->
+    <section class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+            <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                Total Open Tickets
+            </p>
+            <p class="mt-3 text-4xl font-bold tracking-tight text-slate-900">
+                {{ total_open_tickets }}
+            </p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+            <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                Waiting
+            </p>
+            <p class="mt-3 text-4xl font-bold tracking-tight text-slate-900">
+                {{ total_waiting_tickets }}
+            </p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+            <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                Called
+            </p>
+            <p class="mt-3 text-4xl font-bold tracking-tight text-emerald-700">
+                {{ total_called_tickets }}
+            </p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+            <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                Attending
+            </p>
+            <p class="mt-3 text-4xl font-bold tracking-tight text-blue-700">
+                {{ total_attending_tickets }}
+            </p>
+        </div>
+    </section>
+
+    <!-- Branch messages -->
+    {% if branch_summary.public_message or branch_summary.secondary_message %}
+        <section class="overflow-hidden rounded-3xl border border-emerald-100 bg-emerald-50 shadow-sm">
+            <div class="px-6 py-5 md:px-8">
+                <h2 class="text-xl font-bold text-emerald-900">
+                    Customer Information
+                </h2>
+
+                {% if branch_summary.public_message %}
+                    <p class="mt-3 text-base leading-7 text-emerald-800">
+                        {{ branch_summary.public_message }}
+                    </p>
+                {% endif %}
+
+                {% if branch_summary.secondary_message %}
+                    <p class="mt-3 text-base leading-7 text-emerald-700">
+                        {{ branch_summary.secondary_message }}
+                    </p>
+                {% endif %}
+            </div>
+        </section>
+    {% endif %}
+
+    <!-- Services queue display -->
+    <section class="grid grid-cols-1 gap-6 2xl:grid-cols-2">
+        {% for service in branch_summary.services %}
+            <article class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+                <div class="border-b border-slate-100 px-6 py-5 md:px-8">
+                    <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                        <div>
+                            <div class="flex flex-wrap items-center gap-3">
+                                <h2 class="text-2xl font-bold tracking-tight text-slate-900">
+                                    {{ service.service_name }}
+                                </h2>
+                                <span class="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-700">
+                                    Prefix {{ service.service_prefix }}
+                                </span>
+                            </div>
+
+                            <p class="mt-2 text-sm text-slate-600">
+                                Estimated wait for new ticket: {{ service.estimated_wait_for_new_ticket_minutes }} min
+                            </p>
+                        </div>
+
+                        <div class="inline-flex items-center rounded-2xl border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-semibold text-slate-700">
+                            {{ service.waiting_tickets }} waiting
+                        </div>
+                    </div>
+                </div>
+
+                <div class="px-6 py-6 md:px-8">
+                    <!-- Primary status cards -->
+                    <div class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+                        <section class="rounded-3xl border border-emerald-200 bg-emerald-50 p-5">
+                            <p class="text-[11px] font-semibold uppercase tracking-wide text-emerald-700">
+                                Current Called
+                            </p>
+
+                            {% if service.current_called_ticket %}
+                                <p class="mt-3 text-4xl font-bold tracking-tight text-emerald-900 md:text-5xl">
+                                    {{ service.current_called_ticket }}
+                                </p>
+                            {% else %}
+                                <p class="mt-3 text-lg font-semibold text-emerald-900/70">
+                                    No active call
+                                </p>
+                            {% endif %}
+                        </section>
+
+                        <section class="rounded-3xl border border-blue-200 bg-blue-50 p-5">
+                            <p class="text-[11px] font-semibold uppercase tracking-wide text-blue-700">
+                                Current Attending
+                            </p>
+
+                            {% if service.current_attending_ticket %}
+                                <p class="mt-3 text-4xl font-bold tracking-tight text-blue-900 md:text-5xl">
+                                    {{ service.current_attending_ticket }}
+                                </p>
+                            {% else %}
+                                <p class="mt-3 text-lg font-semibold text-blue-900/70">
+                                    No active service
+                                </p>
+                            {% endif %}
+                        </section>
+                    </div>
+
+                    <!-- Service metrics -->
+                    <div class="mt-5 grid grid-cols-2 gap-4 xl:grid-cols-4">
+                        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                            <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                                Open
+                            </p>
+                            <p class="mt-2 text-2xl font-bold text-slate-900">
+                                {{ service.total_open_tickets }}
+                            </p>
+                        </div>
+
+                        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                            <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                                Called
+                            </p>
+                            <p class="mt-2 text-2xl font-bold text-emerald-700">
+                                {{ service.called_tickets }}
+                            </p>
+                        </div>
+
+                        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                            <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                                Attending
+                            </p>
+                            <p class="mt-2 text-2xl font-bold text-blue-700">
+                                {{ service.attending_tickets }}
+                            </p>
+                        </div>
+
+                        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                            <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                                Priority Open
+                            </p>
+                            <p class="mt-2 text-2xl font-bold text-slate-900">
+                                {{ service.priority_open_tickets }}
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Next waiting tickets -->
+                    <section class="mt-6 rounded-3xl border border-slate-200 bg-slate-50 p-5">
+                        <div class="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+                            <h3 class="text-lg font-bold text-slate-900">
+                                Next Waiting Tickets
+                            </h3>
+                            <p class="text-sm text-slate-500">
+                                Upcoming queue order
+                            </p>
+                        </div>
+
+                        {% if service.next_waiting_tickets %}
+                            <div class="mt-4 flex flex-wrap gap-3">
+                                {% for ticket_code in service.next_waiting_tickets %}
+                                    <div class="rounded-2xl border border-slate-200 bg-white px-5 py-3 shadow-sm">
+                                        <span class="text-lg font-bold tracking-tight text-slate-900 md:text-2xl">
+                                            {{ ticket_code }}
+                                        </span>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="mt-4 rounded-2xl border border-dashed border-slate-300 bg-white p-4 text-sm text-slate-500">
+                                No waiting tickets for this service.
+                            </div>
+                        {% endif %}
+                    </section>
+                </div>
+            </article>
+        {% empty %}
+            <div class="rounded-3xl border border-dashed border-slate-300 bg-white p-10 text-center text-slate-500 shadow-sm 2xl:col-span-2">
+                No active services are configured for this branch.
+            </div>
+        {% endfor %}
+    </section>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            setTimeout(function () {
+                window.location.reload();
+            }, 30000);
+        });
+    </script>
+{% endblock %}

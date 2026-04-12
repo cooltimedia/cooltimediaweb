@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    {% if custom_title %}{{ custom_title }}{% else %}Live Demo: Smart Queue & Flow Management System{% endif %}
+{% endblock %}
+
+{% block custom_site_description %}
+    <meta name="description" content="Test our hybrid ticketing MVP: Real-time notifications, QR access, and data-driven insights for modern businesses." />
+    <meta name="keywords" content="Queue Management System, Digital Waitlist MVP, Smart Ticketing Solution, QR Code Queue, Django Web Engineering, Real-time Flow Management, Data-Driven Operations, Customer Experience Software, SaaS for Small Banks, Automated Notifications, Hybrid Ticketing System, Scalable Web Architecture.">
+    <meta property="og:title" content="Live Demo: Smart Queue & Flow Management System">
+    <meta property="og:description" content="Test our hybrid ticketing MVP: Real-time notifications, QR access, and data-driven insights for modern businesses.">
+{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'mvp_qflow_core/css/qflow_kiosk.css' %}">
+    <link rel="stylesheet" href="{% static 'mvp_qflow_core/css/ticket_thermal.css' %}">
+    <link rel="stylesheet" href="{% static 'mvp_qflow_core/css/qflow_public.css' %}">
+    <link rel="stylesheet" href="{% static 'mvp_qflow_core/css/qflow_staff.css' %}">
+    <style>
+        [v-cloak] { display: none; }
+        #main_menu{
+            display: none;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-slate-50">
+    <div class="flex min-h-screen flex-col lg:flex-row">
+        <main class="flex-1 p-4 md:p-8 lg:p-12">
+            <div class="mx-auto max-w-7xl">
+                {% block qflow_page_header %}
+                <section class="mb-8 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+                    <div class="border-b border-slate-100 bg-slate-50/80 px-6 py-5 md:px-8">
+                        <div class="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+                            <div>
+                                <p class="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-600">
+                                    QFlow Demo
+                                </p>
+                                <h1 class="mt-2 text-2xl font-bold tracking-tight text-slate-900 md:text-3xl">
+                                    {% block qflow_page_title %}Queue Management Demo{% endblock %}
+                                </h1>
+                                <p class="mt-2 max-w-3xl text-sm leading-6 text-slate-600 md:text-base">
+                                    {% block qflow_page_description %}
+                                        Smart queue management experience for kiosk, customer tracking, public display, and staff operations.
+                                    {% endblock %}
+                                </p>
+                            </div>
+
+                            {% block qflow_page_actions %}{% endblock %}
+                        </div>
+                    </div>
+
+                    {% block qflow_page_meta %}{% endblock %}
+                </section>
+                {% endblock %}
+
+                {% block content_messages %}
+                    {% if messages %}
+                        <section class="mb-6 space-y-3">
+                            {% for message in messages %}
+                                <div class="rounded-2xl border px-4 py-3 text-sm shadow-sm
+                                    {% if message.tags == 'success' %}
+                                        border-emerald-200 bg-emerald-50 text-emerald-800
+                                    {% elif message.tags == 'error' %}
+                                        border-red-200 bg-red-50 text-red-800
+                                    {% elif message.tags == 'warning' %}
+                                        border-amber-200 bg-amber-50 text-amber-800
+                                    {% else %}
+                                        border-slate-200 bg-white text-slate-700
+                                    {% endif %}">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        </section>
+                    {% endif %}
+                {% endblock %}
+
+                {% block demo_content %}{% endblock %}
+            </div>
+        </main>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+    <script src="{% static 'mvp_qflow_core/js/qde_voice.js' %}"></script>
+    <script src="{% static 'mvp_qflow_core/js/public_display.js' %}"></script>
+    <script src="{% static 'mvp_qflow_core/js/tracking.js' %}"></script>
+{% endblock %}

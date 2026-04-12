@@ -1,0 +1,408 @@
+{% extends "mvp_qflow_core/base_qflow_core.html" %}
+
+{% block qflow_page_title %}
+    {{ page_title }}
+{% endblock %}
+
+{% block qflow_page_description %}
+    Operational dashboard for queue control, ticket calling, active service handling, and branch monitoring.
+{% endblock %}
+
+{% block demo_content %}
+<div class="space-y-6">
+    <!-- Top summary -->
+    <section class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+        <div class="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+            <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                Active services
+            </p>
+            <p class="mt-2 text-3xl font-bold tracking-tight text-slate-900">
+                {{ branch_summary.services|length }}
+            </p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+            <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                Total open tickets
+            </p>
+            <p class="mt-2 text-3xl font-bold tracking-tight text-slate-900">
+                {{ total_open_tickets }}
+            </p>
+            <p class="mt-2 text-sm text-slate-500">
+                Waiting: {{ total_waiting_tickets }} · Called: {{ total_called_tickets }} · Attending: {{ total_attending_tickets }}
+            </p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+            <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                Branch mode
+            </p>
+            <p class="mt-2 text-lg font-bold text-slate-900">
+                {% if branch.is_digital_only %}
+                    Digital Only
+                {% else %}
+                    Hybrid Flow
+                {% endif %}
+            </p>
+            <p class="mt-2 text-sm text-slate-500">
+                {% if branch.auto_print %}
+                    Auto print enabled
+                {% else %}
+                    Manual print flow
+                {% endif %}
+            </p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+            <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                Priority handling
+            </p>
+            <p class="mt-2 text-lg font-bold text-slate-900">
+                {% if branch.has_priority_lane %}
+                    Separate Priority Flow
+                {% else %}
+                    Shared Priority Flow
+                {% endif %}
+            </p>
+            <p class="mt-2 text-sm text-slate-500">
+                Max calls: {{ branch.max_call_attempts }} · Interval: {{ branch.call_interval_seconds }} sec
+            </p>
+        </div>
+    </section>
+
+    <!-- Branch messages -->
+    {% if branch.public_message or branch.secondary_message %}
+        <section class="overflow-hidden rounded-3xl border border-emerald-100 bg-emerald-50 shadow-sm">
+            <div class="px-6 py-5">
+                <h2 class="text-lg font-bold text-emerald-900">
+                    Branch messages
+                </h2>
+
+                {% if branch.public_message %}
+                    <p class="mt-3 text-sm leading-6 text-emerald-800">
+                        {{ branch.public_message }}
+                    </p>
+                {% endif %}
+
+                {% if branch.secondary_message %}
+                    <p class="mt-3 text-sm leading-6 text-emerald-700">
+                        {{ branch.secondary_message }}
+                    </p>
+                {% endif %}
+            </div>
+        </section>
+    {% endif %}
+
+    <!-- Services dashboard -->
+    <section class="space-y-6">
+        {% for service in branch_summary.services %}
+            <article class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+                <div class="border-b border-slate-100 px-6 py-5 md:px-8">
+                    <div class="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
+                        <div>
+                            <div class="flex flex-wrap items-center gap-3">
+                                <h2 class="text-xl font-bold tracking-tight text-slate-900">
+                                    {{ service.service_name }}
+                                </h2>
+                                <span class="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-700">
+                                    Prefix {{ service.service_prefix }}
+                                </span>
+                            </div>
+
+                            <p class="mt-2 text-sm text-slate-600">
+                                Queue overview and operational controls for this service.
+                            </p>
+                        </div>
+
+                        <form
+                            method="post"
+                            action="{% url 'mvp_qflow_core:staff_call_next_ticket' branch.slug service.service_id %}"
+                            class="w-full xl:w-auto"
+                        >
+                            {% csrf_token %}
+                            <button
+                                type="submit"
+                                class="flex w-full justify-center rounded-xl bg-slate-900 px-4 py-4 text-sm font-bold text-white shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 xl:min-w-[220px]"
+                            >
+                                Call Next Ticket
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="px-6 py-6 md:px-8">
+                    <!-- Metrics -->
+                    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-6">
+                        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                            <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                                Open
+                            </p>
+                            <p class="mt-2 text-2xl font-bold text-slate-900">
+                                {{ service.total_open_tickets }}
+                            </p>
+                        </div>
+
+                        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                            <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                                Waiting
+                            </p>
+                            <p class="mt-2 text-2xl font-bold text-slate-900">
+                                {{ service.waiting_tickets }}
+                            </p>
+                        </div>
+
+                        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                            <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                                Called
+                            </p>
+                            <p class="mt-2 text-2xl font-bold text-slate-900">
+                                {{ service.called_tickets }}
+                            </p>
+                        </div>
+
+                        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                            <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                                Attending
+                            </p>
+                            <p class="mt-2 text-2xl font-bold text-slate-900">
+                                {{ service.attending_tickets }}
+                            </p>
+                        </div>
+
+                        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                            <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                                Priority Open
+                            </p>
+                            <p class="mt-2 text-2xl font-bold text-slate-900">
+                                {{ service.priority_open_tickets }}
+                            </p>
+                        </div>
+
+                        <div class="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                            <p class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+                                New Ticket Wait
+                            </p>
+                            <p class="mt-2 text-2xl font-bold text-slate-900">
+                                {{ service.estimated_wait_for_new_ticket_minutes }} min
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Current state panels -->
+                    <div class="mt-6 grid grid-cols-1 gap-4 xl:grid-cols-2">
+                        <section class="rounded-3xl border border-slate-200 bg-white p-5">
+                            <h3 class="text-lg font-bold text-slate-900">
+                                Current called ticket
+                            </h3>
+
+                            {% if service.current_called_ticket %}
+                                <div class="mt-4 rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
+                                    <p class="text-[11px] font-semibold uppercase tracking-wide text-emerald-700">
+                                        Ticket Called
+                                    </p>
+                                    <p class="mt-2 text-2xl font-bold tracking-tight text-emerald-900">
+                                        {{ service.current_called_ticket.ticket_code }}
+                                    </p>
+                                    <p class="mt-2 text-sm text-emerald-800">
+                                        Attempts: {{ service.current_called_ticket.call_attempts }}
+                                    </p>
+
+                                    <div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                                        <form
+                                            method="post"
+                                            action="{% url 'mvp_qflow_core:staff_recall_ticket' branch.slug service.current_called_ticket.id %}"
+                                        >
+                                            {% csrf_token %}
+                                            <button
+                                                type="submit"
+                                                class="flex w-full justify-center rounded-xl border border-emerald-300 bg-white px-4 py-3 text-sm font-bold text-emerald-800 shadow-sm transition hover:bg-emerald-100"
+                                            >
+                                                Recall
+                                            </button>
+                                        </form>
+
+                                        <form
+                                            method="post"
+                                            action="{% url 'mvp_qflow_core:staff_no_response_ticket' branch.slug service.current_called_ticket.id %}"
+                                        >
+                                            {% csrf_token %}
+                                            <button
+                                                type="submit"
+                                                class="flex w-full justify-center rounded-xl border border-amber-300 bg-white px-4 py-3 text-sm font-bold text-amber-800 shadow-sm transition hover:bg-amber-100"
+                                            >
+                                                No Response
+                                            </button>
+                                        </form>
+
+                                        <form
+                                            method="post"
+                                            action="{% url 'mvp_qflow_core:staff_start_service' branch.slug service.current_called_ticket.id %}"
+                                        >
+                                            {% csrf_token %}
+                                            <button
+                                                type="submit"
+                                                class="flex w-full justify-center rounded-xl bg-slate-900 px-4 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-emerald-600 sm:col-span-2"
+                                            >
+                                                Start Service
+                                            </button>
+                                        </form>
+
+                                        <form
+                                            method="post"
+                                            action="{% url 'mvp_qflow_core:staff_mark_missed_ticket' branch.slug service.current_called_ticket.id %}"
+                                        >
+                                            {% csrf_token %}
+                                            <button
+                                                type="submit"
+                                                class="flex w-full justify-center rounded-xl border border-red-300 bg-white px-4 py-3 text-sm font-bold text-red-800 shadow-sm transition hover:bg-red-100"
+                                            >
+                                                Mark Missed
+                                            </button>
+                                        </form>
+
+                                        <form
+                                            method="post"
+                                            action="{% url 'mvp_qflow_core:staff_cancel_ticket' branch.slug service.current_called_ticket.id %}"
+                                        >
+                                            {% csrf_token %}
+                                            <button
+                                                type="submit"
+                                                class="flex w-full justify-center rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold text-slate-800 shadow-sm transition hover:bg-slate-100"
+                                            >
+                                                Cancel
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="mt-4 rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-4 text-sm text-slate-500">
+                                    No active called ticket for this service.
+                                </div>
+                            {% endif %}
+                        </section>
+
+                        <section class="rounded-3xl border border-slate-200 bg-white p-5">
+                            <h3 class="text-lg font-bold text-slate-900">
+                                Current attending ticket
+                            </h3>
+
+                            {% if service.current_attending_ticket %}
+                                <div class="mt-4 rounded-2xl border border-blue-200 bg-blue-50 p-4">
+                                    <p class="text-[11px] font-semibold uppercase tracking-wide text-blue-700">
+                                        In Service
+                                    </p>
+                                    <p class="mt-2 text-2xl font-bold tracking-tight text-blue-900">
+                                        {{ service.current_attending_ticket.ticket_code }}
+                                    </p>
+
+                                    <div class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                                        <form
+                                            method="post"
+                                            action="{% url 'mvp_qflow_core:staff_finish_service' branch.slug service.current_attending_ticket.id %}"
+                                        >
+                                            {% csrf_token %}
+                                            <button
+                                                type="submit"
+                                                class="flex w-full justify-center rounded-xl bg-slate-900 px-4 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-emerald-600"
+                                            >
+                                                Finish Service
+                                            </button>
+                                        </form>
+
+                                        <form
+                                            method="post"
+                                            action="{% url 'mvp_qflow_core:staff_cancel_ticket' branch.slug service.current_attending_ticket.id %}"
+                                        >
+                                            {% csrf_token %}
+                                            <button
+                                                type="submit"
+                                                class="flex w-full justify-center rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold text-slate-800 shadow-sm transition hover:bg-slate-100"
+                                            >
+                                                Cancel
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="mt-4 rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-4 text-sm text-slate-500">
+                                    No ticket is currently being attended for this service.
+                                </div>
+                            {% endif %}
+                        </section>
+
+                    </div>
+
+                    <!-- Next waiting tickets -->
+                    <section class="mt-6 rounded-3xl border border-slate-200 bg-white p-5">
+                        <h3 class="text-lg font-bold text-slate-900">
+                            Next waiting tickets
+                        </h3>
+
+                        {% if service.next_waiting_tickets %}
+                            <div class="mt-4 space-y-3">
+                                {% for waiting_ticket in service.next_waiting_tickets %}
+                                    <div class="flex flex-col gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 lg:flex-row lg:items-center lg:justify-between">
+                                        <div>
+                                            <div class="flex items-center gap-2">
+                                                <p class="text-base font-bold text-slate-900">
+                                                    {{ waiting_ticket.ticket_code }}
+                                                </p>
+
+                                                {% if waiting_ticket.is_priority %}
+                                                    <span class="rounded-full bg-emerald-100 px-2 py-1 text-[11px] font-semibold uppercase tracking-wide text-emerald-700">
+                                                        Priority
+                                                    </span>
+                                                {% endif %}
+                                            </div>
+
+                                            <p class="mt-1 text-sm text-slate-600">
+                                                People ahead: {{ waiting_ticket.people_ahead }} · Estimated wait: {{ waiting_ticket.estimated_wait_minutes }} min
+                                            </p>
+                                        </div>
+
+                                        <div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                                            <form
+                                                method="post"
+                                                action="{% url 'mvp_qflow_core:staff_recall_ticket' branch.slug waiting_ticket.id %}"
+                                            >
+                                                {% csrf_token %}
+                                                <button
+                                                    type="submit"
+                                                    class="flex w-full justify-center rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-bold text-slate-800 shadow-sm transition hover:bg-slate-100"
+                                                >
+                                                    Call This Ticket
+                                                </button>
+                                            </form>
+
+                                            <form
+                                                method="post"
+                                                action="{% url 'mvp_qflow_core:staff_cancel_ticket' branch.slug waiting_ticket.id %}"
+                                            >
+                                                {% csrf_token %}
+                                                <button
+                                                    type="submit"
+                                                    class="flex w-full justify-center rounded-xl border border-red-300 bg-white px-4 py-3 text-sm font-bold text-red-800 shadow-sm transition hover:bg-red-100"
+                                                >
+                                                    Cancel
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="mt-4 rounded-2xl border border-dashed border-slate-300 bg-slate-50 p-4 text-sm text-slate-500">
+                                No waiting tickets in this service.
+                            </div>
+                        {% endif %}
+                    </section>
+                </div>
+            </article>
+        {% empty %}
+            <div class="rounded-3xl border border-dashed border-slate-300 bg-white p-8 text-center text-slate-500 shadow-sm">
+                No active services are configured for this branch.
+            </div>
+        {% endfor %}
+    </section>
+</div>
+{% endblock %}

@@ -19,8 +19,20 @@ class HomePage(Page):
 
 
 class SolutionsPage(Page):
-    """Page to detail individual solutions."""
-    template = "home/solutions_page.html"
+    """Page to main solutions page."""
+    template = "home/solutions/solutions_page.html"
+    description = RichTextField(blank=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('description'),
+    ]
+
+    # Limit which pages can be created below the Solutions page
+    subpage_types = ['home.SmartQueueMVPPage']
+
+class SmartQueueMVPPage(Page):
+    """Page to detail individual solutions (Smart Queue MVP)"""
+    template = "home/solutions/lab/smart_queue_mvp_page.html"
     description = RichTextField(blank=True)
 
     content_panels = Page.content_panels + [

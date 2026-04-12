@@ -28,7 +28,10 @@ urlpatterns = [
         "demo/smart-accounting/",
         include("mvp_smart_accounting.urls", namespace="mvp_smart_accounting"),
     ),
-
+    path(
+        "demo/qflow/",
+        include("mvp_qflow_core.urls", namespace="mvp_qflow_core"),
+    ),
 ]
 
 if settings.DEBUG:

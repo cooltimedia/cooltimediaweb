@@ -1,0 +1,337 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{ ticket.ticket_code }} - Thermal Ticket</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="{% static 'mvp_qflow_core/css/ticket_thermal.css' %}">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #ffffff;
+            color: #0f172a;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .thermal-page {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 12px 0;
+        }
+
+        .thermal-ticket {
+            width: 320px;
+            max-width: 320px;
+            background: #ffffff;
+            padding: 12px 14px 18px;
+            box-sizing: border-box;
+        }
+
+        .ticket-center {
+            text-align: center;
+        }
+
+        .ticket-divider {
+            border-top: 1px dashed #94a3b8;
+            margin: 12px 0;
+        }
+
+        .ticket-brand {
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #059669;
+            margin-bottom: 6px;
+        }
+
+        .ticket-branch {
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin: 0;
+        }
+
+        .ticket-subtitle {
+            font-size: 12px;
+            line-height: 1.5;
+            color: #475569;
+            margin-top: 6px;
+        }
+
+        .ticket-code {
+            font-size: 42px;
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: 0.04em;
+            margin: 8px 0 0;
+        }
+
+        .ticket-status {
+            margin-top: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #334155;
+        }
+
+        .ticket-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .ticket-box {
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 8px;
+        }
+
+        .ticket-box-label {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #64748b;
+            margin-bottom: 4px;
+        }
+
+        .ticket-box-value {
+            font-size: 14px;
+            font-weight: 700;
+            color: #0f172a;
+            line-height: 1.4;
+            word-break: break-word;
+        }
+
+        .ticket-section-title {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #64748b;
+            margin-bottom: 6px;
+        }
+
+        .ticket-text {
+            font-size: 12px;
+            line-height: 1.5;
+            color: #334155;
+        }
+
+        .ticket-small {
+            font-size: 11px;
+            line-height: 1.5;
+            color: #475569;
+        }
+
+        .ticket-footer {
+            margin-top: 14px;
+            text-align: center;
+            font-size: 11px;
+            color: #475569;
+            line-height: 1.5;
+        }
+
+        .ticket-tracking-url {
+            font-size: 10px;
+            word-break: break-all;
+            color: #0f172a;
+            margin-top: 6px;
+        }
+
+        .ticket-actions {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin: 16px 0 0;
+        }
+
+        .ticket-action-button {
+            appearance: none;
+            border: 1px solid #cbd5e1;
+            background: #ffffff;
+            color: #0f172a;
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .ticket-action-button:hover {
+            border-color: #10b981;
+            color: #047857;
+        }
+
+        @media print {
+            @page {
+                size: auto;
+                margin: 4mm;
+            }
+
+            body {
+                background: #ffffff;
+            }
+
+            .ticket-actions {
+                display: none !important;
+            }
+
+            .thermal-page {
+                padding: 0;
+            }
+
+            .thermal-ticket {
+                width: 80mm;
+                max-width: 80mm;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="thermal-page">
+        <article class="thermal-ticket">
+            <header class="ticket-center">
+                <div class="ticket-brand">QFlow Demo</div>
+                <h1 class="ticket-branch">{{ tracking_data.branch_name }}</h1>
+                <p class="ticket-subtitle">
+                    Queue Management Ticket
+                </p>
+            </header>
+
+            <div class="ticket-divider"></div>
+
+            <section class="ticket-center">
+                <div class="ticket-section-title">Ticket Number</div>
+                <div class="ticket-code">{{ ticket.ticket_code }}</div>
+                <div class="ticket-status">{{ tracking_data.status }}</div>
+            </section>
+
+            <div class="ticket-divider"></div>
+
+            <section class="ticket-grid">
+                <div class="ticket-box">
+                    <div class="ticket-box-label">Service</div>
+                    <div class="ticket-box-value">{{ tracking_data.service_name }}</div>
+                </div>
+
+                <div class="ticket-box">
+                    <div class="ticket-box-label">Prefix</div>
+                    <div class="ticket-box-value">{{ tracking_data.service_prefix }}</div>
+                </div>
+
+                <div class="ticket-box">
+                    <div class="ticket-box-label">People Ahead</div>
+                    <div class="ticket-box-value">{{ tracking_data.people_ahead }}</div>
+                </div>
+
+                <div class="ticket-box">
+                    <div class="ticket-box-label">Est. Wait</div>
+                    <div class="ticket-box-value">
+                        {% if tracking_data.show_estimated_wait_time %}
+                            {{ tracking_data.estimated_wait_minutes }} min
+                        {% else %}
+                            N/A
+                        {% endif %}
+                    </div>
+                </div>
+            </section>
+
+            {% if ticket.customer_name or ticket.customer_id or tracking_data.is_priority %}
+                <div class="ticket-divider"></div>
+
+                <section>
+                    <div class="ticket-section-title">Customer Details</div>
+
+                    {% if ticket.customer_name %}
+                        <p class="ticket-text">
+                            <strong>Name:</strong> {{ ticket.customer_name }}
+                        </p>
+                    {% endif %}
+
+                    {% if ticket.customer_id %}
+                        <p class="ticket-text">
+                            <strong>ID:</strong> {{ ticket.customer_id }}
+                        </p>
+                    {% endif %}
+
+                    <p class="ticket-text">
+                        <strong>Priority:</strong>
+                        {% if tracking_data.is_priority %}
+                            Yes
+                        {% else %}
+                            No
+                        {% endif %}
+                    </p>
+                </section>
+            {% endif %}
+
+            <div class="ticket-divider"></div>
+
+            <section class="ticket-center">
+                <div class="ticket-section-title">Track Your Turn</div>
+                <p class="ticket-small">
+                    Scan the QR code or open the tracking page in your browser.
+                </p>
+                <div style="margin-top: 10px;">
+                    <img src="{{ qr_code_data_uri }}" alt="QR code for ticket tracking" style="width: 140px; height: 140px; display: block; margin: 0 auto;">
+                </div>
+                <p class="ticket-tracking-url">{{ tracking_absolute_url }}</p>
+            </section>
+
+            {% if branch.public_message or branch.secondary_message %}
+                <div class="ticket-divider"></div>
+
+                <section>
+                    <div class="ticket-section-title">Information</div>
+
+                    {% if branch.public_message %}
+                        <p class="ticket-small">{{ branch.public_message }}</p>
+                    {% endif %}
+
+                    {% if branch.secondary_message %}
+                        <p class="ticket-small">{{ branch.secondary_message }}</p>
+                    {% endif %}
+                </section>
+            {% endif %}
+
+            <div class="ticket-divider"></div>
+
+            <footer class="ticket-footer">
+                <p>Please stay alert for your number.</p>
+                <p>Thank you for using QFlow.</p>
+            </footer>
+
+            {% if show_print_actions %}
+                <div class="ticket-actions">
+                    <button type="button" class="ticket-action-button" onclick="window.print();">
+                        Print
+                    </button>
+                    <button type="button" class="ticket-action-button" onclick="window.close();">
+                        Close
+                    </button>
+                </div>
+            {% endif %}
+        </article>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const params = new URLSearchParams(window.location.search);
+            const autoPrint = params.get("autoprint");
+
+            if (autoPrint === "1") {
+                window.print();
+            }
+        });
+    </script>
+</body>
+</html>

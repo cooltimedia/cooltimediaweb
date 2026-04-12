@@ -63,7 +63,7 @@
     <!-- Hero -->
     <section class="relative pt-30 pb-32 overflow-hidden hero-gradient">
         <div class="max-w-7xl mx-auto px-6 text-center">
-            <span class="inline-block py-1 px-3 rounded-full bg-emerald-100 text-emerald-700 text-xs font-light uppercase tracking-widest mb-4">
+            <span class="inline-block py-1 px-3 rounded-full bg-emerald-100 text-emerald-700 text-xs font-light tracking-widest mb-4">
                 The Innovation Sandbox
             </span>
             <h1 class="text-5xl md:text-6xl font-medium mb-6">
@@ -86,19 +86,42 @@
         </div>
     </section>
     <!-- Smart Accounting Demo -->
-    <section class="py-24 bg-slate-50">
+    <section class="py-24 bg-slate-100">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex flex-col lg:flex-row items-center gap-16">
-                <div class="flex-1 w-full lg:w-1/2" data-delay="0.2">
-                    <div class="relative">
-                        <div class="absolute bg-slate-50 rounded-3xl blur-2xl"></div>
-                        <img src="{% static 'images/lab/smart-accounting-mockup.png' %}" alt="Smart Accounting Demo" class="relative rounded-2xl border-slate-200">
+
+
+                <div class="flex-1 w-full order-2 lg:order-1" >
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+                        <div class="relative bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-2xl">
+                            <img src="{% static 'images/lab/smart-accounting.png' %}" alt="Smart Accounting Demo" class="w-full h-auto">
+                            
+                            <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1.5 rounded-lg shadow-sm border border-slate-100 flex items-center gap-2">
+                                <span class="flex h-2 w-2 relative">
+                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                                </span>
+                                <span class="text-[10px] font-bold text-slate-700 tracking-tight">Live Demo</span>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="flex-1 space-y-6">
-                    <div class="inline-flex items-center space-x-2 text-emerald-600 font-bold text-sm uppercase tracking-wider">
-                        <span class="h-2 w-2 rounded-full bg-emerald-600 animate-pulse"></span>
-                        <span>Live Demo Available</span>
+                </div>   
+
+                <div class="flex-1 space-y-6 lg:w-1/2 order-1 lg:order-2">
+                    <div class="inline-flex items-center space-x-2">
+                        <span class="inline-flex items-center rounded-md border border-emerald-200 bg-slate-50 px-2 py-0.5 text-xs font-medium text-slate-500 shadow-sm">
+                            OCR & Data Extraction
+                        </span>  
+                        <span class="inline-flex items-center rounded-md border border-emerald-200 bg-slate-50 px-2 py-0.5 text-xs font-medium text-slate-500 shadow-sm">
+                            DGI Fiscal Compliance
+                        </span>
+                        <span class="inline-flex items-center rounded-md border border-emerald-200 bg-slate-50 px-2 py-0.5 text-xs font-medium text-slate-500 shadow-sm">
+                            CUFE/RUC Validation
+                        </span> 
+                        <span class="inline-flex items-center rounded-md border border-emerald-200 bg-slate-50 px-2 py-0.5 text-xs font-medium text-slate-500 shadow-sm">
+                            Workflow Orchestration
+                        </span>   
                     </div>
                     <h2 class="text-4xl font-bold tracking-tight">Smart Accounting <br><span class="text-emerald-600">Automation.</span></h2>
                     <p class="text-slate-600 leading-relaxed">
@@ -132,11 +155,117 @@
                             Explore the Demo
                             <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                         </a>
-                    </div>
+                    </div>    
                 </div>
             </div>
         </div>
     </section>
+
+    <!--Smart Queue Management-->
+    <section class="py-24 bg-slate-50 border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                
+                <div class="flex-1 space-y-8 order-2 lg:order-1">
+                    <div class="inline-flex items-center space-x-2">
+                        <span class="inline-flex items-center rounded-md border border-emerald-200 bg-slate-50 px-2 py-0.5 text-xs font-medium text-slate-500 shadow-sm">
+                            Reduced Wait Perception
+                        </span>
+                        <span class="inline-flex items-center rounded-md border border-emerald-200 bg-slate-50 px-2 py-0.5 text-xs font-medium text-slate-500 shadow-sm">
+                            Omnichannel Tracking
+                        </span>
+                        <span class="inline-flex items-center rounded-md border border-emerald-200 bg-slate-50 px-2 py-0.5 text-xs font-medium text-slate-500 shadow-sm">
+                            Capacity Analytics
+                        </span>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <h2 class="text-4xl font-bold tracking-tight text-slate-900">
+                            Smart Queue <br><span class="text-emerald-600">Management System.</span>
+                        </h2>
+                        <p class="text-slate-600 leading-relaxed text-lg">
+                            This MVP demonstrates a modern digital ecosystem designed to eliminate physical bottlenecks. We simulate the entire lifecycle of a service interaction, from self-service kiosks to real-time staff orchestration.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <ul class="space-y-3">
+                            <li class="flex items-start text-sm font-medium text-slate-700">
+                                <svg class="h-5 w-5 text-emerald-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                Self-service kiosk & ticket generation
+                            </li>
+                            <li class="flex items-start text-sm font-medium text-slate-700">
+                                <svg class="h-5 w-5 text-emerald-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                Service-specific prioritization logic
+                            </li>
+                            <li class="flex items-start text-sm font-medium text-slate-700">
+                                <svg class="h-5 w-5 text-emerald-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                QR-based mobile ticket tracking
+                            </li>
+                        </ul>
+                        <ul class="space-y-3">
+                            <li class="flex items-start text-sm font-medium text-slate-700">
+                                <svg class="h-5 w-5 text-emerald-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                Real-time staff control dashboard
+                            </li>
+                            <li class="flex items-start text-sm font-medium text-slate-700">
+                                <svg class="h-5 w-5 text-emerald-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                Automatic call retry algorithms
+                            </li>
+                            <li class="flex items-start text-sm font-medium text-slate-700">
+                                <svg class="h-5 w-5 text-emerald-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                Public display visibility
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="pt-6 border-t border-slate-100">
+                        <h3 class="text-sm font-bold text-slate-900 uppercase tracking-widest mb-6">How the System Works</h3>
+                        <div class="space-y-6">
+                            <div class="flex gap-4">
+                                <span class="flex-none flex items-center justify-center w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 font-bold text-xs">01</span>
+                                <p class="text-sm text-slate-600"><strong class="text-slate-900">Request:</strong> Customers generate a ticket via kiosk with real-time wait estimates.</p>
+                            </div>
+                            <div class="flex gap-4">
+                                <span class="flex-none flex items-center justify-center w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 font-bold text-xs">02</span>
+                                <p class="text-sm text-slate-600"><strong class="text-slate-900">Orchestrate:</strong> Staff call and manage sessions from a live WebSocket-powered dashboard.</p>
+                            </div>
+                            <div class="flex gap-4">
+                                <span class="flex-none flex items-center justify-center w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 font-bold text-xs">03</span>
+                                <p class="text-sm text-slate-600"><strong class="text-slate-900">Track:</strong> Customers monitor their status on mobile via QR, reducing lobby anxiety.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4">
+                        <a href="/solutions-lab/queue-management-system/" class="inline-flex items-center px-8 py-4 bg-slate-900 text-white font-bold rounded-xl hover:bg-emerald-600 transition-all transform hover:-translate-y-1">
+                            Explore System Architecture
+                            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="flex-1 w-full lg:w-1/2 order-1 lg:order-2">
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
+                        <div class="relative bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-2xl">
+                            <img src="{% static 'images/lab/queue-management.png' %}" alt="Smart Queue Dashboard" class="w-full h-auto">
+                            
+                            <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1.5 rounded-lg shadow-sm border border-slate-100 flex items-center gap-2">
+                                <span class="flex h-2 w-2 relative">
+                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                                </span>
+                                <span class="text-[10px] font-bold text-slate-700 tracking-tight">Live Demo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>    
+
     <!-- Why Engineering Locally Matters -->
     <section class="py-24 bg-white border-y border-slate-100">
         <div class="max-w-7xl mx-auto px-6">

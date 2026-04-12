@@ -2,6 +2,8 @@
 Models for the Smart Accounting Automation MVP.
 Updated to support Panamanian Fiscal requirements including CUFE, 
 separate Issuer/Receiver data, and tax breakdowns.
+Author: Cooltimedia
+Date: March 28, 2026
 """
 
 from django.conf import settings

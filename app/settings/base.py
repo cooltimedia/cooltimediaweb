@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     "home",
     "base",
     "mvp_smart_accounting",
+    "mvp_qflow_core",
     "search",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",

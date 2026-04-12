@@ -2,6 +2,19 @@ module.exports = {
   content: [
     "../**/templates/**/*.html",
     "../home/templates/**/*.html",
+    "../mvp_smart_accounting/templates/**/*.html",
+    "../mvp_qflow_core/templates/**/*.html",
+    "./**/forms.py",
+  ],
+  safelist: [
+    'peer',
+    'sr-only',
+    'peer-checked:border-emerald-500',
+    'peer-checked:bg-emerald-50/30',
+    'focus:ring-emerald-500',
+    'focus:border-emerald-700',
+    'focus:ring-emerald-500/20',
+    // Agrega aquí cualquier clase dinámica que uses en el widget
   ],
   theme: {
     extend: {
