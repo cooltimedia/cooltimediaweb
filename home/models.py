@@ -28,11 +28,23 @@ class SolutionsPage(Page):
     ]
 
     # Limit which pages can be created below the Solutions page
-    subpage_types = ['home.SmartQueueMVPPage']
+    subpage_types = ['home.SmartQueueMVPPage','home.SmartAccountingMVPPage']
 
 class SmartQueueMVPPage(Page):
     """Page to detail individual solutions (Smart Queue MVP)"""
     template = "home/solutions/lab/smart_queue_mvp_page.html"
+    description = RichTextField(blank=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('description'),
+    ]
+
+    # This page shouldn't have children
+    subpage_types = []
+
+class SmartAccountingMVPPage(Page):
+    """Page to detail individual solutions (Smart Accounting MVP)"""
+    template = "home/solutions/lab/smart_accounting_mvp_page.html"
     description = RichTextField(blank=True)
 
     content_panels = Page.content_panels + [

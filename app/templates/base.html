@@ -74,18 +74,7 @@
         <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
 
         {% block extra_js %}
-        {# Override this in templates to add extra javascript #}
-        <script>
-        // Apply animation delays based on data-delay="0.2" (seconds)
-        window.addEventListener("DOMContentLoaded", () => {
-            document.querySelectorAll("[data-delay]").forEach((el) => {
-            const delay = parseFloat(el.getAttribute("data-delay"));
-            if (!Number.isNaN(delay)) {
-                el.style.animationDelay = `${delay}s`;
-            }
-            });
-        });
-        </script>        
+        {# Override this in templates to add extra javascript #}     
         {% endblock %}
     </body>
 </html>

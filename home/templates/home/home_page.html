@@ -515,5 +515,15 @@
 </section>
 {% endblock content %}
 {% block extra_js %}
-
+<script>
+// Apply animation delays based on data-delay="0.2" (seconds)
+window.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("[data-delay]").forEach((el) => {
+    const delay = parseFloat(el.getAttribute("data-delay"));
+    if (!Number.isNaN(delay)) {
+        el.style.animationDelay = `${delay}s`;
+    }
+    });
+});
+</script>   
 {% endblock extra_js%}
