@@ -27,6 +27,7 @@ BASE_DIR = PROJECT_DIR.parent
 INSTALLED_APPS = [
     "home",
     "base",
+    "blog",
     "mvp_smart_accounting",
     "mvp_qflow_core",
     "search",
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     "wagtail.search",
     "wagtail.admin",
     "wagtail",
+    "wagtailmetadata",
     "modelcluster",
     "taggit",
     "django_filters",
@@ -198,6 +200,12 @@ WAGTAILADMIN_BASE_URL = "https://cooltimedia.com"
 # if untrusted users are allowed to upload files -
 # see https://docs.wagtail.org/en/stable/advanced_topics/deploying.html#user-uploaded-files
 WAGTAILDOCS_EXTENSIONS = ['csv', 'docx', 'key', 'odt', 'pdf', 'pptx', 'rtf', 'txt', 'xlsx', 'zip']
+
+# Image optimization for 2026 SEO standards
+WAGTAILIMAGES_FORMAT_CONVERSIONS = {
+    'avif': 'avif',
+    'webp': 'webp',
+}
 
 #Email
 SENDGRID_API_KEY_ENV = config('SENDGRID_API_KEY_VALUE')

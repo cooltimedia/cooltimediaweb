@@ -15,7 +15,7 @@ class HomePage(Page):
     ]
 
     # Limit which pages can be created below the Home page
-    subpage_types = ['home.SolutionsPage', 'home.ServicePage', 'home.ContactPage', 'home.CorporateSocialResponsibility']
+    subpage_types = ['home.SolutionsPage', 'home.ServicePage', 'home.ContactPage', 'home.CorporateSocialResponsibility','blog.BlogIndexPage']
 
 
 class SolutionsPage(Page):
