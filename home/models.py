@@ -1,6 +1,14 @@
+"""
+Home Model
+Description: Core models for managing main pages.
+Author: Cooltimedia
+"""
+
 from django.db import models
 from wagtail.models import Page
-from wagtail.fields import RichTextField
+from wagtail.fields import RichTextField, StreamField
+from wagtail import blocks
+from wagtail.images.blocks import ImageChooserBlock
 from wagtail.admin.panels import FieldPanel
 
 class HomePage(Page):
@@ -15,8 +23,65 @@ class HomePage(Page):
     ]
 
     # Limit which pages can be created below the Home page
-    subpage_types = ['home.SolutionsPage', 'home.ServicePage', 'home.ContactPage', 'home.CorporateSocialResponsibility','blog.BlogIndexPage']
+    subpage_types = ['home.SolutionsPage', 'home.ServicePage', 'home.ContactPage', 'home.CorporateSocialResponsibility','blog.BlogIndexPage','home.PrivacyPolicyPage','home.TermsServicePage']
 
+class PrivacyPolicyPage(Page):
+    """
+    A page for Privacy Policy.
+    """
+    template = "home/privacy_policy_page.html"
+    body = StreamField([
+        ('heading', blocks.CharBlock(form_class="title", label="Heading")),
+        ('paragraph', blocks.RichTextBlock(label="Paragraph text")),
+        ('image', ImageChooserBlock(label="Featured Image")),
+        ('code', blocks.StructBlock([
+            ('language', blocks.ChoiceBlock(choices=[
+                ('python', 'Python'), 
+                ('javascript', 'JavaScript'),
+                ('html', 'HTML/Django Template'),
+                ('bash', 'Bash/Terminal'),
+                ('yaml', 'YAML/Docker'),
+            ], label="Programming Language")),
+            ('code', blocks.TextBlock(label="Code snippet")),
+        ], label="Code Block", icon="code")),
+    ], use_json_field=True)
+    last_updated = models.DateField(auto_now=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('body'),
+    ]
+
+    # Limit to one instance
+    parent_page_types = ['home.HomePage']
+
+class TermsServicePage(Page):
+    """
+    A page for Terms of Service.
+    """
+    template = "home/terms_service_page.html"
+    body = StreamField([
+        ('heading', blocks.CharBlock(form_class="title", label="Heading")),
+        ('paragraph', blocks.RichTextBlock(label="Paragraph text")),
+        ('image', ImageChooserBlock(label="Featured Image")),
+        ('code', blocks.StructBlock([
+            ('language', blocks.ChoiceBlock(choices=[
+                ('python', 'Python'), 
+                ('javascript', 'JavaScript'),
+                ('html', 'HTML/Django Template'),
+                ('bash', 'Bash/Terminal'),
+                ('yaml', 'YAML/Docker'),
+            ], label="Programming Language")),
+            ('code', blocks.TextBlock(label="Code snippet")),
+        ], label="Code Block", icon="code")),
+    ], use_json_field=True)
+    last_updated = models.DateField(auto_now=True)
+
+    content_panels = Page.content_panels + [
+        FieldPanel('body'),
+    ]
+
+    # Limit to one instance
+    parent_page_types = ['home.HomePage']
 
 class SolutionsPage(Page):
     """Page to main solutions page."""

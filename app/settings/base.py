@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "blog",
     "mvp_smart_accounting",
     "mvp_qflow_core",
+    "mvp_data_connectors",
     "search",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
