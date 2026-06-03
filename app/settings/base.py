@@ -55,6 +55,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.postgres",
     "django.contrib.humanize",
+    "django.contrib.sitemaps",
+    "wagtail.contrib.sitemaps",
     "wagtail.contrib.settings",
 ]
 

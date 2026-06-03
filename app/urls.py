@@ -6,14 +6,24 @@ routing the Smart Accounting Automation MVP under the 'demo/' prefix.
 
 from django.conf import settings
 from django.urls import include, path, re_path
+from django.http import HttpResponse
 from django.contrib import admin
 from django.views.static import serve
 
 from wagtail.admin import urls as wagtailadmin_urls
 from wagtail import urls as wagtail_urls
 from wagtail.documents import urls as wagtaildocs_urls
+from wagtail.contrib.sitemaps.views import sitemap
 
 from search import views as search_views
+
+def robots_txt(request):
+    content = """User-agent: *
+Allow: /
+
+Sitemap: https://cooltimedia.com/sitemap.xml
+"""
+    return HttpResponse(content, content_type="text/plain")
 
 urlpatterns = [
     path("django-admin/", admin.site.urls),
@@ -32,6 +42,8 @@ urlpatterns = [
         "demo/qflow/",
         include("mvp_qflow_core.urls", namespace="mvp_qflow_core"),
     ),
+    path("sitemap.xml", sitemap, name="sitemap"),
+    path("robots.txt", robots_txt, name="robots_txt"),
 ]
 
 if settings.DEBUG:
