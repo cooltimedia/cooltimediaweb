@@ -99,8 +99,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "app.wsgi.application"
 
-# SECURE_SSL_REDIRECT = True
-
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
