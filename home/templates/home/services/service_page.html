@@ -143,7 +143,7 @@
                     </div>
                     <div class="p-5 bg-white rounded-xl border border-slate-200/60 shadow-sm flex items-start gap-3">
                         <span class="text-emerald-500 font-bold">✔</span>
-                        <div><h3 class="font-bold text-slate-900 text-sm">Ongoing Support</h3><p class="text-xs text-slate-500 mt-1">Proactive scaling loops, dependency patches, and code ownership maintenance.</p></div>
+                        <div><h3 class="font-bold text-slate-900 text-sm">Stale Business Insights</h3><p class="text-xs text-slate-500 mt-1">Strategic decisions are consistently being made based on last week's numbers, not today's live reality.</p></div>
                     </div>
                 </div>
             </div>
@@ -200,6 +200,7 @@
     </section>
 
     <section class="py-20 bg-slate-50 border-t border-b border-slate-100">
+        {% if "django" in page.slug %}
         <div class="max-w-7xl mx-auto px-4">
             <h2 class="text-center text-2xl sm:text-3xl font-bold text-slate-900 mb-12">Common Industry Use Cases</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -225,9 +226,35 @@
                 </div>
             </div>
         </div>
+        {% elif "data" and "engineering" in page.slug %}
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-center text-2xl sm:text-3xl font-bold text-slate-900 mb-12">Data Frameworks Built Around Your Business Architecture</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-xl border border-slate-200/50 shadow-sm">
+                    <h3 class="font-bold text-slate-900 mt-1 mb-2">E-Commerce Platforms</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Centralizing Shopify/WooCommerce data, multi-channel marketing spend (Facebook/Google Ads), and inventory logs into a single BigQuery warehouse for unified ROI metrics.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200/50 shadow-sm">
+                    <h3 class="font-bold text-slate-900 mt-1 mb-2">B2B SaaS Companies</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Building customer behavior telemetry pipelines and loading them into MotherDuck to feed internal product usage dashboards with ultra-low latency.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200/50 shadow-sm">
+                    <h3 class="font-bold text-slate-900 mt-1 mb-2">Fintech & Operations</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Automating continuous transaction reconciliation pipelines, pulling data from multiple banking gateways, and cleaning it automatically before live auditing.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200/50 shadow-sm">
+                    <h3 class="font-bold text-slate-900 mt-1 mb-2">Unified Business Intelligence</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Centralizing fragmented data from Marketing, CRM, and POS systems into a Single Source of Truth. We build automated data loops to reconcile sales, costs, and inventory, providing a 360-degree view of your entire business performance.</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
     </section>
 
     <section class="py-20 bg-white">
+
+        {% if "django" in page.slug %}
         <div class="max-w-7xl mx-auto px-4">
             <h2 class="text-center text-2xl sm:text-3xl font-bold text-slate-900 mb-16">Our Structured Development Process</h2>
             <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-6 gap-6 relative">
@@ -257,6 +284,37 @@
                 </div>
             </div>
         </div>
+        {% elif "data" and "engineering" in page.slug %}
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-center text-2xl sm:text-3xl font-bold text-slate-900 mb-16">Our Structured Development Process</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-6 gap-6 relative">
+                <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                    <div class="text-xs font-bold text-slate-400">01</div>
+                    <h3 class="font-bold text-slate-900 text-sm mt-1">Discovery Call</h3>
+                </div>
+                <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                    <div class="text-xs font-bold text-slate-400">02</div>
+                    <h3 class="font-bold text-slate-900 text-sm mt-1">Requirements</h3>
+                </div>
+                <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                    <div class="text-xs font-bold text-slate-400">03</div>
+                    <h3 class="font-bold text-slate-900 text-sm mt-1">Solution Design</h3>
+                </div>
+                <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                    <div class="text-xs font-bold text-slate-400">04</div>
+                    <h3 class="font-bold text-slate-900 text-sm mt-1">Development</h3>
+                </div>
+                <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                    <div class="text-xs font-bold text-slate-400">05</div>
+                    <h3 class="font-bold text-slate-900 text-sm mt-1">Testing & QA</h3>
+                </div>
+                <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                    <div class="text-xs font-bold text-slate-400">06</div>
+                    <h3 class="font-bold text-slate-900 text-sm mt-1">Support</h3>
+                </div>
+            </div>
+        </div>
+        {% endif %}
     </section>
 
     <section class="py-20 bg-slate-50 border-t border-slate-100">
