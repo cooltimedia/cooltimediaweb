@@ -22,35 +22,94 @@
     {
       "@type": "Service",
       "@id": "https://cooltimedia.com{% pageurl page %}#service",
-      "name": "{{ page.title|escapejs }} Services",
+      "name": "{% if 'data' in page.slug or 'engineering' in page.slug %}Data Engineering{% else %}{{ page.title|escapejs }}{% endif %} Services",
       "provider": {
         "@type": "Organization",
         "name": "Cooltimedia",
         "url": "https://cooltimedia.com"
       },
-      "description": "Custom {{ page.title|escapejs }} architecture designed to automate workflows and scale operations.",
+      "description": "{% if 'data' in page.slug or 'engineering' in page.slug %}Automated data pipelines and data warehousing solutions using BigQuery and MotherDuck to eliminate data silos and deliver a 360-degree view of your operations.{% else %}Custom {{ page.title|escapejs }} architecture designed to automate workflows and scale operations.{% endif %}",
       "areaServed": ["Panama", "International"],
-      "serviceType": "Custom Software Development"
+      "serviceType": "{% if 'data' in page.slug or 'engineering' in page.slug %}Data Engineering & Business Intelligence{% else %}Custom Software Development{% endif %}"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "How long does a custom {{ page.title|escapejs }} project take?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Most custom platforms take between 4 and 16 weeks, depending on the complexity, scope of features, and API integrations required."
+        {% if "django" in page.slug %}
+          {
+            "@type": "Question",
+            "name": "How long does a custom {{ page.title|escapejs }} project take?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Most custom platforms take between 4 and 16 weeks, depending on operational architecture complexity, scope of workflows, and target enterprise API endpoints."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you provide long-term software maintenance?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, we offer dedicated ongoing support plans that cover security updates, server monitoring, performance optimization, and new feature implementation."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can you integrate with our legacy software database?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Absolutely. Python infrastructures excel at programmatic connectivity. We consistently wrap legacy databases into micro-service layers using secure REST API practices."
+            }
           }
-        },
-        {
-          "@type": "Question",
-          "name": "Do you provide long-term software maintenance?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes, we offer dedicated ongoing support plans that cover security updates, server monitoring, performance optimization, and new feature implementation."
+        {% elif "data" in page.slug or "engineering" in page.slug %}
+          {
+            "@type": "Question",
+            "name": "What is MotherDuck and why do you use it instead of traditional data warehouses?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "MotherDuck extends DuckDB into the cloud. It is a highly optimized columnar database designed for analytical queries that allows us to process millions of rows in milliseconds. We use it because it eliminates the massive infrastructure overhead, compute management, and excessive costs associated with platforms like Snowflake or Redshift for medium-sized data operations."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can you connect data from tools like HubSpot, Salesforce, or custom proprietary APIs?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. We specialize in building custom ETL/ELT pipelines and ingestion workers to pull data from any system that exposes a REST or GraphQL API, centralizing everything into your secure cloud data warehouse."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do you guarantee the data in our live reporting dashboards is accurate?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We implement automated data quality and validation steps directly inside our transformation pipelines. If a source API sends corrupted, duplicated, or missing values, the pipeline isolates the bad records and alerts us immediately, preventing broken metrics from polluting your live production reports."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "We have multiple web platforms running, but no clear view of our overall operations. Can you help us see the big picture?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "This is where Data Engineering delivers the highest value. We connect your isolated websites, CRMs, and operational tools into a single warehouse. This allows you to track cause-and-effect across your entire business—such as how a specific digital platform update directly impacts customer retention or inventory levels."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you build the visual dashboards, or do you only handle the backend data pipelines?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "We engineer the entire pipeline, from raw data extraction to the final visual layer. Once your data is centralized and cleaned in BigQuery or MotherDuck, we connect it to modern Business Intelligence tools (like Looker Studio or Power BI) to deliver clean, interactive, and automated dashboards for your executive team."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Our operational data contains sensitive customer and financial information. How do you ensure it remains secure during transit?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Security is built into every pipeline we design. We utilize enterprise-grade encryption (SSL/TLS) for data in transit, implement strict API authentication protocols, and apply Role-Based Access Control (RBAC) within the data warehouse to ensure sensitive information is only accessible to authorized team members."
+            }
           }
-        }
+        {% endif %}
       ]
     }
   ]
@@ -253,8 +312,6 @@
     </section>
 
     <section class="py-20 bg-white">
-
-        {% if "django" in page.slug %}
         <div class="max-w-7xl mx-auto px-4">
             <h2 class="text-center text-2xl sm:text-3xl font-bold text-slate-900 mb-16">Our Structured Development Process</h2>
             <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-6 gap-6 relative">
@@ -284,58 +341,59 @@
                 </div>
             </div>
         </div>
-        {% elif "data" and "engineering" in page.slug %}
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-center text-2xl sm:text-3xl font-bold text-slate-900 mb-16">Our Structured Development Process</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-6 gap-6 relative">
-                <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
-                    <div class="text-xs font-bold text-slate-400">01</div>
-                    <h3 class="font-bold text-slate-900 text-sm mt-1">Discovery Call</h3>
-                </div>
-                <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
-                    <div class="text-xs font-bold text-slate-400">02</div>
-                    <h3 class="font-bold text-slate-900 text-sm mt-1">Requirements</h3>
-                </div>
-                <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
-                    <div class="text-xs font-bold text-slate-400">03</div>
-                    <h3 class="font-bold text-slate-900 text-sm mt-1">Solution Design</h3>
-                </div>
-                <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
-                    <div class="text-xs font-bold text-slate-400">04</div>
-                    <h3 class="font-bold text-slate-900 text-sm mt-1">Development</h3>
-                </div>
-                <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
-                    <div class="text-xs font-bold text-slate-400">05</div>
-                    <h3 class="font-bold text-slate-900 text-sm mt-1">Testing & QA</h3>
-                </div>
-                <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
-                    <div class="text-xs font-bold text-slate-400">06</div>
-                    <h3 class="font-bold text-slate-900 text-sm mt-1">Support</h3>
-                </div>
-            </div>
-        </div>
-        {% endif %}
     </section>
+
 
     <section class="py-20 bg-slate-50 border-t border-slate-100">
         <div class="max-w-4xl mx-auto px-4">
             <h2 class="text-center text-2xl sm:text-3xl font-bold text-slate-900 mb-12">Frequently Asked Questions</h2>
             <div class="space-y-4">
-                <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
-                    <h3 class="font-bold text-slate-900 text-base">How long does a custom {{ page.title }} project take?</h3>
-                    <p class="mt-2 text-sm text-slate-600 leading-relaxed">Most projects take between 4 and 16 weeks depending on operational architecture complexity, scope of workflows, and target enterprise API endpoints.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
-                    <h3 class="font-bold text-slate-900 text-base">Do you provide ongoing technical maintenance?</h3>
-                    <p class="mt-2 text-sm text-slate-600 leading-relaxed">Yes, we deliver long-term support plans covering proactive runtime monitoring, server patch operations, package bumps, and iterative scale testing.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
-                    <h3 class="font-bold text-slate-900 text-base">Can you integrate with our legacy software database?</h3>
-                    <p class="mt-2 text-sm text-slate-600 leading-relaxed">Absolutely. Python infrastructures excel at programmatic connectivity. We consistently wrap legacy databases into micro-service layers using secure REST API practices.</p>
-                </div>
+                
+                {% if "django" in page.slug %}
+                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
+                        <h3 class="font-bold text-slate-900 text-base">How long does a custom {{ page.title }} project take?</h3>
+                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Most projects take between 4 and 16 weeks depending on operational architecture complexity, scope of workflows, and target enterprise API endpoints.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
+                        <h3 class="font-bold text-slate-900 text-base">Do you provide ongoing technical maintenance?</h3>
+                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Yes, we deliver long-term support plans covering proactive runtime monitoring, server patch operations, package bumps, and iterative scale testing.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
+                        <h3 class="font-bold text-slate-900 text-base">Can you integrate with our legacy software database?</h3>
+                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Absolutely. Python infrastructures excel at programmatic connectivity. We consistently wrap legacy databases into micro-service layers using secure REST API practices.</p>
+                    </div>
+
+                {% elif "data" in page.slug or "engineering" in page.slug %}
+                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
+                        <h3 class="font-bold text-slate-900 text-base">What is MotherDuck and why do you use it instead of traditional data warehouses?</h3>
+                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">MotherDuck extends DuckDB into the cloud. It is a highly optimized columnar database designed for analytical queries that allows us to process millions of rows in milliseconds. We use it because it eliminates the massive infrastructure overhead, compute management, and excessive costs associated with platforms like Snowflake or Redshift for medium-sized data operations.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
+                        <h3 class="font-bold text-slate-900 text-base">Can you connect data from tools like HubSpot, Salesforce, or custom proprietary APIs?</h3>
+                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Yes. We specialize in building custom ETL/ELT pipelines and ingestion workers to pull data from any system that exposes a REST or GraphQL API, centralizing everything into your secure cloud data warehouse.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
+                        <h3 class="font-bold text-slate-900 text-base">How do you guarantee the data in our live reporting dashboards is accurate?</h3>
+                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">We implement automated data quality and validation steps directly inside our transformation pipelines. If a source API sends corrupted, duplicated, or missing values, the pipeline isolates the bad records and alerts us immediately, preventing broken metrics from polluting your live production reports.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
+                        <h3 class="font-bold text-slate-900 text-base">We have multiple web platforms running, but no clear view of our overall operations. Can you help us see the big picture?</h3>
+                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">This is where Data Engineering delivers the highest value. We connect your isolated websites, CRMs, and operational tools into a single warehouse. This allows you to track cause-and-effect across your entire business—such as how a specific digital platform update directly impacts customer retention or inventory levels.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
+                        <h3 class="font-bold text-slate-900 text-base">Do you build the visual dashboards, or do you only handle the backend data pipelines?</h3>
+                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">We engineer the entire pipeline, from raw data extraction to the final visual layer. Once your data is centralized and cleaned in BigQuery or MotherDuck, we connect it to modern Business Intelligence tools (like Looker Studio or Power BI) to deliver clean, interactive, and automated dashboards for your executive team.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
+                        <h3 class="font-bold text-slate-900 text-base">Our operational data contains sensitive customer and financial information. How do you ensure it remains secure during transit?</h3>
+                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Security is built into every pipeline we design. We utilize enterprise-grade encryption (SSL/TLS) for data in transit, implement strict API authentication protocols, and apply Role-Based Access Control (RBAC) within the data warehouse to ensure sensitive information is only accessible to authorized team members.</p>
+                    </div>
+                {% endif %}
+
             </div>
         </div>
     </section>
+
 
     {% if page.author %}
     <section class="max-w-4xl mx-auto px-4 py-12">
