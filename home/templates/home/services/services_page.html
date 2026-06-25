@@ -89,6 +89,11 @@
                                     <img src="{% static 'images/icons/python.svg' %}" alt="Python" class="h-12 w-12 icon-float" style="animation-delay: 1s;">
                                     <img src="{% static 'images/icons/wagtail.png' %}" alt="Wagtail CMS" class="h-10 w-10 icon-float" style="animation-delay: 2s;">
                                 {% elif "data" in service.slug or "engineering" in service.slug %}
+                                    <img src="{% static 'images/icons/python.svg' %}" alt="Python" class="h-12 w-12 icon-float" style="animation-delay: 0s;">
+                                    <img src="{% static 'images/icons/google-cloud.svg' %}" alt="Cloud Architecture" class="h-12 w-12 icon-float" style="animation-delay: 1s;">
+                                    <img src="{% static 'images/icons/aws.svg' %}" alt="Cloud Architecture" class="h-12 w-12 icon-float" style="animation-delay: 3s;">
+                                    <img src="{% static 'images/icons/azure.png' %}" alt="Azure SQL" class="h-12 w-12 icon-float" style="animation-delay: 4s;">
+                                    <img src="{% static 'images/icons/data-pipeline.png' %}" alt="Data Pipelines" class="h-12 w-12 icon-float" style="animation-delay: 5s;">
                                 {% elif "automation" in service.slug or "python" in service.slug %}
                                 {% else %}
                                 {% endif %}
