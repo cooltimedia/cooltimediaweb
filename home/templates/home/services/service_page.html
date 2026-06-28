@@ -130,6 +130,8 @@
                     Scalable Custom Software Built with Django
                 {% elif "data" and "engineering" in page.slug %}
                     Enterprise Data Architecture & High-Performance Pipelines
+                {% elif "python" and "automation" in service.slug %}
+                    Python Automation for Smarter Business Operations
                 {% else %}
                     Intelligent Python Automation to Scale Your Operations.
                 {% endif %}
@@ -141,6 +143,10 @@
             {% elif "data" and "engineering" in page.slug %}
             <p class="max-w-3xl mx-auto mt-6 text-lg sm:text-xl text-slate-600 leading-relaxed">
                 We build fast, cost-effective data infrastructures using Google Cloud. Transform your scattered data silos into centralized, automated pipelines designed for real-time decision-making.
+            </p>
+            {% elif "python" and "automation" in page.slug %}
+            <p class="max-w-3xl mx-auto mt-6 text-lg sm:text-xl text-slate-600 leading-relaxed">
+                We build Python-powered automation solutions that reduce manual work, connect systems, and improve operational efficiency. From scheduled scripts and API integrations to automated reports and data workflows, we help businesses save time and scale with more reliable processes.
             </p>
             {% endif %}
             <div class="mt-10">
