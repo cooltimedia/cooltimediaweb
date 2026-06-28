@@ -133,7 +133,7 @@
                 {% elif "python" and "automation" in service.slug %}
                     Python Automation for Smarter Business Operations
                 {% else %}
-                    Intelligent Python Automation to Scale Your Operations.
+                    Eliminate Repetitive Work with Intelligent Python Automation
                 {% endif %}
             </h1>
             {% if "django" in page.slug %}
@@ -146,7 +146,7 @@
             </p>
             {% elif "python" and "automation" in page.slug %}
             <p class="max-w-3xl mx-auto mt-6 text-lg sm:text-xl text-slate-600 leading-relaxed">
-                We build Python-powered automation solutions that reduce manual work, connect systems, and improve operational efficiency. From scheduled scripts and API integrations to automated reports and data workflows, we help businesses save time and scale with more reliable processes.
+                We build Python-powered automation solutions that reduce manual work, connect systems, and improve operational efficiency. From scheduled scripts and API integrations to automated reports and data workflows.
             </p>
             {% endif %}
             <div class="mt-10">
@@ -209,6 +209,32 @@
                     <div class="p-5 bg-white rounded-xl border border-slate-200/60 shadow-sm flex items-start gap-3">
                         <span class="text-emerald-500 font-bold">✔</span>
                         <div><h3 class="font-bold text-slate-900 text-sm">Stale Business Insights</h3><p class="text-xs text-slate-500 mt-1">Strategic decisions are consistently being made based on last week's numbers, not today's live reality.</p></div>
+                    </div>
+                </div>
+            </div>
+            {% elif "python" and "automation" in service.slug %}
+            <div class="lg:flex lg:items-center lg:justify-between gap-12 mb-20">
+                <div class="lg:w-1/2">
+                    <span class="text-xs font-bold uppercase tracking-widest text-emerald-600">The Core Challenge</span>
+                    <h2 class="mt-3 text-3xl sm:text-4xl font-normal tracking-tight text-slate-900">Are Repetitive Tasks Slowing Down Your Business?</h2>
+                    <p class="mt-4 text-slate-600">As your business grows, repetitive manual tasks become increasingly difficult to manage. Copying data, updating spreadsheets, generating reports, and moving information between systems consume valuable time and introduce unnecessary errors. We help organizations replace manual workflows with reliable Python automation that improves efficiency, accuracy, and scalability.</p>
+                </div>
+                <div class="mt-8 lg:mt-0 lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="p-5 bg-white rounded-xl border border-slate-200/60 shadow-sm flex items-start gap-3">
+                        <span class="text-emerald-500 font-bold">✔</span>
+                        <div><h3 class="font-bold text-slate-900 text-sm">Repetitive Manual Work</h3><p class="text-xs text-slate-500 mt-1">Your team spends hours every week performing repetitive tasks that could be fully automated with reliable Python workflows.</p></div>
+                    </div>
+                    <div class="p-5 bg-white rounded-xl border border-slate-200/60 shadow-sm flex items-start gap-3">
+                        <span class="text-emerald-500 font-bold">✔</span>
+                        <div><h3 class="font-bold text-slate-900 text-sm">Disconnected Business Systems</h3><p class="text-xs text-slate-500 mt-1">Information is scattered across multiple platforms, requiring manual transfers between CRMs, databases, spreadsheets, APIs, and cloud services.</p></div>
+                    </div>
+                    <div class="p-5 bg-white rounded-xl border border-slate-200/60 shadow-sm flex items-start gap-3">
+                        <span class="text-emerald-500 font-bold">✔</span>
+                        <div><h3 class="font-bold text-slate-900 text-sm">Error-Prone Processes</h3><p class="text-xs text-slate-500 mt-1">Manual data entry and repetitive operations increase the risk of inconsistencies, missed updates, and costly human errors.</p></div>
+                    </div>
+                    <div class="p-5 bg-white rounded-xl border border-slate-200/60 shadow-sm flex items-start gap-3">
+                        <span class="text-emerald-500 font-bold">✔</span>
+                        <div><h3 class="font-bold text-slate-900 text-sm">Limited Scalability</h3><p class="text-xs text-slate-500 mt-1">As your business grows, manual workflows become harder to maintain, preventing your team from focusing on higher-value initiatives.</p></div>
                     </div>
                 </div>
             </div>
@@ -313,6 +339,29 @@
                 </div>
             </div>
         </div>
+        {% elif "python" and "automation" in page.slug %}
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-center text-2xl sm:text-3xl font-bold text-slate-900 mb-12">Automation Solutions Built Around Your Business Processes</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-xl border border-slate-200/50 shadow-sm">
+                    <h3 class="font-bold text-emerald-600 mt-1 mb-2">Business Process Automation</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Automate repetitive operational tasks such as data entry, report generation, notifications, approvals, and routine business workflows, allowing your team to focus on higher-value work.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200/50 shadow-sm">
+                    <h3 class="font-bold text-emerald-600 mt-1 mb-2">API & System Integrations</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Connect CRMs, ERPs, cloud applications, databases, marketing platforms, and third-party APIs to create seamless, automated data flows across your organization.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200/50 shadow-sm">
+                    <h3 class="font-bold text-emerald-600 mt-1 mb-2">Reporting & Data Automation</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Automatically collect, process, validate, and distribute business reports from multiple data sources, ensuring your teams always have accurate and up-to-date information.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200/50 shadow-sm">
+                    <h3 class="font-bold text-emerald-600 mt-1 mb-2">File & Document Processing</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Automate the handling of Excel, CSV, PDF, XML, and other business documents by validating, transforming, importing, and exporting data without manual intervention.</p>
+                </div>
+            </div>
+        </div>
+        
         {% endif %}
 
     </section>
@@ -421,8 +470,7 @@
                         <h3 class="font-bold text-slate-900 text-base">Can you integrate with our legacy software database?</h3>
                         <p class="mt-2 text-sm text-slate-600 leading-relaxed">Absolutely. Python infrastructures excel at programmatic connectivity. We consistently wrap legacy databases into micro-service layers using secure REST API practices.</p>
                     </div>
-
-                {% elif "data" in page.slug or "engineering" in page.slug %}
+                {% elif "data" in page.slug and "engineering" in page.slug %}
                     <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
                         <h3 class="font-bold text-slate-900 text-base">What is MotherDuck and why do you use it instead of traditional data warehouses?</h3>
                         <p class="mt-2 text-sm text-slate-600 leading-relaxed">MotherDuck extends DuckDB into the cloud. It is a highly optimized columnar database designed for analytical queries that allows us to process millions of rows in milliseconds. We use it because it eliminates the massive infrastructure overhead, compute management, and excessive costs associated with platforms like Snowflake or Redshift for medium-sized data operations.</p>
@@ -446,6 +494,27 @@
                     <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
                         <h3 class="font-bold text-slate-900 text-base">Our operational data contains sensitive customer and financial information. How do you ensure it remains secure during transit?</h3>
                         <p class="mt-2 text-sm text-slate-600 leading-relaxed">Security is built into every pipeline we design. We utilize enterprise-grade encryption (SSL/TLS) for data in transit, implement strict API authentication protocols, and apply Role-Based Access Control (RBAC) within the data warehouse to ensure sensitive information is only accessible to authorized team members.</p>
+                    </div>
+                {% elif "python" in page.slug and "automation" in page.slug %}
+                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
+                        <h3 class="font-bold text-slate-900 text-base">What types of tasks can be automated with Python?</h3>
+                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Python can automate data processing, API integrations, reports, file handling, web tasks, scheduled workflows, database updates, notifications, and many other repetitive business processes.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
+                        <h3 class="font-bold text-slate-900 text-base">Do you build one-time scripts or long-term automation systems?</h3>
+                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">We can support both, but our main focus is building reliable automation workflows that are structured, documented, monitored, and ready to grow with your business.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
+                        <h3 class="font-bold text-slate-900 text-base">Can Python automation connect with existing business tools?</h3>
+                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Yes. We regularly work with APIs, databases, cloud platforms, spreadsheets, advertising platforms, CRMs, and internal systems to connect and automate business workflows.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
+                        <h3 class="font-bold text-slate-900 text-base">Can automated workflows run on a schedule?</h3>
+                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Yes. Workflows can run daily, weekly, monthly, or based on specific events using cloud services, cron jobs, serverless functions, or other scheduling options.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
+                        <h3 class="font-bold text-slate-900 text-base">Do you provide monitoring and support?</h3>
+                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Yes. We can include logging, alerts, error handling, and ongoing support to help ensure your automation continues running reliably.</p>
                     </div>
                 {% endif %}
 
