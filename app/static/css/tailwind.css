@@ -837,6 +837,9 @@
   .mt-20 {
     margin-top: calc(var(--spacing) * 20);
   }
+  .mt-\[-1rem\] {
+    margin-top: -1rem;
+  }
   .mt-auto {
     margin-top: auto;
   }
