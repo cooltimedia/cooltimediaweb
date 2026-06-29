@@ -98,6 +98,11 @@
                                     <img src="{% static 'images/icons/python.svg' %}" alt="Python" class="h-12 w-12 icon-float" style="animation-delay: 0s;">
                                     <img src="{% static 'images/icons/pandas.png' %}" alt="Pandas" class="h-12 w-12 icon-float" style="animation-delay: 1s;">
                                     <img src="{% static 'images/icons/data-pipeline.png' %}" alt="Data Pipelines" class="h-12 w-12 icon-float" style="animation-delay: 2s;">
+                                {% elif "api" in service.slug or "integration" in service.slug %}
+                                    <img src="{% static 'images/icons/automation.png' %}" alt="Data integration" class="h-12 w-12 icon-float" style="animation-delay: 0s;">
+                                    <img src="{% static 'images/icons/api.png' %}" alt="API Integration" class="h-12 w-12 icon-float" style="animation-delay: 1s;">
+                                    <img src="{% static 'images/icons/fastapi.png' %}" alt="FastAPI" class="h-12 w-12 icon-float" style="animation-delay: 2s;">
+                                    <img src="{% static 'images/icons/data-pipeline.png' %}" alt="Data Pipelines" class="h-12 w-12 icon-float" style="animation-delay: 3s;">
                                 {% else %}
                                 {% endif %}
                             </div>

@@ -132,8 +132,8 @@
                     Enterprise Data Architecture & High-Performance Pipelines
                 {% elif "python" and "automation" in page.slug %}
                     Python Automation for Smarter Business Operations
-                {% else %}
-                    Eliminate Repetitive Work with Intelligent Python Automation
+                {% elif "api" and "integration" in page.slug %}
+                    Secure API Integrations to Connect Your Business Systems
                 {% endif %}
             </h1>
             {% if "django" in page.slug %}
@@ -147,6 +147,10 @@
             {% elif "python" and "automation" in page.slug %}
             <p class="max-w-3xl mx-auto mt-6 text-lg sm:text-xl text-slate-600 leading-relaxed">
                 We build Python-powered automation solutions that reduce manual work, connect systems, and improve operational efficiency. From scheduled scripts and API integrations to automated reports and data workflows.
+            </p>
+            {% elif "api" and "integration" in page.slug %}
+            <p class="max-w-3xl mx-auto mt-6 text-lg sm:text-xl text-slate-600 leading-relaxed">
+                We design reliable, scalable API architectures that eliminate data silos, automate information exchange, and turn your fragmented applications into a unified technology ecosystem.
             </p>
             {% endif %}
             <div class="mt-10">
@@ -235,6 +239,32 @@
                     <div class="p-5 bg-white rounded-xl border border-slate-200/60 shadow-sm flex items-start gap-3">
                         <span class="text-emerald-500 font-bold">✔</span>
                         <div><h3 class="font-bold text-slate-900 text-sm">Limited Scalability</h3><p class="text-xs text-slate-500 mt-1">As your business grows, manual workflows become harder to maintain, preventing your team from focusing on higher-value initiatives.</p></div>
+                    </div>
+                </div>
+            </div>
+            {% elif "api" and "integration" in page.slug %}
+            <div class="lg:flex lg:items-center lg:justify-between gap-12 mb-20">
+                <div class="lg:w-1/2">
+                    <span class="text-xs font-bold uppercase tracking-widest text-emerald-600">The Core Challenge</span>
+                    <h2 class="mt-3 text-3xl sm:text-4xl font-normal tracking-tight text-slate-900">Are Your Business Systems Working in Isolation?</h2>
+                    <p class="mt-4 text-slate-600">Modern organizations rely on dozens of applications to manage customers, finances, operations, marketing, and reporting. When these systems cannot communicate, teams spend valuable time manually transferring data, correcting inconsistencies, and maintaining duplicate information. We help businesses connect their technology ecosystem through secure, scalable API integrations that keep data flowing automatically across every platform.</p>
+                </div>
+                <div class="mt-8 lg:mt-0 lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="p-5 bg-white rounded-xl border border-slate-200/60 shadow-sm flex items-start gap-3">
+                        <span class="text-emerald-500 font-bold">✔</span>
+                        <div><h3 class="font-bold text-slate-900 text-sm">Disconnected Applications</h3><p class="text-xs text-slate-500 mt-1">Critical business information is spread across multiple systems that cannot communicate with each other, creating operational bottlenecks.</p></div>
+                    </div>
+                    <div class="p-5 bg-white rounded-xl border border-slate-200/60 shadow-sm flex items-start gap-3">
+                        <span class="text-emerald-500 font-bold">✔</span>
+                        <div><h3 class="font-bold text-slate-900 text-sm">Manual Data Synchronization</h3><p class="text-xs text-slate-500 mt-1">Employees waste valuable time exporting, importing, and reconciling data between CRMs, ERPs, marketing platforms, and internal tools.</p></div>
+                    </div>
+                    <div class="p-5 bg-white rounded-xl border border-slate-200/60 shadow-sm flex items-start gap-3">
+                        <span class="text-emerald-500 font-bold">✔</span>
+                        <div><h3 class="font-bold text-slate-900 text-sm">Duplicate & Inconsistent Data</h3><p class="text-xs text-slate-500 mt-1">Without automated synchronization, customer records, transactions, and operational data quickly become outdated and inconsistent.</p></div>
+                    </div>
+                    <div class="p-5 bg-white rounded-xl border border-slate-200/60 shadow-sm flex items-start gap-3">
+                        <span class="text-emerald-500 font-bold">✔</span>
+                        <div><h3 class="font-bold text-slate-900 text-sm">Limited Business Visibility</h3><p class="text-xs text-slate-500 mt-1">Decision-makers lack a complete view of their business because information is fragmented across disconnected applications.</p></div>
                     </div>
                 </div>
             </div>
@@ -358,6 +388,28 @@
                 <div class="bg-white p-6 rounded-xl border border-slate-200/50 shadow-sm">
                     <h3 class="font-bold text-emerald-600 mt-1 mb-2">File & Document Processing</h3>
                     <p class="text-xs text-slate-500 leading-relaxed">Automate the handling of Excel, CSV, PDF, XML, and other business documents by validating, transforming, importing, and exporting data without manual intervention.</p>
+                </div>
+            </div>
+        </div>
+        {% elif "api" and "integration" in page.slug %}
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-center text-2xl sm:text-3xl font-bold text-slate-900 mb-12">Integration Solutions Built Around Your Technology Stack</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-xl border border-slate-200/50 shadow-sm">
+                    <h3 class="font-bold text-emerald-600 mt-1 mb-2">CRM & Sales Platforms</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Connect Salesforce, HubSpot, Zoho CRM, Microsoft Dynamics, Pipedrive, and other customer management platforms with your business applications.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200/50 shadow-sm">
+                    <h3 class="font-bold text-emerald-600 mt-1 mb-2">ERP & Business Systems</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Synchronize financial, operational, inventory, and customer information across ERP systems and internal business platforms.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200/50 shadow-sm">
+                    <h3 class="font-bold text-emerald-600 mt-1 mb-2">Marketing & Customer Platforms</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Integrate Google Ads, Meta Ads, LinkedIn Ads, email marketing platforms, analytics tools, and customer engagement solutions.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200/50 shadow-sm">
+                    <h3 class="font-bold text-emerald-600 mt-1 mb-2">Custom Business Applications</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">Build secure integrations between proprietary software, cloud services, databases, mobile applications, and internal systems.</p>
                 </div>
             </div>
         </div>
@@ -515,6 +567,27 @@
                     <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
                         <h3 class="font-bold text-slate-900 text-base">Do you provide monitoring and support?</h3>
                         <p class="mt-2 text-sm text-slate-600 leading-relaxed">Yes. We can include logging, alerts, error handling, and ongoing support to help ensure your automation continues running reliably.</p>
+                    </div>
+                {% elif "api" in page.slug and "integration" in page.slug %}
+                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
+                        <h3 class="font-bold text-slate-900 text-base">Can you integrate with our existing software?</h3>
+                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Yes. We build integrations for CRMs, ERPs, cloud platforms, marketing tools, databases, payment gateways, and custom business applications using modern APIs and industry standards.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
+                        <h3 class="font-bold text-slate-900 text-base">Do you develop custom APIs?</h3>
+                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Absolutely. We design and develop RESTful APIs that allow your applications to communicate securely and efficiently with internal systems and third-party services.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
+                        <h3 class="font-bold text-slate-900 text-base">Can integrations run automatically?</h3>
+                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Yes. Integrations can operate in real time, on scheduled intervals, or through event-driven architectures depending on your business requirements.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
+                        <h3 class="font-bold text-slate-900 text-base">How do you ensure data security?</h3>
+                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">We implement secure authentication, encryption, validation, logging, and access controls following modern API security best practices.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
+                        <h3 class="font-bold text-slate-900 text-base">Do you monitor integrations after deployment?</h3>
+                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Yes. We can implement monitoring, alerts, logging, and ongoing support to ensure your integrations remain reliable as external platforms evolve.</p>
                     </div>
                 {% endif %}
 
