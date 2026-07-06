@@ -34,14 +34,20 @@ urlpatterns = [
     # --- Cooltimedia Demo Ecosystem ---
     # Prefixing with 'demo/' allows multiple MVPs to coexist without 
     # interfering with Wagtail's page tree.
+    # Smart Accounting MVP routes
     path(
         "demo/smart-accounting/",
         include("mvp_smart_accounting.urls", namespace="mvp_smart_accounting"),
     ),
+    # QFlow MVP routes
     path(
         "demo/qflow/",
         include("mvp_qflow_core.urls", namespace="mvp_qflow_core"),
     ),
+    # Gifts MVP routes
+    path("gifts/", include("mvp_gifts.urls")),
+    # --- Cooltimedia Sitemap Settings ---
+    # SEO routes
     path("sitemap.xml", sitemap, name="sitemap"),
     path("robots.txt", robots_txt, name="robots_txt"),
 ]

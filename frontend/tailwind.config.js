@@ -21,7 +21,7 @@ module.exports = {
       fontFamily: {
         // Primary font: Inter Tight; fallback: system sans-serif stack
         sans: [
-          '"Inter Tight"',
+          "Inter Tight",
           "ui-sans-serif",
           "system-ui",
           "-apple-system",

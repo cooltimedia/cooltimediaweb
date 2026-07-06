@@ -1,0 +1,557 @@
+{% load static i18n wagtailcore_tags wagtailuserbar %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ gift_event.title }} | {% translate "Gift Profile" %}</title>
+
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <meta name="googlebot" content="noindex, nofollow, noarchive">
+
+    {# Global stylesheets #}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/app.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tailwind.min.css' %}">
+    
+    <link rel="icon" type="image/png" href="{% static 'images/favicon-96x96.png' %}" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="{% static 'images/favicon.svg' %}" />
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}" />
+    <link rel="manifest" href="{% static 'images/site.webmanifest' %}" />
+
+    {% include "wagtailmetadata/parts/tags.html" %}
+
+    <style>
+        body {
+            font-family: "Inter Tight", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-slate-50 text-slate-900 antialiased">
+
+    <main class="mx-auto min-h-screen max-w-md bg-white shadow-sm md:my-8 md:min-h-0 md:max-w-5xl md:rounded-3xl md:border md:border-slate-100 relative">
+
+        <header class="px-5 pt-5">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-xs font-bold uppercase tracking-[0.2em] text-teal-700 mb-2">
+                        🔒 {% translate "Private & curated guide" %}
+                    </p>
+                    <p class="mt-0.5 text-xs text-slate-400 flex items-center gap-1">
+                        {% if gift_event.description %}
+                            {{ gift_event.description }}
+                        {% endif %}
+                    </p>
+                </div>
+
+                <div class="flex h-10 w-10 items-center justify-center rounded-full bg-teal-50 text-xs font-bold text-teal-700 uppercase tracking-wider">
+                    {{ gift_event.owner_name|slice:":2" }}
+                </div>
+            </div>
+        </header>
+
+
+        {% if event_has_passed %}
+            <section class="px-5 pb-12 pt-4 animate-[fadeIn_0.3s_ease-out]">
+                <div class="rounded-3xl border border-slate-100 bg-slate-50/50 p-8 text-center shadow-inner">
+                    <span class="text-5xl block mb-3">⏳</span>
+                    <h2 class="text-lg font-bold text-slate-900">
+                        {% translate "This event has passed" %}
+                    </h2>
+                    <p class="mt-2 text-sm leading-relaxed text-slate-500">
+                        {% blocktranslate with name=gift_event.owner_name %}This gift profile is no longer available because the celebration date has already passed. Thank you so much for wanting to celebrate {{ name }}!{% endblocktranslate %}
+                    </p>
+                </div>
+            </section>
+        {% else %}
+
+            <section class="px-5 pb-6 pt-6">
+                <div class="rounded-3xl bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 px-5 py-6 text-white shadow-md border border-slate-800">
+                    
+                    <span class="inline-flex items-center gap-1 rounded-full bg-teal-500/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-teal-300">
+                        🎉 {% translate "Let's celebrate!" %}
+                    </span>
+
+                    <h1 class="mt-3 text-2xl font-bold leading-tight tracking-tight text-white">
+                        {{ gift_event.title }}
+                    </h1>
+
+                    {% if gift_event.event_date %}
+                        <p class="mt-2 text-xs font-medium text-slate-400 flex items-center gap-1.5">
+                            <span>📅</span> {% blocktranslate with date_str=gift_event.event_date|date:"F j, Y" %}Event date: {{ date_str }}{% endblocktranslate %}
+                        </p>
+                    {% endif %}
+
+                    <div class="my-4 h-[1px] w-full bg-slate-700/50"></div>
+
+                    <a href="#gift-ideas"
+                    class="mt-5 inline-flex w-full items-center justify-center rounded-xl bg-teal-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-teal-500 active:scale-[0.99]">
+                        🚀 {% translate "Explore gift guide" %}
+                    </a>
+                </div>
+            </section>
+
+            {% if gift_event.video %}
+                <section class="px-5 pb-6">
+                    <div class="overflow-hidden rounded-3xl border border-slate-100 bg-white p-2 shadow-sm">
+                        <video 
+                            class="w-full aspect-video rounded-2xl object-cover bg-slate-900 shadow-inner" 
+                            controls
+                            preload="metadata"
+                            playsinline
+                        >
+                            <source src="{{ gift_event.video.url }}" type="video/mp4">
+                            <source src="{{ gift_event.video.url }}" type="video/quicktime"> {% translate "Your browser does not support the video tag." %}
+                        </video>
+                    </div>
+                </section>
+            {% endif %}
+
+            <section class="px-5 pb-6">
+                <div class="rounded-2xl border border-slate-100 bg-slate-50 px-4 py-4">
+                    <h2 class="text-sm font-semibold text-slate-900 flex items-center gap-2">
+                        💡 {% translate "Before choosing a gift" %}
+                    </h2>
+                    <p class="mt-1.5 text-xs leading-relaxed text-slate-600">
+                        {% translate "This profile includes useful details, preferences, and gift ideas so you can choose something more personal and avoid repeated gifts." %}
+                    </p>
+                </div>
+            </section>
+
+            <div class="px-5 mb-6">
+                <h2 class="text-lg font-semibold text-slate-900">{% translate "Preferences" %}</h2>
+                <p class="mt-0.5 text-sm text-slate-500">{% translate "Helpful details to keep in mind." %}</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start px-5 pb-8">
+
+                <div class="space-y-2 w-full">
+                    {% if avoid_preferences %}
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-rose-600">{% translate "What to avoid" %}</h3>
+                        {% for pref in avoid_preferences %}
+                            <div class="rounded-2xl border border-rose-100 bg-rose-50/30 p-4">
+                                <span class="inline-flex rounded-full bg-rose-100 px-2 py-0.5 text-[10px] font-bold text-rose-700 uppercase">
+                                    {{ pref.get_preference_type_display }}
+                                </span>
+                                <h4 class="mt-1.5 text-sm font-semibold text-slate-900">{{ pref.title }}</h4>
+                                {% if pref.description %}<p class="mt-0.5 text-xs text-slate-600">{{ pref.description }}</p>{% endif %}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class="space-y-2 w-full">
+                    {% if love_preferences %}
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-emerald-600">{% translate "What I love" %}</h3>
+                        {% for pref in love_preferences %}
+                            <div class="rounded-2xl border border-emerald-100 bg-emerald-50/30 p-4">
+                                <span class="inline-flex rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-bold text-emerald-700 uppercase">
+                                    {{ pref.get_preference_type_display }}
+                                </span>
+                                <h4 class="mt-1.5 text-sm font-semibold text-slate-900">{{ pref.title }}</h4>
+                                {% if pref.description %}<p class="mt-0.5 text-xs text-slate-600">{{ pref.description }}</p>{% endif %}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class="space-y-2 w-full">
+                    {% if spec_preferences %}
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500">{% translate "Useful details" %}</h3>
+                        
+                        <div class="grid grid-cols-2 md:grid-cols-1 gap-2">
+                            {% for pref in spec_preferences %}
+                                <div class="rounded-xl border border-slate-100 bg-slate-50 p-3">
+                                    <span class="inline-flex rounded-full bg-slate-900 px-2 py-0.5 text-[10px] font-bold text-white uppercase">
+                                        {{ pref.get_preference_type_display }}
+                                    </span>
+                                    <h4 class="text-sm font-semibold text-slate-800 mt-0.5">{{ pref.title }}</h4>
+                                    {% if pref.description %}<p class="text-xs text-slate-500 mt-0.5">{{ pref.description }}</p>{% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+            </div>
+
+            <div class="md:grid md:grid-cols-2 md:gap-4 md:items-start md:pt-4 mb-4">
+                <section id="gift-ideas" class="px-5 pb-8 md:col-span-2 md:border-l md:border-slate-100">
+                    <div class="rounded-2xl bg-gradient-to-r from-teal-50/70 to-emerald-50/50 border border-teal-100/50 p-4 mb-6">
+                        <div class="flex items-center gap-2">
+                            <span class="text-lg">✨</span>
+                            <h2 class="text-sm font-bold tracking-tight text-teal-900 uppercase">
+                                {% translate "Things that would make me smile" %}
+                            </h2>
+                        </div>
+                        
+                        <p class="mt-1.5 text-xs leading-relaxed text-slate-600">
+                            {% translate "These are specific items I've carefully picked and would be absolutely thrilled to receive. Tap to reserve one and keep the surprise alive!" %}
+                        </p>
+                    </div>
+
+                    {% if items %}
+                        <div class="space-y-5 md:space-y-0 md:grid md:grid-cols-2 md:gap-4">
+                            {% for item in items %}
+                                <article class="overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-sm">
+
+                                    {% if item.image %}
+                                        <div class="aspect-[4/3] w-full bg-slate-50 flex items-center justify-center overflow-hidden p-4">
+                                            <img src="{{ item.image.url }}" alt="{{ item.name }}" class="max-h-full max-w-full object-contain object-center mix-blend-multiply" loading="lazy">
+                                        </div>
+                                    {% else %}
+                                        <div class="flex aspect-[16/10] w-full items-center justify-center bg-slate-50 border-b border-slate-100">
+                                            <div class="text-center">
+                                                <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-xl shadow-sm border border-slate-100">
+                                                    🎁
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+
+                                    <div class="p-4">
+                                        <div class="mb-3 flex items-start justify-between gap-3">
+                                            <div class="w-full">
+                                                <div class="flex items-center justify-between gap-2">
+                                                    <h3 class="text-base font-semibold leading-snug text-slate-900">
+                                                        {{ item.name }}
+                                                    </h3>
+                                                    
+                                                    {% if item.status == "available" %}
+                                                        <span class="shrink-0 rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-semibold text-emerald-700">
+                                                            {% translate "Available" %}
+                                                        </span>
+                                                    {% else %}
+                                                        <span class="shrink-0 rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-500">
+                                                            {% translate "Reserved" %}
+                                                        </span>
+                                                    {% endif %}
+                                                </div>
+
+                                                {% if item.description %}
+                                                    <p class="mt-2 text-sm leading-relaxed text-slate-600">
+                                                        {{ item.description }}
+                                                    </p>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-4 flex flex-wrap gap-2 border-t border-slate-50 pt-3">
+                                            {% if item.estimated_price %}
+                                                <span class="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600">
+                                                    {% translate "Est. Price:" %} ${{ item.estimated_price }}
+                                                </span>
+                                            {% endif %}
+                                            {% if item.talla_medida %}
+                                                <span class="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600">
+                                                    {% translate "Size:" %} {{ item.talla_medida }}
+                                                </span>
+                                            {% endif %}
+                                        </div>
+
+                                        <div class="mt-4 grid gap-2">
+                                            {% if item.status == "available" %}
+                                                <button type="button" onclick="openReservationModal('{{ item.id }}', '{{ item.name|escapejs }}')" class="w-full rounded-xl bg-slate-900 px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-slate-800 active:scale-[0.99]">
+                                                    {% translate "Reserve this gift" %}
+                                                </button>
+                                            {% else %}
+                                                <button type="button" disabled class="w-full cursor-not-allowed rounded-xl bg-slate-100 px-4 py-3 text-sm font-semibold text-slate-400">
+                                                    ✨ {% translate "Someone's got this!" %}
+                                                </button>
+                                            {% endif %}
+
+                                            {% if item.product_url and item.status == "available" %} 
+                                                <a href="{{ item.product_url }}" target="_blank" rel="noopener noreferrer" class="w-full rounded-xl border border-slate-200 px-4 py-3 text-center text-sm font-semibold text-slate-700 transition hover:bg-slate-50">
+                                                    {% translate "View shop link" %} 🔗
+                                                </a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </article>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="rounded-2xl border border-dashed border-slate-200 bg-slate-50 p-6 text-center">
+                            <p class="text-sm text-slate-400">
+                                {% translate "No gift ideas have been listed yet." %}
+                            </p>
+                        </div>
+                    {% endif %}
+                </section>
+
+            </div>
+
+            <section class="px-5 pb-8 mt-6">
+                <div class="rounded-3xl bg-teal-50/60 p-6 text-center md:p-8 border border-teal-100/50 shadow-sm">
+                    
+                    <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-teal-800">
+                        {% translate "Create Your Own" %}
+                    </p>
+                    
+                    <h2 class="mt-2 text-xl font-bold tracking-tight text-slate-900 md:text-2xl">
+                        {% translate "Want your own gift profile?" %}
+                    </h2>
+                    
+                    <p class="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-slate-600">
+                        {% translate "Create a unique link with your preferences, ideas, and details so others can get your gifts right." %}
+                    </p>
+
+                    <p class="mx-auto mt-2 max-w-xl text-xs leading-relaxed text-slate-400">
+                        {% translate "We are currently putting the finishing touches on our platform. Join our early access waitlist today, and we will notify you by email as soon as public registration opens so you can build your perfect profile." %}
+                    </p>
+
+                    <div id="waitlist-interactive-zone" class="mx-auto mt-6 max-w-md min-h-[48px]">
+                        
+                        <form id="waitlist-form" action="{% url 'gifts:join_waitlist' %}" method="POST" class="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-2 w-full">
+                            {% csrf_token %}
+                            <input type="hidden" name="project_name" value="gifts">
+
+                            <input 
+                                type="email" 
+                                name="waitlist_email" 
+                                required 
+                                placeholder="{% translate 'Enter your email address' %}" 
+                                class="appearance-none h-12 w-full flex-1 rounded-xl border border-slate-200 bg-white px-4 text-sm text-slate-900 placeholder-slate-400 outline-none transition shadow-sm focus:border-teal-600 focus:ring-4 focus:ring-teal-600/10"
+                                style="box-sizing: border-box;"
+                            >
+                            
+                            <button 
+                                type="submit" 
+                                class="appearance-none h-12 sm:w-auto w-full flex-shrink-0 whitespace-nowrap rounded-xl px-6 text-sm font-semibold shadow-md transition active:scale-[0.98] flex items-center justify-center gap-1.5"
+                                style="background-color: #115e59 !important; color: #ffffff !important; border: none !important; height: 48px !important;"
+                            >
+                                {% translate "Join the waitlist" %} ✨
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+            </section>
+
+        {% endif %}
+
+        <footer class="border-t border-slate-100 px-5 py-5 text-center">
+            <p class="text-xs text-slate-400">
+                {% translate "Powered by Cooltimedia" %}
+            </p>
+            <p class="text-xs text-slate-400 mt-2">
+                <a href="/" target="_blank">cooltimedia.com</a>
+            </p>
+        </footer>
+
+    </main>
+
+    <div id="reservation-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+        <div class="bg-white rounded-3xl w-full max-w-sm overflow-hidden p-6 shadow-xl border border-slate-100 transform scale-95 transition-transform duration-200" id="modal-content">
+            
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                <h3 class="text-lg font-bold text-slate-900">
+                    {% translate "Confirm Reservation" %}
+                </h3>
+                <button type="button" onclick="closeReservationModal()" class="text-slate-400 hover:text-slate-600 font-bold text-lg p-1">
+                    ✕
+                </button>
+            </div>
+
+            <form id="silent-reservation-form" method="POST" class="mt-4">
+                {% csrf_token %}
+                
+                <p class="text-sm text-slate-600 bg-slate-50 rounded-xl p-3 border border-slate-100 leading-relaxed">
+                    {% translate "You are reserving:" %} <strong id="modal-item-name" class="text-slate-900"></strong>. 
+                    <br>
+                    <span class="text-xs text-slate-500">{% translate "The creator won't see who reserved this until the day of the event." %}</span>
+                </p>
+
+                <div class="mt-4">
+                    <label for="guest_name" class="block text-xs font-semibold uppercase tracking-wider text-slate-500">
+                        {% translate "Your Name / Family Name" %} <span class="text-rose-500">*</span>
+                    </label>
+                    <input 
+                        type="text" 
+                        name="guest_name" 
+                        id="guest_name" 
+                        required 
+                        placeholder='{% translate "Ej. Tía María o Familia Pérez" %}'
+                        class="mt-1.5 w-full rounded-xl border border-slate-200 px-3 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500"
+                    >
+                </div>
+
+                <div class="mt-6 grid grid-cols-2 gap-3">
+                    <button 
+                        type="button" 
+                        onclick="closeReservationModal()" 
+                        class="rounded-xl border border-slate-200 py-3 text-center text-sm font-semibold text-slate-600 hover:bg-slate-50"
+                    >
+                        {% translate "Cancel" %}
+                    </button>
+                    <button 
+                        type="submit" 
+                        class="rounded-xl bg-teal-700 py-3 text-center text-sm font-semibold text-white hover:bg-teal-800 shadow-sm"
+                    >
+                        {% translate "Confirm" %} 🚀
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {# Wagtail Admin Userbar (Only visible to logged-in Wagtail editors/admins) #}
+    {% wagtailuserbar %}
+
+    <script>
+        const modal = document.getElementById('reservation-modal');
+        const modalContent = document.getElementById('modal-content');
+        const itemNamePlaceholder = document.getElementById('modal-item-name');
+        const reservationForm = document.getElementById('silent-reservation-form');
+
+        // Saves the initial state of the form for when it is cleared or closed
+        const originalFormHTML = reservationForm.innerHTML;
+
+        function openReservationModal(itemId, itemName) {
+            itemNamePlaceholder.textContent = itemName;
+            // Standard English endpoint for the gifts app
+            reservationForm.action = `/gifts/items/${itemId}/reserve/`;
+            
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeReservationModal() {
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                // Restore the original HTML in case they reopen the modal with another item
+                reservationForm.innerHTML = originalFormHTML;
+            }, 150);
+        }
+
+        // Intercept the submit event to prevent redirection to a blank page
+        reservationForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // <-- Here we stop the native browser behavior
+
+            const formData = new FormData(reservationForm);
+            const actionUrl = reservationForm.action;
+
+            // Visual feedback: Disable the confirmation button while processing
+            const submitBtn = reservationForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '{% translate "Processing..." %}';
+
+            // Asynchronous submission via Fetch API
+            fetch(actionUrl, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest' // Best practices for Django
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.status === 'success') {
+                    // UI Transition: Show the success message directly inside the modal
+                    reservationForm.innerHTML = `
+                        <div class="text-center py-8 bg-emerald-50/50 rounded-2xl border border-emerald-100 p-4 mt-2 animate-[fadeIn_0.3s_ease-out]">
+                            <span class="text-4xl block mb-2">🎉</span>
+                            <h4 class="text-base font-bold text-slate-900">
+                                {% translate "Gift Reserved!" %}
+                            </h4>
+                            <p class="text-xs text-slate-600 mt-1">
+                                ${data.message}
+                            </p>
+                        </div>
+                    `;
+                    
+                    // Subtly reload the page after 1.8 seconds 
+                    // so the guest sees the updated "Reserved" badge in the list
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1800);
+                } else {
+                    alert(data.message || 'Something went wrong.');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Connection error. Please try again.');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+            });
+        });
+
+        // Safety close if they click outside the white container
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) closeReservationModal();
+        });
+    </script>
+
+    <script>
+        document.getElementById('waitlist-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const form = this;
+            const formData = new FormData(form);
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const interactiveZone = document.getElementById('waitlist-interactive-zone');
+
+            // Deshabilitar botón y dar feedback de carga inmediato
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '{% translate "Procesando..." %}';
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    // 🌟 EL CAMBIO CLAVE: Reemplazamos por completo el HTML interno por una tarjeta limpia, aislada y elegante
+                    interactiveZone.innerHTML = `
+                        <div class="rounded-2xl border border-emerald-100 bg-emerald-50/80 p-5 text-center shadow-inner animate-[fadeIn_0.4s_ease-out] w-full block">
+                            <p class="text-sm font-bold text-emerald-900 flex items-center justify-center gap-2 m-0">
+                                🎉 ${"{% translate 'You are on the list!' %}"}
+                            </p>
+                            <p class="text-xs text-emerald-700 font-normal mt-1.5 mb-0 leading-relaxed max-w-sm mx-auto">
+                                ${"{% translate 'Thank you! We will email you as soon as your access is ready.' %}"}
+                            </p>
+                        </div>
+                    `;
+                } else {
+                    alert(data.message || 'Error');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '{% translate "Join the waitlist" %} ✨';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Connection error.');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '{% translate "Join the waitlist" %} ✨';
+            });
+        });
+    </script>   
+
+</body>
+</html>

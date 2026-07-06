@@ -11,8 +11,10 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+import os
 from pathlib import Path
 from decouple import config
+from django.utils.translation import gettext_lazy as _
 
 PROJECT_DIR = Path(__file__).resolve().parent.parent
 BASE_DIR = PROJECT_DIR.parent
@@ -31,6 +33,7 @@ INSTALLED_APPS = [
     "mvp_smart_accounting",
     "mvp_qflow_core",
     "mvp_data_connectors",
+    "mvp_gifts",
     "search",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
@@ -63,6 +66,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -136,7 +140,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "en"
 
 TIME_ZONE = "America/Panama"
 
@@ -147,6 +151,15 @@ USE_TZ = True
 USE_L10N = True
 
 USE_THOUSAND_SEPARATOR = True
+
+LANGUAGES = [
+    ('en', _('English')),
+    ('es', _('Spanish')),
+]
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/

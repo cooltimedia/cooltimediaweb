@@ -1,0 +1,563 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-06 17:01-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: app/settings/base.py:156
+msgid "English"
+msgstr "Inglés"
+
+#: app/settings/base.py:157
+msgid "Spanish"
+msgstr "Español"
+
+#: home/templates/home/welcome_page.html:6
+msgid "Visit the Wagtail website"
+msgstr "Visita el sitio web de Wagtail"
+
+#: home/templates/home/welcome_page.html:15
+msgid "View the release notes"
+msgstr "Ver las notas de la versión"
+
+#: home/templates/home/welcome_page.html:27
+msgid "Welcome to your new Wagtail site!"
+msgstr "¡Bienvenido a tu nuevo sitio Wagtail!"
+
+#: home/templates/home/welcome_page.html:28
+msgid ""
+"Please feel free to <a href=\"https://github.com/wagtail/wagtail/wiki/"
+"Slack\">join our community on Slack</a>, or get started with one of the "
+"links below."
+msgstr ""
+"No dudes en <a href=\"https://github.com/wagtail/wagtail/wiki/Slack\">unirte "
+"a nuestra comunidad en Slack</a>, o comienza con uno de los siguientes "
+"enlaces."
+
+#: home/templates/home/welcome_page.html:35
+msgid "Wagtail Documentation"
+msgstr "Documentación de Wagtail"
+
+#: home/templates/home/welcome_page.html:36
+msgid "Topics, references, & how-tos"
+msgstr "Temas, referencias y guías prácticas"
+
+#: home/templates/home/welcome_page.html:42
+msgid "Tutorial"
+msgstr "Tutorial"
+
+#: home/templates/home/welcome_page.html:43
+msgid "Build your first Wagtail site"
+msgstr "Construye tu primer sitio Wagtail"
+
+#: home/templates/home/welcome_page.html:49
+msgid "Admin Interface"
+msgstr "Interfaz de administración"
+
+#: home/templates/home/welcome_page.html:50
+msgid "Create your superuser first!"
+msgstr "¡Crea tu superusuario primero!"
+
+#: mvp_data_connectors/models.py:31
+msgid "Example: 'Main Brand - Instagram'"
+msgstr "Ejemplo: 'Marca Principal - Instagram'"
+
+#: mvp_data_connectors/models.py:42
+msgid "Connector Source"
+msgstr "Origen del conector"
+
+#: mvp_data_connectors/models.py:43
+msgid "Connector Sources"
+msgstr "Orígenes del conector"
+
+#: mvp_data_connectors/models.py:63
+msgid "The parameter name (e.g., 'INSTAGRAM_APP_ID' or 'ENV_VAR_POINTER')"
+msgstr "El nombre del parámetro (ej. 'INSTAGRAM_APP_ID' o 'ENV_VAR_POINTER')"
+
+#: mvp_data_connectors/models.py:66
+msgid ""
+"The value or the name of the Environment Variable containing the secret."
+msgstr ""
+"El valor o el nombre de la Variable de Entorno que contiene el secreto."
+
+#: mvp_data_connectors/models.py:71
+msgid "Connector Credential"
+msgstr "Credencial del conector"
+
+#: mvp_data_connectors/models.py:96
+msgid ""
+"The name of the Environment Variable that holds the JSON Service Account key."
+msgstr ""
+"El nombre de la Variable de Entorno que contiene la clave JSON de la Cuenta "
+"de Servicio."
+
+#: mvp_data_connectors/models.py:100
+msgid "BigQuery Target"
+msgstr "Destino de BigQuery"
+
+#: mvp_data_connectors/models.py:101
+msgid "BigQuery Targets"
+msgstr "Destinos de BigQuery"
+
+#: mvp_data_connectors/models.py:129
+msgid "Logs, error messages, or API response summaries."
+msgstr ""
+"Registros (logs), mensajes de error o resúmenes de respuestas de la API."
+
+#: mvp_data_connectors/models.py:134
+msgid "Execution Log"
+msgstr "Registro de ejecución"
+
+#: mvp_data_connectors/models.py:135
+msgid "Execution Logs"
+msgstr "Registros de ejecución"
+
+#: mvp_gifts/templates/gifts/archive_code.html:4
+msgid "Create your own"
+msgstr "Crea el tuyo"
+
+#: mvp_gifts/templates/gifts/archive_code.html:8
+#: mvp_gifts/templates/gifts/public_gift_profile.html:300
+msgid "Want your own gift profile?"
+msgstr "¿Quieres tu propio perfil de regalos?"
+
+#: mvp_gifts/templates/gifts/archive_code.html:12
+msgid ""
+"Create a unique link with your preferences, ideas, and details so others can "
+"gift you better."
+msgstr ""
+"Crea un enlace único con tus preferencias, ideas y detalles para que otros "
+"puedan acertar con tus regalos."
+
+#: mvp_gifts/templates/gifts/archive_code.html:17
+msgid "Create my profile"
+msgstr "Crear mi perfil"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:9
+msgid "Gift Profile"
+msgstr "Perfil de regalos"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:46
+msgid "Private & curated guide"
+msgstr "Guía privada y personalizada"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:67
+msgid "This event has passed"
+msgstr "Este evento ya pasó"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:70
+#, python-format
+msgid ""
+"This gift profile is no longer available because the celebration date has "
+"already passed. Thank you so much for wanting to celebrate %(name)s!"
+msgstr ""
+"Este perfil de regalos ya no está disponible porque la fecha de la "
+"celebración ya pasó. ¡Muchas gracias por querer celebrar a %(name)s!"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:80
+msgid "Let's celebrate!"
+msgstr "¡A celebrar!"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:89
+#, python-format
+msgid "Event date: %(date_str)s"
+msgstr "Fecha del evento: %(date_str)s"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:97
+msgid "Explore gift guide"
+msgstr "Explorar guía de regalos"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:112
+msgid "Your browser does not support the video tag."
+msgstr "Tu navegador no soporta la etiqueta de video."
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:121
+msgid "Before choosing a gift"
+msgstr "Antes de elegir un regalo"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:124
+msgid ""
+"This profile includes useful details, preferences, and gift ideas so you can "
+"choose something more personal and avoid repeated gifts."
+msgstr ""
+"Este perfil incluye detalles útiles, preferencias e ideas de regalos para "
+"que puedas elegir algo más personal y evitar regalos repetidos."
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:130
+msgid "Preferences"
+msgstr "Preferencias"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:131
+msgid "Helpful details to keep in mind."
+msgstr "Detalles útiles a tener en cuenta."
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:138
+msgid "What to avoid"
+msgstr "Qué evitar"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:153
+msgid "What I love"
+msgstr "Lo que me encanta"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:168
+msgid "Useful details"
+msgstr "Detalles útiles"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:192
+msgid "Things that would make me smile"
+msgstr "Cosas que me harían sonreír"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:197
+msgid ""
+"These are specific items I've carefully picked and would be absolutely "
+"thrilled to receive. Tap to reserve one and keep the surprise alive!"
+msgstr ""
+"Estos son artículos específicos que he elegido cuidadosamente y me haría "
+"mucha ilusión recibir. ¡Toca para reservar uno y mantener viva la sorpresa!"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:230
+msgid "Available"
+msgstr "Disponible"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:234
+msgid "Reserved"
+msgstr "Reservado"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:250
+msgid "Est. Price:"
+msgstr "Precio est.:"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:255
+msgid "Size:"
+msgstr "Tamaño/Talla:"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:263
+msgid "Reserve this gift"
+msgstr "Reservar este regalo"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:267
+msgid "Someone's got this!"
+msgstr "¡Ya lo reservaron!"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:273
+msgid "View shop link"
+msgstr "Ver enlace de la tienda"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:284
+msgid "No gift ideas have been listed yet."
+msgstr "Aún no se han añadido ideas de regalos."
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:296
+msgid "Create Your Own"
+msgstr "Crea el tuyo"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:304
+msgid ""
+"Create a unique link with your preferences, ideas, and details so others can "
+"get your gifts right."
+msgstr ""
+"Crea un enlace único con tus preferencias, ideas y detalles para que otros "
+"puedan acertar con tus regalos."
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:308
+msgid ""
+"We are currently putting the finishing touches on our platform. Join our "
+"early access waitlist today, and we will notify you by email as soon as "
+"public registration opens so you can build your perfect profile."
+msgstr ""
+"Actualmente estamos dando los últimos retoques a nuestra plataforma. Únete "
+"hoy a nuestra lista de espera de acceso anticipado y te notificaremos por "
+"correo electrónico tan pronto como se abra el registro público, para que "
+"puedas crear tu perfil ideal."
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:321
+msgid "Enter your email address"
+msgstr "Ingresa tu dirección de correo electrónico."
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:331
+#: mvp_gifts/templates/gifts/public_gift_profile.html:544
+#: mvp_gifts/templates/gifts/public_gift_profile.html:551
+msgid "Join the waitlist"
+msgstr "Únete a la lista de espera"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:343
+msgid "Powered by Cooltimedia"
+msgstr "Desarrollado por Cooltimedia"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:357
+msgid "Confirm Reservation"
+msgstr "Confirmar reserva"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:368
+msgid "You are reserving:"
+msgstr "Estás reservando:"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:370
+msgid "The creator won't see who reserved this until the day of the event."
+msgstr "El creador no verá quién reservó esto hasta el día del evento."
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:375
+msgid "Your Name / Family Name"
+msgstr "Tu nombre / Apellido familiar"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:382
+msgid "Ej. Tía María o Familia Pérez"
+msgstr "Ej. Tía María o Familia Pérez"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:393
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:399
+msgid "Confirm"
+msgstr "Confirmar"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:451
+msgid "Processing..."
+msgstr "Procesando..."
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:474
+msgid "Gift Reserved!"
+msgstr "¡Regalo reservado!"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:518
+#, fuzzy
+#| msgid "Processing..."
+msgid "Procesando..."
+msgstr "Procesando..."
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:534
+msgid "You are on the list!"
+msgstr "¡Estás en la lista!"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:537
+msgid "Thank you! We will email you as soon as your access is ready."
+msgstr "¡Gracias! Le enviaremos un correo electrónico tan pronto como su acceso esté listo."
+
+#: mvp_qflow_core/models.py:19
+msgid "Waiting in Queue"
+msgstr "Esperando en cola"
+
+#: mvp_qflow_core/models.py:20
+msgid "Called to Counter"
+msgstr "Llamado a ventanilla"
+
+#: mvp_qflow_core/models.py:21
+msgid "Currently Being Served"
+msgstr "Siendo atendido"
+
+#: mvp_qflow_core/models.py:22
+msgid "Service Completed"
+msgstr "Servicio completado"
+
+#: mvp_qflow_core/models.py:23
+msgid "Customer Not Present"
+msgstr "Cliente ausente"
+
+#: mvp_qflow_core/models.py:24
+msgid "Cancelled by User/Staff"
+msgstr "Cancelado por usuario/personal"
+
+#: mvp_qflow_core/models.py:28
+msgid "Information"
+msgstr "Información"
+
+#: mvp_qflow_core/models.py:29
+msgid "Warning"
+msgstr "Advertencia"
+
+#: mvp_qflow_core/models.py:30
+msgid "Error"
+msgstr "Error"
+
+#: mvp_qflow_core/models.py:31
+msgid "Critical Failure"
+msgstr "Fallo crítico"
+
+#: mvp_qflow_core/models.py:35
+msgid "Never Reset"
+msgstr "Nunca reiniciar"
+
+#: mvp_qflow_core/models.py:36
+msgid "Reset Daily"
+msgstr "Reiniciar diariamente"
+
+#: mvp_qflow_core/models.py:40
+msgid "Ticket Called"
+msgstr "Ticket llamado"
+
+#: mvp_qflow_core/models.py:41
+msgid "No Response"
+msgstr "Sin respuesta"
+
+#: mvp_qflow_core/models.py:42
+msgid "Customer Responded"
+msgstr "El cliente respondió"
+
+#: mvp_qflow_core/models.py:43
+msgid "Marked as Missed Automatically"
+msgstr "Marcado como perdido automáticamente"
+
+#: mvp_qflow_core/models.py:44
+msgid "Marked as Missed Manually"
+msgstr "Marcado como perdido manualmente"
+
+#: mvp_qflow_core/models.py:71
+msgid "Branch Name"
+msgstr "Nombre de la sucursal"
+
+#: mvp_qflow_core/models.py:74
+msgid "Unique identifier for URL namespacing."
+msgstr "Identificador único para el espacio de nombres de la URL."
+
+#: mvp_qflow_core/models.py:82
+msgid "If True, disables physical thermal printing."
+msgstr "Si es Verdadero, desactiva la impresión térmica física."
+
+#: mvp_qflow_core/models.py:86
+msgid "If True, attempts browser-based printing after ticket creation."
+msgstr ""
+"Si es Verdadero, intenta la impresión basada en el navegador tras la "
+"creación del ticket."
+
+#: mvp_qflow_core/models.py:90
+msgid "If True, requests ID/DNI during ticket registration."
+msgstr ""
+"Si es Verdadero, solicita identificación/DNI durante el registro del ticket."
+
+#: mvp_qflow_core/models.py:96
+msgid "If True, the branch supports priority handling."
+msgstr "Si es Verdadero, la sucursal admite la gestión de prioridades."
+
+#: mvp_qflow_core/models.py:104
+msgid "Controls whether ticket numbering resets daily."
+msgstr "Controla si la numeración de los tickets se reinicia diariamente."
+
+#: mvp_qflow_core/models.py:110
+msgid "Maximum number of call attempts before marking the ticket as missed."
+msgstr ""
+"Número máximo de intentos de llamada antes de marcar el ticket como ausente."
+
+#: mvp_qflow_core/models.py:114
+msgid "Seconds to wait between call attempts."
+msgstr "Segundos a esperar entre intentos de llamada."
+
+#: mvp_qflow_core/models.py:120
+msgid "Minutes before triggering a critical wait alert."
+msgstr "Minutos antes de activar una alerta de espera crítica."
+
+#: mvp_qflow_core/models.py:132
+msgid "Main message shown in kiosk, public display, or ticket tracking pages."
+msgstr ""
+"Mensaje principal que se muestra en el quiosco, pantalla pública o páginas "
+"de seguimiento de tickets."
+
+#: mvp_qflow_core/models.py:138
+msgid "Secondary helper message for customers."
+msgstr "Mensaje de ayuda secundario para los clientes."
+
+#: mvp_qflow_core/models.py:142
+msgid "Branch Setting"
+msgstr "Ajuste de sucursal"
+
+#: mvp_qflow_core/models.py:143
+msgid "Branch Settings"
+msgstr "Ajustes de sucursal"
+
+#: mvp_qflow_core/models.py:164
+msgid "Service Name"
+msgstr "Nombre del servicio"
+
+#: mvp_qflow_core/models.py:168
+msgid "Example: A, B, PR, LAB"
+msgstr "Ejemplo: A, B, PR, LAB"
+
+#: mvp_qflow_core/models.py:176
+msgid "If True, uses the branch reset policy."
+msgstr "Si es Verdadero, utiliza la política de reinicio de la sucursal."
+
+#: mvp_qflow_core/models.py:182
+msgid "Only applies when use_branch_reset_policy is False."
+msgstr "Solo se aplica cuando use_branch_reset_policy es Falso."
+
+#: mvp_qflow_core/models.py:187
+msgid "Average service time used to estimate queue wait time."
+msgstr ""
+"Tiempo promedio de servicio utilizado para estimar el tiempo de espera en "
+"cola."
+
+#: mvp_qflow_core/models.py:191
+msgid "Service Type"
+msgstr "Tipo de servicio"
+
+#: mvp_qflow_core/models.py:192
+msgid "Service Types"
+msgstr "Tipos de servicio"
+
+#: mvp_qflow_core/models.py:240
+msgid "Required when numbering resets daily."
+msgstr "Requerido cuando la numeración se reinicia diariamente."
+
+#: mvp_qflow_core/models.py:245
+msgid "Ticket Sequence"
+msgstr "Secuencia de tickets"
+
+#: mvp_qflow_core/models.py:246
+msgid "Ticket Sequences"
+msgstr "Secuencias de tickets"
+
+#: mvp_qflow_core/models.py:282
+msgid "Human-readable ticket code like A-101."
+msgstr "Código de ticket legible por humanos como A-101."
+
+#: mvp_qflow_core/models.py:287
+msgid "Unique collision-resistant token for QR and internal tracking."
+msgstr "Token único resistente a colisiones para QR y seguimiento interno."
+
+#: mvp_qflow_core/models.py:324
+msgid "Queue Ticket"
+msgstr "Ticket de cola"
+
+#: mvp_qflow_core/models.py:325
+msgid "Queue Tickets"
+msgstr "Tickets de cola"
+
+#: mvp_qflow_core/models.py:380
+msgid "Ticket Call Event"
+msgstr "Evento de llamada de ticket"
+
+#: mvp_qflow_core/models.py:381
+msgid "Ticket Call Events"
+msgstr "Eventos de llamada de ticket"
+
+#: mvp_qflow_core/models.py:429
+msgid ""
+"Description of the event, for example 'Ticket created' or 'Printing failure'."
+msgstr ""
+"Descripción del evento, por ejemplo 'Ticket creado' o 'Fallo de impresión'."
+
+#: mvp_qflow_core/models.py:434
+msgid "Optional metadata or raw error details."
+msgstr "Metadatos opcionales o detalles del error sin procesar."
+
+#: mvp_qflow_core/models.py:445
+msgid "Processing Log"
+msgstr "Procesando Log"
+
+#: mvp_qflow_core/models.py:446
+msgid "Processing Logs"
+msgstr "Procesando Log"
