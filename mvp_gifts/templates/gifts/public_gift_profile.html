@@ -25,6 +25,16 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}" />
     <link rel="manifest" href="{% static 'images/site.webmanifest' %}" />
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9WGQKBP207"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-9WGQKBP207');
+    </script>   
+
     {% include "wagtailmetadata/parts/tags.html" %}
 
     <style>
@@ -103,7 +113,13 @@
                 <section class="px-5 pb-6">
                     <div class="overflow-hidden rounded-3xl border border-slate-100 bg-white p-2 shadow-sm">
                         <video 
-                            class="w-full aspect-video rounded-2xl object-cover bg-slate-900 shadow-inner" 
+                            id="event-welcome-video"
+                            class="w-full aspect-video rounded-2xl object-cover bg-slate-900 shadow-inner"                            
+                            {% if user_video_url %}
+                                src="{{ user_video_url }}"
+                            {% else %}
+                                {% endif %}
+                            poster="/media/images/main_cover_v1-1.original.png"
                             controls
                             preload="metadata"
                             playsinline
