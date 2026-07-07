@@ -111,10 +111,10 @@
 
             {% if gift_event.video %}
                 <section class="px-5 pb-6">
-                    <div class="overflow-hidden rounded-3xl border border-slate-100 bg-white p-2 shadow-sm">
+                    <div class="overflow-hidden bg-white p-2 shadow-sm">
                         <video 
                             id="event-welcome-video"
-                            class="w-full aspect-video rounded-2xl object-cover bg-slate-900 shadow-inner"                            
+                            class="w-full aspect-video object-cover bg-slate-900 shadow-inner"                            
                             {% if user_video_url %}
                                 src="{{ user_video_url }}"
                             {% else %}
