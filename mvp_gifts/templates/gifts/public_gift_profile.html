@@ -8,6 +8,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ gift_event.title }} | {% translate "Gift Profile" %}</title>
 
+    <meta property="og:description" content="{% translate 'Take a look at my gift ideas, sizes, and favorite preferences here!' %}">
+
+    <meta property="og:image" content="https://{{ request.get_host }}/media/images/main_cover_v1-1.original.png">
+    <meta property="og:image:type" content="image/webp">
+    <meta property="og:image:width" content="1270">
+    <meta property="og:image:height" content="720">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://{{ request.get_host }}{{ request.path }}">
+
     <meta name="robots" content="noindex, nofollow, noarchive">
     <meta name="googlebot" content="noindex, nofollow, noarchive">
 
