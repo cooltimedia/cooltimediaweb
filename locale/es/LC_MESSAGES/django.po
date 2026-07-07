@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-07 11:56-0500\n"
+"POT-Creation-Date: 2026-07-07 12:07-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -131,7 +131,7 @@ msgid "Create your own"
 msgstr "Crea el tuyo"
 
 #: mvp_gifts/templates/gifts/archive_code.html:8
-#: mvp_gifts/templates/gifts/public_gift_profile.html:316
+#: mvp_gifts/templates/gifts/public_gift_profile.html:326
 msgid "Want your own gift profile?"
 msgstr "¿Quieres tu propio perfil de regalos?"
 
@@ -151,41 +151,49 @@ msgstr "Crear mi perfil"
 msgid "Gift Profile"
 msgstr "Perfil de regalos"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:56
+#: mvp_gifts/templates/gifts/public_gift_profile.html:11
+msgid "Take a look at my gift ideas, sizes, and favorite preferences here!"
+msgstr "¡Echa un vistazo a mis ideas para regalos, tamaños y preferencias aquí!"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:66
 msgid "Private & curated guide"
 msgstr "Guía privada y personalizada"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:77
+#: mvp_gifts/templates/gifts/public_gift_profile.html:87
 msgid "This event has passed"
 msgstr "Este evento ya pasó"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:80
-#, python-format
-msgid "This gift profile is no longer available because the celebration date has already passed. Thank you so much for wanting to celebrate %(name)s!"
-msgstr "Este perfil de regalos ya no está disponible porque la fecha de la celebración ya pasó. ¡Muchas gracias por querer celebrar a %(name)s!"
-
 #: mvp_gifts/templates/gifts/public_gift_profile.html:90
+#, python-format
+msgid ""
+"This gift profile is no longer available because the celebration date has "
+"already passed. Thank you so much for wanting to celebrate %(name)s!"
+msgstr ""
+"Este perfil de regalos ya no está disponible porque la fecha de la "
+"celebración ya pasó. ¡Muchas gracias por querer celebrar a %(name)s!"
+
+#: mvp_gifts/templates/gifts/public_gift_profile.html:100
 msgid "Let's celebrate!"
 msgstr "¡A celebrar!"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:99
+#: mvp_gifts/templates/gifts/public_gift_profile.html:109
 #, python-format
 msgid "Event date: %(date_str)s"
 msgstr "Fecha del evento: %(date_str)s"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:107
+#: mvp_gifts/templates/gifts/public_gift_profile.html:117
 msgid "Explore gift guide"
 msgstr "Explorar guía de regalos"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:128
+#: mvp_gifts/templates/gifts/public_gift_profile.html:138
 msgid "Your browser does not support the video tag."
 msgstr "Tu navegador no soporta la etiqueta de video."
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:137
+#: mvp_gifts/templates/gifts/public_gift_profile.html:147
 msgid "Before choosing a gift"
 msgstr "Antes de elegir un regalo"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:140
+#: mvp_gifts/templates/gifts/public_gift_profile.html:150
 msgid ""
 "This profile includes useful details, preferences, and gift ideas so you can "
 "choose something more personal and avoid repeated gifts."
@@ -193,31 +201,31 @@ msgstr ""
 "Este perfil incluye detalles útiles, preferencias e ideas de regalos para "
 "que puedas elegir algo más personal y evitar regalos repetidos."
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:146
+#: mvp_gifts/templates/gifts/public_gift_profile.html:156
 msgid "Preferences"
 msgstr "Preferencias"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:147
+#: mvp_gifts/templates/gifts/public_gift_profile.html:157
 msgid "Helpful details to keep in mind."
 msgstr "Detalles útiles a tener en cuenta."
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:154
+#: mvp_gifts/templates/gifts/public_gift_profile.html:164
 msgid "What to avoid"
 msgstr "Qué evitar"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:169
+#: mvp_gifts/templates/gifts/public_gift_profile.html:179
 msgid "What I love"
 msgstr "Lo que me encanta"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:184
+#: mvp_gifts/templates/gifts/public_gift_profile.html:194
 msgid "Useful details"
 msgstr "Detalles útiles"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:208
+#: mvp_gifts/templates/gifts/public_gift_profile.html:218
 msgid "Things that would make me smile"
 msgstr "Cosas que me harían sonreír"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:213
+#: mvp_gifts/templates/gifts/public_gift_profile.html:223
 msgid ""
 "These are specific items I've carefully picked and would be absolutely "
 "thrilled to receive. Tap to reserve one and keep the surprise alive!"
@@ -225,43 +233,43 @@ msgstr ""
 "Estos son artículos específicos que he elegido cuidadosamente y me haría "
 "mucha ilusión recibir. ¡Toca para reservar uno y mantener viva la sorpresa!"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:246
+#: mvp_gifts/templates/gifts/public_gift_profile.html:256
 msgid "Available"
 msgstr "Disponible"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:250
+#: mvp_gifts/templates/gifts/public_gift_profile.html:260
 msgid "Reserved"
 msgstr "Reservado"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:266
+#: mvp_gifts/templates/gifts/public_gift_profile.html:276
 msgid "Est. Price:"
 msgstr "Precio est.:"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:271
+#: mvp_gifts/templates/gifts/public_gift_profile.html:281
 msgid "Size:"
 msgstr "Tamaño/Talla:"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:279
+#: mvp_gifts/templates/gifts/public_gift_profile.html:289
 msgid "Reserve this gift"
 msgstr "Reservar este regalo"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:283
+#: mvp_gifts/templates/gifts/public_gift_profile.html:293
 msgid "Someone's got this!"
 msgstr "¡Ya lo reservaron!"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:289
+#: mvp_gifts/templates/gifts/public_gift_profile.html:299
 msgid "View shop link"
 msgstr "Ver enlace de la tienda"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:300
+#: mvp_gifts/templates/gifts/public_gift_profile.html:310
 msgid "No gift ideas have been listed yet."
 msgstr "Aún no se han añadido ideas de regalos."
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:312
+#: mvp_gifts/templates/gifts/public_gift_profile.html:322
 msgid "Create Your Own"
 msgstr "Crea el tuyo"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:320
+#: mvp_gifts/templates/gifts/public_gift_profile.html:330
 msgid ""
 "Create a unique link with your preferences, ideas, and details so others can "
 "get your gifts right."
@@ -269,7 +277,7 @@ msgstr ""
 "Crea un enlace único con tus preferencias, ideas y detalles para que otros "
 "puedan acertar con tus regalos."
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:324
+#: mvp_gifts/templates/gifts/public_gift_profile.html:334
 msgid ""
 "We are currently putting the finishing touches on our platform. Join our "
 "early access waitlist today, and we will notify you by email as soon as "
@@ -280,67 +288,67 @@ msgstr ""
 "correo electrónico tan pronto como se abra el registro público, para que "
 "puedas crear tu perfil ideal."
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:337
+#: mvp_gifts/templates/gifts/public_gift_profile.html:347
 msgid "Enter your email address"
 msgstr "Ingresa tu dirección de correo electrónico."
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:347
-#: mvp_gifts/templates/gifts/public_gift_profile.html:560
-#: mvp_gifts/templates/gifts/public_gift_profile.html:567
+#: mvp_gifts/templates/gifts/public_gift_profile.html:357
+#: mvp_gifts/templates/gifts/public_gift_profile.html:570
+#: mvp_gifts/templates/gifts/public_gift_profile.html:577
 msgid "Join the waitlist"
 msgstr "Únete a la lista de espera"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:359
+#: mvp_gifts/templates/gifts/public_gift_profile.html:369
 msgid "Powered by Cooltimedia"
 msgstr "Desarrollado por Cooltimedia"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:373
+#: mvp_gifts/templates/gifts/public_gift_profile.html:383
 msgid "Confirm Reservation"
 msgstr "Confirmar reserva"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:384
+#: mvp_gifts/templates/gifts/public_gift_profile.html:394
 msgid "You are reserving:"
 msgstr "Estás reservando:"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:386
+#: mvp_gifts/templates/gifts/public_gift_profile.html:396
 msgid "The creator won't see who reserved this until the day of the event."
 msgstr "El creador no verá quién reservó esto hasta el día del evento."
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:391
+#: mvp_gifts/templates/gifts/public_gift_profile.html:401
 msgid "Your Name / Family Name"
 msgstr "Tu nombre / Apellido familiar"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:398
+#: mvp_gifts/templates/gifts/public_gift_profile.html:408
 msgid "Ej. Tía María o Familia Pérez"
 msgstr "Ej. Tía María o Familia Pérez"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:409
+#: mvp_gifts/templates/gifts/public_gift_profile.html:419
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:415
+#: mvp_gifts/templates/gifts/public_gift_profile.html:425
 msgid "Confirm"
 msgstr "Confirmar"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:467
+#: mvp_gifts/templates/gifts/public_gift_profile.html:477
 msgid "Processing..."
 msgstr "Procesando..."
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:490
+#: mvp_gifts/templates/gifts/public_gift_profile.html:500
 msgid "Gift Reserved!"
 msgstr "¡Regalo reservado!"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:534
+#: mvp_gifts/templates/gifts/public_gift_profile.html:544
 #, fuzzy
 #| msgid "Processing..."
 msgid "Procesando..."
 msgstr "Procesando..."
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:550
+#: mvp_gifts/templates/gifts/public_gift_profile.html:560
 msgid "You are on the list!"
 msgstr "¡Estás en la lista!"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:553
+#: mvp_gifts/templates/gifts/public_gift_profile.html:563
 msgid "Thank you! We will email you as soon as your access is ready."
 msgstr ""
 "¡Gracias! Le enviaremos un correo electrónico tan pronto como su acceso esté "
