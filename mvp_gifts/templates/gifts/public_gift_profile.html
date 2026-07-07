@@ -263,7 +263,7 @@
                                         <div class="mt-4 flex flex-wrap gap-2 border-t border-slate-50 pt-3">
                                             {% if item.estimated_price %}
                                                 <span class="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-600">
-                                                    {% translate "Est. Price:" %} ${{ item.estimated_price }}
+                                                    {% translate "Est. Price:" %} ${{ item.estimated_price|floatformat:2 }}
                                                 </span>
                                             {% endif %}
                                             {% if item.talla_medida %}
