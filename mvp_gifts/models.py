@@ -10,6 +10,7 @@ This module defines the core data structure for the gift platform:
 
 from django.db import models
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 
 from .utils import generate_event_token
 
@@ -93,7 +94,6 @@ class GiftEvent(models.Model):
         """
         return f"{self.title} - {self.owner_name}"
 
-
 class GiftPreference(models.Model):
     """
     Stores personal preferences related to a gift event.
@@ -102,20 +102,20 @@ class GiftPreference(models.Model):
     interests, things to avoid, allergies, or any useful information that helps
     guests choose a better gift.
     """
-
+    
     PREFERENCE_TYPE_CHOICES = (
-        ("likes", "Likes"),
-        ("dislikes", "Dislikes"),
-        ("sizes", "Sizes"),
-        ("colors", "Colors"),
-        ("brands", "Brands"),
-        ("interests", "Interests"),
-        ("avoid", "Things to Avoid"),
-        ("other", "Other"),
+        ("likes", _("Likes")),
+        ("dislikes", _("Dislikes")),
+        ("sizes", _("Sizes")),
+        ("colors", _("Colors")),
+        ("brands", _("Brands")),
+        ("interests", _("Interests")),
+        ("avoid", _("Things to Avoid")),
+        ("other", _("Other")),
     )
 
     gift_event = models.ForeignKey(
-        GiftEvent,
+        "GiftEvent", # Ajustado como string por si acaso, o déjalo igual si ya está importado arriba
         on_delete=models.CASCADE,
         related_name="preferences",
         help_text="Gift event associated with this preference.",
@@ -142,10 +142,9 @@ class GiftPreference(models.Model):
         auto_now=True,
         help_text="Date and time when the preference was last updated.",
     )
-
     class Meta:
-        verbose_name = "Gift Preference"
-        verbose_name_plural = "Gift Preferences"
+        verbose_name = _("Gift Preference")
+        verbose_name_plural = _("Gift Preferences")
         ordering = ["preference_type", "title"]
 
     def __str__(self):
@@ -153,7 +152,6 @@ class GiftPreference(models.Model):
         Return a readable representation of the preference.
         """
         return f"{self.get_preference_type_display()} - {self.title}"
-
 
 class GiftItem(models.Model):
     """
@@ -239,7 +237,6 @@ class GiftItem(models.Model):
         """
         return self.name
 
-
 class GiftReservation(models.Model):
     """
     Represents a silent reservation made by a guest.
@@ -287,7 +284,6 @@ class GiftReservation(models.Model):
         """
         return f"Reservation for {self.gift_item.name}"
     
-
 class WaitlistLead(models.Model):
     """
     Stores email addresses of users interested in early access for various MVPs.

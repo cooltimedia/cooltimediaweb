@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-07 12:07-0500\n"
+"POT-Creation-Date: 2026-07-07 19:46-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -126,6 +126,52 @@ msgstr "Registro de ejecución"
 msgid "Execution Logs"
 msgstr "Registros de ejecución"
 
+#: mvp_gifts/models.py:107
+msgid "Likes"
+msgstr "Me gusta"
+
+#: mvp_gifts/models.py:108
+msgid "Dislikes"
+msgstr "No me gusta"
+
+#: mvp_gifts/models.py:109
+msgid "Sizes"
+msgstr "Tamaño/Talla:"
+
+#: mvp_gifts/models.py:110
+msgid "Colors"
+msgstr "Colores"
+
+#: mvp_gifts/models.py:111
+msgid "Brands"
+msgstr "Marcas"
+
+#: mvp_gifts/models.py:112
+msgid "Interests"
+msgstr "Intereses"
+
+#: mvp_gifts/models.py:113
+#, fuzzy
+#| msgid "What to avoid"
+msgid "Things to Avoid"
+msgstr "Qué evitar"
+
+#: mvp_gifts/models.py:114
+msgid "Other"
+msgstr "Otros"
+
+#: mvp_gifts/models.py:146
+#, fuzzy
+#| msgid "Preferences"
+msgid "Gift Preference"
+msgstr "Preferencias"
+
+#: mvp_gifts/models.py:147
+#, fuzzy
+#| msgid "Preferences"
+msgid "Gift Preferences"
+msgstr "Preferencias"
+
 #: mvp_gifts/templates/gifts/archive_code.html:4
 msgid "Create your own"
 msgstr "Crea el tuyo"
@@ -153,7 +199,8 @@ msgstr "Perfil de regalos"
 
 #: mvp_gifts/templates/gifts/public_gift_profile.html:11
 msgid "Take a look at my gift ideas, sizes, and favorite preferences here!"
-msgstr "¡Echa un vistazo a mis ideas para regalos, tamaños y preferencias aquí!"
+msgstr ""
+"¡Echa un vistazo a mis ideas para regalos, tamaños y preferencias aquí!"
 
 #: mvp_gifts/templates/gifts/public_gift_profile.html:66
 msgid "Private & curated guide"
@@ -293,8 +340,8 @@ msgid "Enter your email address"
 msgstr "Ingresa tu dirección de correo electrónico."
 
 #: mvp_gifts/templates/gifts/public_gift_profile.html:357
-#: mvp_gifts/templates/gifts/public_gift_profile.html:570
-#: mvp_gifts/templates/gifts/public_gift_profile.html:577
+#: mvp_gifts/templates/gifts/public_gift_profile.html:574
+#: mvp_gifts/templates/gifts/public_gift_profile.html:581
 msgid "Join the waitlist"
 msgstr "Únete a la lista de espera"
 
@@ -330,29 +377,48 @@ msgstr "Cancelar"
 msgid "Confirm"
 msgstr "Confirmar"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:477
+#: mvp_gifts/templates/gifts/public_gift_profile.html:482
 msgid "Processing..."
 msgstr "Procesando..."
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:500
+#: mvp_gifts/templates/gifts/public_gift_profile.html:505
 msgid "Gift Reserved!"
 msgstr "¡Regalo reservado!"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:544
+#: mvp_gifts/templates/gifts/public_gift_profile.html:548
 #, fuzzy
 #| msgid "Processing..."
 msgid "Procesando..."
 msgstr "Procesando..."
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:560
+#: mvp_gifts/templates/gifts/public_gift_profile.html:564
 msgid "You are on the list!"
 msgstr "¡Estás en la lista!"
 
-#: mvp_gifts/templates/gifts/public_gift_profile.html:563
+#: mvp_gifts/templates/gifts/public_gift_profile.html:567
 msgid "Thank you! We will email you as soon as your access is ready."
 msgstr ""
 "¡Gracias! Le enviaremos un correo electrónico tan pronto como su acceso esté "
 "listo."
+
+#: mvp_gifts/views.py:170
+msgid "The guest name field is required."
+msgstr "El nombre del invitado o apellido familiar es obligatorio."
+
+#: mvp_gifts/views.py:187
+msgid "This event has already passed. New reservations are no longer allowed."
+msgstr "Este evento ya pasó. No se permiten nuevas reservas."
+
+#: mvp_gifts/views.py:195
+msgid ""
+"Too late! Someone else has already reserved this gift while you were filling "
+"out the form."
+msgstr ""
+"¡Muy tarde! Alguien más reservó este regalo mientras llenabas el formulario."
+
+#: mvp_gifts/views.py:211
+msgid "The item has been successfully reserved!"
+msgstr "¡El regalo ha sido reservado con éxito!"
 
 #: mvp_qflow_core/models.py:19
 msgid "Waiting in Queue"

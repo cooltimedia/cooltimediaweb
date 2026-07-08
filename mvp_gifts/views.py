@@ -18,6 +18,7 @@ from django.views.decorators.http import require_POST
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from django.views.generic import TemplateView
+from django.utils.translation import gettext as _
 
 from .models import GiftEvent, GiftItem, GiftReservation, WaitlistLead
 
@@ -166,7 +167,7 @@ def add_reservation(request, item_id):
 
     if not guest_name or not guest_name.strip():
         return JsonResponse(
-            {"status": "error", "message": "The guest name field is required."},
+            {"status": "error", "message": _("The guest name field is required.")},
             status=400,
         )
 
@@ -183,7 +184,7 @@ def add_reservation(request, item_id):
             return JsonResponse(
                 {
                     "status": "error",
-                    "message": "This event has already passed. New reservations are no longer allowed.",
+                    "message": _("This event has already passed. New reservations are no longer allowed."),
                 }
             )
 
@@ -191,7 +192,7 @@ def add_reservation(request, item_id):
             return JsonResponse(
                 {
                     "status": "error",
-                    "message": "Too late! Someone else has already reserved this gift while you were filling out the form.",
+                    "message": _("Too late! Someone else has already reserved this gift while you were filling out the form."),
                 }
             )
 
@@ -205,8 +206,9 @@ def add_reservation(request, item_id):
         gift_item.status = "reserved"
         gift_item.save()
 
+    # 🎯 MENSAJE DE ÉXITO TRADUCIBLE:
     return JsonResponse(
-        {"status": "success", "message": "The item has been successfully reserved!"}
+        {"status": "success", "message": _("The item has been successfully reserved!")}
     )
 
 

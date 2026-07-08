@@ -435,14 +435,18 @@
     <script>
         const modal = document.getElementById('reservation-modal');
         const modalContent = document.getElementById('modal-content');
-        const itemNamePlaceholder = document.getElementById('modal-item-name');
         const reservationForm = document.getElementById('silent-reservation-form');
 
         // Saves the initial state of the form for when it is cleared or closed
         const originalFormHTML = reservationForm.innerHTML;
 
         function openReservationModal(itemId, itemName) {
-            itemNamePlaceholder.textContent = itemName;
+            // 🎯 LA CORRECCIÓN: Buscamos el placeholder vivo en el DOM en este preciso instante
+            const currentPlaceholder = document.getElementById('modal-item-name');
+            if (currentPlaceholder) {
+                currentPlaceholder.textContent = itemName;
+            }
+
             // Standard English endpoint for the gifts app
             reservationForm.action = `/gifts/items/${itemId}/reserve/`;
             
@@ -459,6 +463,7 @@
             setTimeout(() => {
                 modal.classList.add('hidden');
                 // Restore the original HTML in case they reopen the modal with another item
+                // (Esto destruye los elementos viejos, pero ya no importa porque openReservationModal los buscará de nuevo)
                 reservationForm.innerHTML = originalFormHTML;
             }, 150);
         }
@@ -492,18 +497,17 @@
             })
             .then(data => {
                 if (data.status === 'success') {
-                    // UI Transition: Show the success message directly inside the modal
-                    reservationForm.innerHTML = `
-                        <div class="text-center py-8 bg-emerald-50/50 rounded-2xl border border-emerald-100 p-4 mt-2 animate-[fadeIn_0.3s_ease-out]">
-                            <span class="text-4xl block mb-2">🎉</span>
-                            <h4 class="text-base font-bold text-slate-900">
-                                {% translate "Gift Reserved!" %}
-                            </h4>
-                            <p class="text-xs text-slate-600 mt-1">
-                                ${data.message}
-                            </p>
-                        </div>
-                    `;
+                    // 🎯 SOLUCIÓN: Concatenación tradicional (+) para asegurar que el mensaje se renderice real
+                    reservationForm.innerHTML = 
+                        '<div class="text-center py-8 bg-emerald-50/50 rounded-2xl border border-emerald-100 p-4 mt-2 animate-[fadeIn_0.3s_ease-out]">' +
+                            '<span class="text-4xl block mb-2">🎉</span>' +
+                            '<h4 class="text-base font-bold text-slate-900">' +
+                                '{% translate "Gift Reserved!" %}' +
+                            '</h4>' +
+                            '<p class="text-xs text-slate-600 mt-1">' +
+                                data.message +
+                            '</p>' +
+                        '</div>';
                     
                     // Subtly reload the page after 1.8 seconds 
                     // so the guest sees the updated "Reserved" badge in the list
