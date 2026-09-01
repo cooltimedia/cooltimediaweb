@@ -19,9 +19,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        // Primary font: Inter Tight; fallback: system sans-serif stack
+        // Cuerpo, botones, navegación y etiquetas
         sans: [
-          "Inter Tight",
+          "Inter",
           "ui-sans-serif",
           "system-ui",
           "-apple-system",
@@ -30,6 +30,14 @@ module.exports = {
           "Helvetica",
           "Arial",
           "Noto Sans",
+          "sans-serif",
+        ],
+        // Encabezados principales
+        display: [
+          "Inter Tight",
+          "Inter",
+          "ui-sans-serif",
+          "system-ui",
           "sans-serif",
         ],
       },

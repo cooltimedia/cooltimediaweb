@@ -5,25 +5,125 @@ Author: Cooltimedia
 """
 
 from django.db import models
-from wagtail.models import Page
+from wagtail.models import Page, Orderable
 from wagtail.fields import RichTextField, StreamField
 from wagtail import blocks
 from wagtail.images.blocks import ImageChooserBlock
-from wagtail.admin.panels import FieldPanel
+from wagtail.images import get_image_model_string
+from modelcluster.fields import ParentalKey
+from wagtail.admin.panels import FieldPanel, InlinePanel
+
+
+class HomePageClientLogo(Orderable):
+    """An organization logo displayed in the Home page success section."""
+
+    page = ParentalKey(
+        "home.HomePage",
+        on_delete=models.CASCADE,
+        related_name="client_logos",
+    )
+    organization_name = models.CharField(
+        max_length=120,
+        verbose_name="Nombre de la organización",
+    )
+    logo = models.ForeignKey(
+        get_image_model_string(),
+        on_delete=models.CASCADE,
+        related_name="+",
+        verbose_name="Logo",
+    )
+
+    panels = [
+        FieldPanel("organization_name"),
+        FieldPanel("logo"),
+    ]
+
+    class Meta:
+        ordering = ["sort_order"]
+        verbose_name = "Logo de organización"
+        verbose_name_plural = "Logos de organizaciones"
+
 
 class HomePage(Page):
     """Main home page."""
+
     template = "home/home_page.html"
-    
-    # We added an introduction field to make it more dynamic
-    intro = RichTextField(blank=True, help_text="Texto de bienvenida")
+
+    intro = RichTextField(
+        blank=True,
+        help_text="Texto de bienvenida",
+    )
+
+    about_image_1 = models.ForeignKey(
+        get_image_model_string(),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        verbose_name="Imagen principal de la sección Sobre mí",
+        help_text="Imagen horizontal principal.",
+    )
+
+    about_image_2 = models.ForeignKey(
+        get_image_model_string(),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        verbose_name="Segunda imagen de la sección Sobre mí",
+        help_text="Por ejemplo: premio, presentación o conferencia.",
+    )
+
+    about_image_3 = models.ForeignKey(
+        get_image_model_string(),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        verbose_name="Tercera imagen de la sección Sobre mí",
+        help_text="Por ejemplo: colaboración o actividad profesional.",
+    )
+
+    about_image_4 = models.ForeignKey(
+        get_image_model_string(),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        verbose_name="Cuarta imagen de la sección Sobre mí",
+        help_text="Por ejemplo: colaboración o actividad profesional.",
+    )
+
+    about_image_5 = models.ForeignKey(
+        get_image_model_string(),
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name="+",
+        verbose_name="Quinta imagen de la sección Sobre mí",
+        help_text="Por ejemplo: colaboración o actividad profesional.",
+    )
 
     content_panels = Page.content_panels + [
-        FieldPanel('intro'),
+        FieldPanel("intro"),
+        FieldPanel("about_image_1"),
+        FieldPanel("about_image_2"),
+        FieldPanel("about_image_3"),
+        FieldPanel("about_image_4"),
+        FieldPanel("about_image_5"),
+        InlinePanel("client_logos", label="Logos de organizaciones"),
     ]
 
-    # Limit which pages can be created below the Home page
-    subpage_types = ['home.SolutionsPage', 'home.ServicesPage', 'home.ContactPage', 'home.CorporateSocialResponsibility','blog.BlogIndexPage','home.PrivacyPolicyPage','home.TermsServicePage']
+    subpage_types = [
+        "home.SolutionsPage",
+        "home.ServicesPage",
+        "home.ContactPage",
+        "home.CorporateSocialResponsibility",
+        "blog.BlogIndexPage",
+        "home.PrivacyPolicyPage",
+        "home.TermsServicePage",
+    ]
+
 
 class PrivacyPolicyPage(Page):
     """

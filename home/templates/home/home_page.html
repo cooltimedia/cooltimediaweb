@@ -1,6 +1,5 @@
 {% extends "base.html" %}
-{% load static wagtailcore_tags %}
-{% load wagtailcore_tags %}
+{% load static wagtailcore_tags wagtailimages_tags i18n %}
 {% block extra_css %}
 <style>
     .perspective {
@@ -27,380 +26,501 @@
         scroll-behavior: smooth;
     }    
 </style>
+<!-- Engineering Focus Areas -->
+<style>
+  .linkedin-profile-button {
+    background-color: #0a66c2;
+  }
+  .linkedin-profile-button:hover {
+    background-color: #004182;
+  }
+  .about-image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .about-image-main {
+    grid-column: 1 / -1;
+    height: 18rem;
+  }
+  .about-image-thumbnail {
+    height: 12rem;
+  }
+  @media (max-width: 639px) {
+    .about-image-grid {
+      grid-template-columns: 1fr;
+    }
+    .about-image-main {
+      grid-column: auto;
+    }
+  }
+</style>
+<!-- Selected Work and Business Impact -->
+<style>
+  .success-stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 2.2fr) minmax(0, 1fr);
+    grid-template-areas: "logos-left message logos-right";
+    gap: 1.5rem;
+    align-items: center;
+  }
+  .success-logos-left { grid-area: logos-left; }
+  .success-message { grid-area: message; }
+  .success-logos-right { grid-area: logos-right; }
+  .success-logo-cloud {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .success-logo-card {
+    display: flex;
+    min-height: 104px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+    background: #ffffff;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+  }
+  .success-logo-card img {
+    max-height: 64px;
+    max-width: 100%;
+    object-fit: contain;
+  }
+  .success-cta {
+    background-color: #047857;
+  }
+  .success-cta:hover {
+    background-color: #065f46;
+  }
+  @media (max-width: 1023px) {
+    .success-stage {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-areas:
+        "message message"
+        "logos-left logos-right";
+    }
+  }
+  @media (max-width: 639px) {
+    .success-stage {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "message"
+        "logos-left"
+        "logos-right";
+    }
+  }
+</style>
 {% endblock %}
 
 {% block content %}
 <!-- Hero Cooltimedia -->
 <header class="bg-gradient-to-b from-[#03a071] to-[#00E09D]">
-    <!-- Spacer for fixed header -->
     <div class="pt-32"></div>
-    <!-- Hero content -->
+
     <div class="mx-auto max-w-4xl px-4 pb-20 text-center">
-        <div class="mb-6 flex flex-wrap items-center justify-center gap-2 opacity-0 animate-fade-in-blur" data-delay="0.1">
-            <span class="inline-flex items-center rounded-md border border-slate-200 bg-slate-50 px-2 py-0.5 text-xs font-medium text-slate-500 shadow-sm">
-                End-to-end solutions: Planning, Design & Development
+        <div
+            class="mb-6 flex flex-wrap items-center justify-center gap-2
+                   opacity-0 animate-fade-in-blur"
+            data-delay="0.1"
+        >
+            <span
+                class="inline-flex items-center rounded-md border border-slate-200
+                       bg-slate-50 px-3 py-1 text-xs font-medium text-slate-700
+                       shadow-sm"
+            >
+                {% translate "Independent Python, Django & Data Engineer · Panama / Global" %}
             </span>
         </div>
-        <h1 class="mx-auto max-w-4xl text-4xl sm:text-4xl md:text-4xl lg:text-6xl font-light tracking-tight leading-[1.05] text-white opacity-0 animate-fade-in-blur" data-delay="0.5">
-            High-Performance Web Development & Data Engineering.
+
+        <h1
+            class="mx-auto max-w-4xl text-4xl sm:text-4xl md:text-5xl lg:text-6xl
+                  font-display font-semibold tracking-tight leading-[1.05] text-white
+                  opacity-0 animate-fade-in-blur"
+            data-delay="0.5"
+        >
+            {% translate "I build reliable software and data systems for businesses ready to scale." %}
         </h1>
-        <p class="mx-auto mt-2 mb-10 max-w-3xl font-light sm:text-lg md:text-lg leading-relaxed text-white/100 opacity-0 animate-fade-in-blur" data-delay="0.9">
-          Since 2016, we’ve helped businesses scale by building robust Django applications, secure data pipelines, and intelligent Python automations.
+
+        <p
+            class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-white
+                   opacity-0 animate-fade-in-blur"
+            data-delay="0.9"
+        >
+            {% translate "Since 2016, I’ve partnered with companies and engineering teams to automate critical workflows, connect scattered data, and deliver scalable platforms." %}
         </p>
-        <a href="/solutions-lab/" class="px-8 py-3 bg-white text-slate-900 font-bold rounded-full hover:bg-emerald-50 hover:text-emerald-500 transition-all shadow-lg shadow-white/5 animate-fade-in-blur" data-delay="1.2">
-          Explore Solutions Lab →
-        </a>
     </div>
 </header>
 
-<!-- Digital Maturity Cycle -->
+<!-- Engineering Focus Areas -->
 <section class="py-24 bg-slate-900 text-white overflow-hidden">
   <div class="max-w-7xl mx-auto px-6 lg:px-8">
     <div class="mb-16">
-      <h2 class="text-green-500 text-sm font-bold uppercase tracking-widest mb-4 animate-fade-in-blur" data-delay="0.1">
-        Growth Strategy
+      <p class="text-green-400 text-sm font-bold uppercase tracking-widest mb-4 animate-fade-in-blur" data-delay="0.1">
+        {% translate "Engineering Focus Areas" %}
+      </p>
+      <h2 class="mb-6 text-3xl font-display font-medium text-white md:text-5xl animate-fade-in-blur" data-delay="0.5">
+        {% translate "How I strengthen" %}
+        <span
+          class="text-transparent bg-clip-text"
+          style="background-image: linear-gradient(90deg, #d1fae5 0%, #34d399 55%, #4ade80 100%); -webkit-background-clip: text; background-clip: text;"
+        >
+          {% translate "critical business systems" %}
+        </span>
       </h2>
-      <h3 class="text-3xl md:text-5xl font-tight text-white mb-6 animate-fade-in-blur" data-delay="0.5">
-        Cooltimedia in your <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-100 to-green-500">Digital Maturity Cycle</span>
-      </h3>
-      <p class="text-slate-400 text-lg max-w-3xl animate-fade-in-blur" data-delay="0.7">
-        Every company is at a different stage. I architect and build the technical foundation that allows you to advance, scale, and lead with real-time data.
+      <p class="text-white text-lg leading-8 max-w-3xl animate-fade-in-blur" data-delay="0.7">
+        {% translate "Companies do not follow a single technology path. I work on the constraint that matters most: platform resilience, operational automation, trustworthy data, or system integration." %}
       </p>
     </div>
 
-    <!-- Timeline -->
+    <!-- Connected focus areas: these are not sequential stages. -->
     <div class="relative">
-      <!-- Vertical line -->
-      <div class="absolute left-5 top-0 h-full w-px bg-gradient-to-b from-green-500/80 via-green-500/40 to-transparent md:left-1/2 md:-translate-x-px"></div>
+      <div class="absolute left-5 top-0 h-full w-px bg-green-500/40 md:left-1/2 md:-translate-x-px" aria-hidden="true"></div>
 
-      <!-- Item 01 -->
+      <!-- Resilient Foundations -->
       <div class="relative grid grid-cols-1 gap-8 pb-16 md:grid-cols-2 md:gap-16">
         <div class="md:pr-16 md:text-right">
           <div class="mb-3 flex items-center gap-4 md:justify-end">
-            <span class="font-mono text-sm text-green-400">01</span>
-            <span class="h-px w-16 bg-green-500/70"></span>
+            <span class="font-mono text-sm uppercase tracking-widest text-green-400">{% translate "Cloud" %}</span>
+            <span class="h-px w-16 bg-green-500/70" aria-hidden="true"></span>
           </div>
-          <h3 class="font-mono text-2xl text-white md:text-3xl">Scale</h3>
-          <p class="mt-4 text-base leading-8 text-white/70">
-            Cloud infrastructure designed for frictionless growth. Secure, adaptable foundations ready to support expanding operations.
+          <h3 class="font-display text-2xl font-semibold text-white md:text-3xl">
+            {% translate "Resilient Foundations" %}
+          </h3>
+          <p class="mt-4 text-base leading-8 text-white/80">
+            {% translate "I build secure, cloud-ready platforms that can support growth without forcing a complete rebuild." %}
           </p>
         </div>
+
         <div class="relative pl-16 md:pl-16">
-          <!-- Node -->
-          <div class="absolute left-0 top-2 flex h-10 w-10 items-center justify-center rounded-full border border-green-400/50 bg-[#0b1730] md:left-0 md:-translate-x-1/2">
+          <div class="absolute left-0 top-2 flex h-10 w-10 items-center justify-center rounded-full border border-green-400/50 bg-[#0b1730] md:-translate-x-1/2" aria-hidden="true">
             <div class="h-3 w-3 rounded-full bg-green-400"></div>
           </div>
-          <p class="text-sm uppercase tracking-[0.2em] text-white/40">Cloud Foundation</p>
+          <p class="text-sm uppercase tracking-[0.2em] text-white">{% translate "Cloud Architecture" %}</p>
           <p class="mt-3 text-base leading-8 text-white/70">
-            Architecture built on Google Cloud and modern environments, engineered to scale with stability, security, and lower technical debt.
+            {% translate "Google Cloud and modern environments designed for stability, security, observability, and lower technical debt." %}
           </p>
         </div>
-      </div>      
+      </div>
 
-      <!-- Item 02 -->
+      <!-- Operational Automation -->
       <div class="relative grid grid-cols-1 gap-8 pb-16 md:grid-cols-2 md:gap-16">
         <div class="order-2 relative pl-16 md:order-1 md:pl-0 md:pr-16">
-          <!-- Node -->
-          <div class="absolute left-0 top-2 flex h-10 w-10 items-center justify-center rounded-full border border-green-400/50 bg-[#0b1730] md:left-auto md:right-0 md:translate-x-1/2">
+          <div class="absolute left-0 top-2 flex h-10 w-10 items-center justify-center rounded-full border border-green-400/50 bg-[#0b1730] md:left-auto md:right-0 md:translate-x-1/2" aria-hidden="true">
             <div class="h-3 w-3 rounded-full bg-green-400"></div>
           </div>
-
-          <p class="text-sm uppercase tracking-[0.2em] text-white/40 md:text-right">Python Systems</p>
+          <p class="text-sm uppercase tracking-[0.2em] text-white md:text-right">
+            {% translate "Python & Django Systems" %}
+          </p>
           <p class="mt-3 text-base leading-8 text-white/70 md:text-right">
-            Custom platforms built on Python and Django to automate complex processes, reduce manual overhead, and sustain efficient operations.
+            {% translate "Custom software built around your actual workflows to reduce repetitive work, manual errors, and operational friction." %}
           </p>
         </div>
 
         <div class="order-1 md:order-2 md:pl-16">
           <div class="mb-3 flex items-center gap-4">
-            <span class="h-px w-16 bg-green-500/70"></span>
-            <span class="font-mono text-sm text-green-400">02</span>
+            <span class="h-px w-16 bg-green-500/70" aria-hidden="true"></span>
+            <span class="font-mono text-sm uppercase tracking-widest text-green-400">{% translate "Operations" %}</span>
           </div>
-          <h3 class="font-mono text-2xl text-white md:text-3xl">Optimization</h3>
-          <p class="mt-4 text-base leading-8 text-white/70">
-            Bespoke systems engineered to eliminate operational friction, connect critical workflows, and enhance business execution capacity.
+          <h3 class="font-display text-2xl font-semibold text-white md:text-3xl">
+            {% translate "Operational Automation" %}
+          </h3>
+          <p class="mt-4 text-base leading-8 text-white/80">
+            {% translate "I replace fragile manual processes with reliable systems designed around how your team actually works." %}
           </p>
         </div>
       </div>
 
-      <!-- Item 03 -->
+      <!-- Decision-Ready Data -->
       <div class="relative grid grid-cols-1 gap-8 pb-16 md:grid-cols-2 md:gap-16">
         <div class="md:pr-16 md:text-right">
           <div class="mb-3 flex items-center gap-4 md:justify-end">
-            <span class="font-mono text-sm text-green-400">03</span>
-            <span class="h-px w-16 bg-green-500/70"></span>
+            <span class="font-mono text-sm uppercase tracking-widest text-green-400">{% translate "Data" %}</span>
+            <span class="h-px w-16 bg-green-500/70" aria-hidden="true"></span>
           </div>
-          <h3 class="font-mono text-2xl text-white md:text-3xl">Intelligence</h3>
-          <p class="mt-4 text-base leading-8 text-white/70">
-            Data pipelines that unify scattered data sources into reliable, accessible, and analysis-ready information.
+          <h3 class="font-display text-2xl font-semibold text-white md:text-3xl">
+            {% translate "Decision-Ready Data" %}
+          </h3>
+          <p class="mt-4 text-base leading-8 text-white/80">
+            {% translate "I turn scattered information into reliable, accessible data your team can use with confidence." %}
           </p>
         </div>
 
         <div class="relative pl-16 md:pl-16">
-          <!-- Node -->
-          <div class="absolute left-0 top-2 flex h-10 w-10 items-center justify-center rounded-full border border-green-400/50 bg-[#0b1730] md:left-0 md:-translate-x-1/2">
+          <div class="absolute left-0 top-2 flex h-10 w-10 items-center justify-center rounded-full border border-green-400/50 bg-[#0b1730] md:-translate-x-1/2" aria-hidden="true">
             <div class="h-3 w-3 rounded-full bg-green-400"></div>
           </div>
-
-          <p class="text-sm uppercase tracking-[0.2em] text-white/40">Data Pipelines</p>
+          <p class="text-sm uppercase tracking-[0.2em] text-white">{% translate "Data Engineering" %}</p>
           <p class="mt-3 text-base leading-8 text-white/70">
-            ETL/ELT, APIs, validation, and continuous availability, turning data into decisions and operational visibility.
+            {% translate "Pipelines, APIs, validation, and continuous availability that create operational visibility and trustworthy reporting." %}
           </p>
         </div>
       </div>
 
-
-      <!-- Item 04 -->
+      <!-- System Coexistence -->
       <div class="relative grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-16">
         <div class="order-2 relative pl-16 md:order-1 md:pl-0 md:pr-16">
-          <!-- Node -->
-          <div class="absolute left-0 top-2 flex h-10 w-10 items-center justify-center rounded-full border border-green-400/50 bg-[#0b1730] md:left-auto md:right-0 md:translate-x-1/2">
+          <div class="absolute left-0 top-2 flex h-10 w-10 items-center justify-center rounded-full border border-green-400/50 bg-[#0b1730] md:left-auto md:right-0 md:translate-x-1/2" aria-hidden="true">
             <div class="h-3 w-3 rounded-full bg-green-400"></div>
           </div>
-
-          <p class="text-sm uppercase tracking-[0.2em] text-white/40 md:text-right">ERP / SAP Bridge</p>
+          <p class="text-sm uppercase tracking-[0.2em] text-white md:text-right">
+            {% translate "ERP, SAP & Legacy Integration" %}
+          </p>
           <p class="mt-3 text-base leading-8 text-white/70 md:text-right">
-            The technical bridge between modern platforms and complex corporate structures. Operate with continuity without disrupting historical processes.
+            {% translate "Secure bridges between modern platforms and critical existing systems, without disrupting the processes your business depends on." %}
           </p>
         </div>
 
         <div class="order-1 md:order-2 md:pl-16">
           <div class="mb-3 flex items-center gap-4">
-            <span class="h-px w-16 bg-green-500/70"></span>
-            <span class="font-mono text-sm text-green-400">04</span>
+            <span class="h-px w-16 bg-green-500/70" aria-hidden="true"></span>
+            <span class="font-mono text-sm uppercase tracking-widest text-green-400">{% translate "Integration" %}</span>
           </div>
-          <h3 class="font-mono text-2xl text-white md:text-3xl">Coexistence</h3>
-          <p class="mt-4 text-base leading-8 text-white/70">
-            We connect the "new" with the "critical," integrating global systems and legacy workflows into a single, cohesive architecture.
+          <h3 class="font-display text-2xl font-semibold text-white md:text-3xl">
+            {% translate "System Coexistence" %}
+          </h3>
+          <p class="mt-4 text-base leading-8 text-white/80">
+            {% translate "I modernize critical capabilities without replacing every system at once or interrupting ongoing operations." %}
           </p>
         </div>
       </div>
-
-
-
     </div>
 
-
-
-
     <div class="mt-16 pt-8 border-t border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6">
-      <p class="text-green-500 italic">
-        "From startups to expanding enterprises, I build the systems that support real growth."
+      <p class="text-green-400 italic">
+        {% translate "I work at the scale the problem requires: from removing a focused productivity bottleneck to building larger systems that dramatically reduce time spent on operational work." %}
       </p>
-      <a href="#contact-cooltimedia" class="px-8 py-3 bg-white text-slate-900 font-bold rounded-full hover:bg-emerald-500 hover:text-white transition-all shadow-lg shadow-white/5">
-        Determine your stage →
+      <a href="#contact-cooltimedia" class="px-8 py-3 bg-white text-slate-900 font-bold rounded-full hover:bg-emerald-700 hover:text-white transition-all shadow-lg shadow-white/5">
+        {% translate "Discuss your current challenge →" %}
       </a>
     </div>
   </div>
 </section>
 
-<!-- About Cooltimedia -->
-<section class="bg-slate-20">
-    <div class="mx-auto max-w-6xl px-4 py-16 sm:py-20">
-        <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-            <div>
-                <span class="inline-flex items-center rounded-full bg-cyan-100/80 px-4 py-2 text-sm font-medium text-slate-800 animate-fade-in-blur" data-delay="0.1">
-                    About Cooltimedia
-                </span>
-                <h2 class="mt-6 text-3xl font-medium tracking-tight text-slate-900 sm:text-4xl lg:text-5xl animate-fade-in-blur" data-delay="0.5">
-                    From Raw Data<br class="hidden sm:block" />
-                    to Strategic Action
-                </h2>
-                <p class="mt-6 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg animate-fade-in-blur" data-delay="0.7">
-                    Since 2016, I've been bridging the gap between complex infrastructure and clear insights. I build <strong>scalable web platforms (Django)</strong> and <strong>secure APIs</strong> that don't just store data, they power it.
-                    By engineering <strong>robust data pipelines</strong> and applying advanced cleaning in Python, I transform your messy, unstructured data into <strong>decision-ready assets</strong>. I don't just write code; I build the architecture your business needs to grow with confidence.
-                </p>
+<!-- About Cooltimedia and Jair -->
+<section class="bg-slate-50" aria-labelledby="about-cooltimedia-title">
+  <div class="mx-auto max-w-6xl px-6 py-20 sm:py-24">
+    <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      <div>
+        <p class="inline-flex items-center rounded-full bg-emerald-100/80 px-4 py-2 text-sm font-medium text-slate-800 animate-fade-in-blur" data-delay="0.1">
+          {% translate "About Cooltimedia" %}
+        </p>
+
+        <h2 id="about-cooltimedia-title" class="mt-6 text-3xl font-medium tracking-tight text-slate-900 sm:text-4xl lg:text-5xl animate-fade-in-blur" data-delay="0.5">
+          {% translate "Independent by design." %}<br class="hidden sm:block">
+          <span class="text-emerald-700">{% translate "Built for high-impact work." %}</span>
+        </h2>
+
+        <div class="mt-6 max-w-2xl space-y-4 text-base leading-8 text-slate-700 sm:text-lg animate-fade-in-blur" data-delay="0.7">
+          <p>
+            {% translate "Cooltimedia is the independent engineering practice of Jair Manuel Poveda Frago, a Python, Django, and data engineer based in Panama." %}
+          </p>
+          <p>
+            {% translate "Since 2016, I’ve worked with more than 20 companies in Panama and internationally, from focused productivity improvements to larger platforms that automate operations and connect critical data." %}
+          </p>
+          <p>
+            {% translate "I work directly with clients and can also join internal teams or software companies as a specialist partner. My personal projects have also earned awards in Panama, reflecting the initiative and care I bring to every engagement." %}
+          </p>
+        </div>
+
+        <div class="mt-8 flex flex-col gap-4 sm:flex-row animate-fade-in-blur" data-delay="1.1">
+          <a
+            href="https://www.linkedin.com/in/jairpoveda/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="linkedin-profile-button inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-bold text-white transition-colors"
+          >
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+            {% translate "View my LinkedIn profile" %}
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="relative opacity-0 animate-fade-in-blur" data-delay="0.35">
+        <div class="grid grid-cols-2 gap-4">
+          {% if page.about_image_5 %}
+            <div class="col-span-2 h-72 overflow-hidden rounded-3xl bg-slate-200 shadow-lg ring-1 ring-slate-900/10">
+              {% image page.about_image_5 fill-1200x650-c100 class="h-full w-full object-cover" loading="lazy" %}
             </div>
-            <div class="relative left-0 top-0 h-[380px] w-full max-w-[450px] lg:h-[480px] lg:max-w-[500px] xl:[642px] xl:max-w-[645px] rounded-3xl overflow-hidden shadow-sm ring-1 ring-slate-200/60 opacity-0 animate-fade-in-blur" data-delay="0.35" aria-hidden="true">
-                <img src="{% static 'images/cooltimedia-cloud-1.jpg' %}" alt="Cooltimedia - About Cooltimedia" class="absolute inset-0 h-full w-full object-cover opacity-90" loading="lazy"/>
-                <div class="absolute inset-0 bg-white/10"></div>
+          {% endif %}
+
+          {% if page.about_image_2 %}
+            <div class="h-56 overflow-hidden rounded-3xl bg-slate-200 shadow-lg ring-1 ring-slate-900/10">
+              {% image page.about_image_2 fill-600x700-c100 class="h-full w-full object-cover" loading="lazy" %}
             </div>
-        </div>
-    </div>
-</section>
+          {% endif %}
 
-<!-- Developed Projects by Cooltimedia -->
-<section class="py-24 bg-slate-100 overflow-hidden">
-  <div class="max-w-7xl mx-auto px-6 lg:px-8">
-    <div class="mb-16 text-center">
-      <h2 class="text-base font-semibold text-emerald-600 tracking-wide uppercase animate-fade-in-blur" data-delay="0.1">
-        Trusted by Industry Leaders
-      </h2>
-      <p class="mt-6 text-3xl font-medium tracking-tight text-slate-900 sm:text-4xl lg:text-5xl animate-fade-in-blur" data-delay="0.5">
-        Success Stories: Engineering Excellence Together
-      </p>
-      <p class="mt-4 text-lg text-slate-500 max-w-2xl mx-auto animate-fade-in-blur" data-delay="0.7">
-        High-impact web and data solutions delivered for Panama’s top organizations.
-      </p>
-    </div>    
+          {% if page.about_image_3 %}
+            <div class="h-56 overflow-hidden rounded-3xl bg-slate-200 shadow-lg ring-1 ring-slate-900/10">
+              {% image page.about_image_3 fill-600x700-c100 class="h-full w-full object-cover" loading="lazy" %}
+            </div>
+          {% endif %}
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 animate-fade-in-blur" data-delay="0.10">
-      
-      <div class="group relative h-64 w-full perspective-1000">
-        <div class="relative h-full w-full transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-          <div class="absolute inset-0 flex items-center justify-center p-8 bg-gray-50 rounded-2xl border border-slate-100 shadow-sm backface-hidden">
-            <img src="{% static 'images/tvn-media-panama.png' %}" alt="Portal de Clientes - TVN Media Panamá" class="max-h-16 grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all">
-          </div>
-          <div class="absolute inset-0 h-full w-full rounded-2xl bg-slate-900 p-8 text-white [transform:rotateY(180deg)] backface-hidden flex flex-col justify-center">
-            <h3 class="text-xl font-bold mb-2">Operational Efficiency</h3>
-            <p class="text-slate-300 text-sm mb-6">Engineered a client portal and benefit management system with automated data pipelines and legacy system integration to streamline client workflows.</p>
-            <a href="https://tvnmedia.com" target="_blank" class="text-xs font-bold uppercase tracking-widest border-b border-white/50 w-fit hover:border-white transition-colors">
-              Visit Website →
-            </a>
-          </div>
+          {% if page.about_image_4 %}
+            <div class="h-56 overflow-hidden rounded-3xl bg-slate-200 shadow-lg ring-1 ring-slate-900/10">
+              {% image page.about_image_4 fill-600x700-c100 class="h-full w-full object-cover" loading="lazy" %}
+            </div>
+          {% endif %}
+
+          {% if page.about_image_1 %}
+            <div class="h-56 overflow-hidden rounded-3xl bg-slate-200 shadow-lg ring-1 ring-slate-900/10">
+              {% image page.about_image_1 fill-600x700-c100 class="h-full w-full object-cover" loading="lazy" %}
+            </div>
+          {% endif %}
         </div>
+
       </div>
-
-
-      <div class="group relative h-64 w-full perspective-1000">
-        <div class="relative h-full w-full transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-          <div class="absolute inset-0 flex items-center justify-center p-8 bg-gray-50 rounded-2xl border border-slate-100 shadow-sm backface-hidden">
-            <img src="{% static 'images/stratego-panama.png' %}" alt="Stragego Comunicaciones Panama" class="max-h-16 grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all">
-          </div>
-          <div class="absolute inset-0 h-full w-full rounded-2xl bg-slate-900 p-8 text-white [transform:rotateY(180deg)] backface-hidden flex flex-col justify-center">
-            <h3 class="text-xl font-bold mb-2">Media Intelligence</h3>
-            <p class="text-slate-300 text-sm mb-6">Developed a specialized recording and identification system to track and analyze brand mentions across television broadcasts in real-time.</p>
-            <a href="https://www.stratego.com.pa" target="_blank" class="text-xs font-bold uppercase tracking-widest border-b border-white/50 w-fit hover:border-white transition-colors">
-              Visit Website →
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="group relative h-64 w-full perspective-1000">
-        <div class="relative h-full w-full transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-          <div class="absolute inset-0 flex items-center justify-center p-8 bg-gray-50 rounded-2xl border border-slate-100 shadow-sm backface-hidden">
-            <img src="{% static 'images/america-sportswear-asw-panama.png' %}" alt="Sistema de Reservas - ASW Inline" class="max-h-16 grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all">
-          </div>
-          <div class="absolute inset-0 h-full w-full rounded-2xl bg-slate-900 p-8 text-white [transform:rotateY(180deg)] backface-hidden flex flex-col justify-center">
-            <h3 class="text-xl font-bold mb-2">Seamless Logistics</h3>
-            <p class="text-slate-300 text-sm mb-6">Built a custom booking and visitor management platform to optimize high-volume traffic and scheduling during peak shopping seasons.</p>
-            <a href="http://www.aswgr.com" target="_blank" class="text-xs font-bold uppercase tracking-widest border-b border-white/50 w-fit hover:border-white transition-colors">
-              Visit Website →
-            </a>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="group relative h-64 w-full perspective-1000">
-        <div class="relative h-full w-full transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-          <div class="absolute inset-0 flex items-center justify-center p-8 bg-gray-50 rounded-2xl border border-slate-100 shadow-sm backface-hidden">
-            <img src="{% static 'images/olimpiadas-especiales-panama.png' %}" alt="Sistema de Reservas - ASW Inline" class="max-h-16 grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all">
-          </div>
-          <div class="absolute inset-0 h-full w-full rounded-2xl bg-slate-900 p-8 text-white [transform:rotateY(180deg)] backface-hidden flex flex-col justify-center">
-            <h4 class="text-xl font-bold mb-2">Digital Transformation</h4>
-            <p class="text-slate-300 text-sm mb-6">Led the cloud migration for communication systems and modernized the web infrastructure to ensure high availability and global reliability.</p>
-            <a href="https://oepanama.org" target="_blank" class="text-xs font-bold uppercase tracking-widest border-b border-white/50 w-fit hover:border-white transition-colors">
-              Visit Website →
-            </a>
-          </div>
-        </div>
-      </div>      
-
     </div>
   </div>
 </section>
 
-
-<!-- Cooltimedia Process -->
-<section class="bg-slate-100">
-    <div class="mx-auto max-w-6xl px-4 py-16 sm:py-20">
-        <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
-            <div>
-                <p class="text-base font-semibold text-emerald-600 tracking-wide uppercase ">
-                    Stop managing chaos. Start leading with data.
-                </p>
-                <h2 class="mt-6 text-3xl font-medium tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-                    From disconnected operations <br />to decision-ready systems
-                </h2>
-                <p class="mt-6 max-w-2xl text-base leading-7 text-neutral-600 sm:text-lg">
-                    I help teams move from scattered information, manual reporting, and fragile legacy workflows
-                    into automated pipelines, live dashboards, and scalable engineering systems.
-                </p>
-            </div>
-            <div class="flex justify-center lg:justify-end">
-                <img 
-                    src="{% static 'images/Jair-Manuel-Poveda-Frago-Cooltimedia.png' %}"
-                    alt="Jair Manuel Poveda Frago - Cooltimedia" 
-                    class="w-full max-w-md rounded-2xl shadow-xl shadow-slate-200 object-cover"
-                />
-            </div>
-        </div>  
-        <div class="mt-16 space-y-6">
-            <div class="group grid gap-6 rounded-3xl border border-white/10 bg-white/[0.02] p-6 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.04] lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-8">
-                <div>
-                    <p class="text-sm text-neutral-500">What you're dealing with today</p>
-                    <h3 class="mt-3 text-2xl font-semibold">Data Silos</h3>
-                    <p class="mt-2 text-lg leading-7 text-neutral-500">Information scattered across spreadsheets, inboxes, and CRMs that never fully match.</p>
-                </div>
-                <div class="flex items-center justify-center">
-                    <div class="hidden h-px w-16 bg-white/20 lg:block"></div>
-                    <div class="flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-white/5 text-emerald-600">
-                        →
-                    </div>
-                    <div class="hidden h-px w-16 bg-white/20 lg:block"></div>
-                </div>
-                <div>
-                    <p class="text-sm font-semibold text-neutral-700">The solution I build</p>
-                    <h3 class="mt-3 text-2xl font-semibold text-emerald-600">Unified Pipelines</h3>
-                    <p class="mt-2 text-lg leading-7 text-neutral-500">
-                      We integrate your data sources (Excel, CRMs, APIs) into a single source of truth, eliminating duplication errors and discrepancies between departments.
-                    </p>
-                </div>
-            </div>
-
-            <div class="group grid gap-6 rounded-3xl border border-white/10 bg-white/[0.02] p-6 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.04] lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-8">
-                <div>
-                    <p class="text-sm text-neutral-500">What you're dealing with today</p>
-                    <h3 class="mt-3 text-2xl font-semibold">Manual Reporting</h3>
-                    <p class="mt-2 text-lg leading-7 text-neutral-500">
-                        Teams spend hours every week building reports by hand instead of acting on insights.
-                    </p>
-                </div>
-
-                <div class="flex items-center justify-center">
-                    <div class="hidden h-px w-16 bg-white/20 lg:block"></div>
-                    <div class="flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-white/5 text-emerald-600">
-                        →
-                    </div>
-                    <div class="hidden h-px w-16 bg-white/20 lg:block"></div>
-                </div>
-
-                <div>
-                    <p class="text-sm font-semibold text-neutral-700">The solution I build</p>
-                    <h3 class="mt-3 text-2xl font-semibold text-emerald-600">Live Dashboards</h3>
-                    <p class="mt-2 text-lg leading-7 text-neutral-500">Real-time dashboards that update automatically, so your team wakes up to answers instead of tasks.</p>
-                </div>
-            </div>
-
-            <div class="group grid gap-6 rounded-3xl border border-white/10 bg-white/[0.02] p-6 transition-all duration-300 hover:border-white/20 hover:bg-white/[0.04] lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-8">
-                <div>
-                    <p class="text-sm text-neutral-500">What you're dealing with today</p>
-                    <h3 class="mt-3 text-2xl font-semibold">Legacy Friction</h3>
-                    <p class="mt-2 text-lg leading-7 text-neutral-500">
-                        Slow, fragile systems that create constant errors and make growth harder than it should be.
-                    </p>
-                </div>
-
-                <div class="flex items-center justify-center">
-                    <div class="hidden h-px w-16 bg-white/20 lg:block"></div>
-                    <div class="flex h-12 w-12 items-center justify-center rounded-full border border-white/15 bg-white/5 text-emerald-600">
-                        →
-                    </div>
-                    <div class="hidden h-px w-16 bg-white/20 lg:block"></div>
-                </div>
-
-                <div>
-                    <p class="text-sm font-semibold text-neutral-700">The solution I build</p>
-                    <h3 class="mt-3 text-2xl font-semibold text-emerald-600">Robust Engineering</h3>
-                    <p class="mt-2 text-lg leading-7 text-neutral-500">
-                      Django/Python architectures designed to scale. We don’t just write code; we create digital assets that your company fully owns.
-                    </p>
-                </div>
-            </div>
-        </div>
+<!-- Selected Work and Business Impact -->
+<section class="bg-slate-100 py-24" aria-labelledby="selected-work-title">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto mb-14 max-w-5xl text-center">
+      <p class="text-small font-bold uppercase tracking-widest text-emerald-700">
+        {% translate "Selected Work & Impact" %}
+      </p>
+      <h2 id="selected-work-title" class="mt-4 font-display text-h2 font-semibold text-slate-950 lg:text-h1">
+        {% translate "Private systems." %}
+        <span class="text-emerald-700">{% translate "Visible business impact." %}</span>
+      </h2>
     </div>
+
+    <div class="grid grid-cols-1 items-center gap-6 lg:grid-cols-12">
+      <!-- Odd-positioned client logos -->
+      <div class="order-2 grid grid-cols-2 gap-4 lg:order-1 lg:col-span-3" aria-label="{% translate 'Selected client organizations' %}">
+        {% for client in page.client_logos.all %}
+          {% if not forloop.counter|divisibleby:"2" %}
+            <div class="flex min-h-24 items-center justify-center rounded-2xl border border-slate-200 bg-white p-4 shadow-sm" title="{{ client.organization_name }}">
+              {% image client.logo max-240x100 as client_logo %}
+              <img
+                src="{{ client_logo.url }}"
+                width="{{ client_logo.width }}"
+                height="{{ client_logo.height }}"
+                alt="{{ client.organization_name }}"
+                class="max-h-16 max-w-full object-contain"
+                loading="lazy"
+              >
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <!-- Central trust message -->
+      <article class="order-1 rounded-3xl border border-slate-200 bg-white p-8 text-left shadow-lg sm:p-10 lg:order-2 lg:col-span-6">
+        <h3 class="font-display text-h4 font-semibold text-slate-950 sm:text-h3">
+          {% translate "The most valuable software often works behind a login." %}
+        </h3>
+        <p class="mt-6 text-body text-slate-700">
+          {% translate "Much of my work supports internal portals, confidential operations, and data workflows that cannot be shown publicly. What I can show is the range of business challenges I’ve helped solve." %}
+        </p>
+        <p class="mt-4 text-body text-slate-700">
+          {% translate "Since 2016, I’ve contributed to projects for more than 20 organizations in Panama and international markets, working directly with clients or joining other software teams as a specialist partner." %}
+        </p>
+        <p class="mt-4 text-body text-slate-700">
+          {% translate "My experience includes Python and Django development, process automation, data engineering, cloud infrastructure, business intelligence, and platforms that support critical commercial operations." %}
+        </p>
+
+        <a href="#contact-cooltimedia" class="mt-8 inline-flex items-center justify-center rounded-full bg-emerald-700 px-7 py-3 font-semibold text-white transition-colors hover:bg-emerald-800">
+          {% translate "Discuss a similar challenge →" %}
+        </a>
+      </article>
+
+      <!-- Even-positioned client logos -->
+      <div class="order-3 grid grid-cols-2 gap-4 lg:col-span-3" aria-label="{% translate 'More selected client organizations' %}">
+        {% for client in page.client_logos.all %}
+          {% if forloop.counter|divisibleby:"2" %}
+            <div class="flex min-h-24 items-center justify-center rounded-2xl border border-slate-200 bg-white p-4 shadow-sm" title="{{ client.organization_name }}">
+              {% image client.logo max-240x100 as client_logo %}
+              <img
+                src="{{ client_logo.url }}"
+                width="{{ client_logo.width }}"
+                height="{{ client_logo.height }}"
+                alt="{{ client.organization_name }}"
+                class="max-h-16 max-w-full object-contain"
+                loading="lazy"
+              >
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Capabilities grouped for readability rather than displayed as a keyword cloud. -->
+    <div class="mt-14 border-t border-slate-300 pt-10">
+      <p class="text-center text-small font-bold uppercase tracking-widest text-slate-600">
+        {% translate "Experience across projects and industries" %}
+      </p>
+
+      <div
+        class="mx-auto mt-7 grid max-w-5xl gap-5 md:grid-cols-2"
+        aria-label="{% translate 'Project capabilities' %}"
+      >
+        <!-- Application Engineering -->
+        <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <h3 class="font-display text-h5 font-semibold text-slate-950">
+            {% translate "Application Engineering" %}
+          </h3>
+
+          <p class="mt-3 text-body leading-7 text-slate-600">
+            {% translate "Custom web platforms, internal tools, and integrations built around real operational workflows." %}
+          </p>
+
+          <ul class="mt-5 flex flex-wrap gap-2">
+            <li class="rounded-full bg-slate-100 px-3 py-2 text-small font-medium text-slate-700">
+              {% translate "Custom Web Platform Development" %}
+            </li>
+            <li class="rounded-full bg-slate-100 px-3 py-2 text-small font-medium text-slate-700">
+              {% translate "Python Development" %}
+            </li>
+            <li class="rounded-full bg-slate-100 px-3 py-2 text-small font-medium text-slate-700">
+              {% translate "Django Development" %}
+            </li>
+            <li class="rounded-full bg-slate-100 px-3 py-2 text-small font-medium text-slate-700">
+              {% translate "Process Automation" %}
+            </li>
+            <li class="rounded-full bg-slate-100 px-3 py-2 text-small font-medium text-slate-700">
+              {% translate "Commercial Portals" %}
+            </li>
+          </ul>
+        </div>
+
+        <!-- Data & Analytics -->
+        <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <h3 class="font-display text-h5 font-semibold text-slate-950">
+            {% translate "Data & Analytics" %}
+          </h3>
+
+          <p class="mt-3 text-body leading-7 text-slate-600">
+            {% translate "Reliable data pipelines and analytics systems that turn scattered information into decision-ready insights." %}
+          </p>
+
+          <ul class="mt-5 flex flex-wrap gap-2">
+            <li class="rounded-full bg-slate-100 px-3 py-2 text-small font-medium text-slate-700">
+              {% translate "Data Engineering" %}
+            </li>
+            <li class="rounded-full bg-slate-100 px-3 py-2 text-small font-medium text-slate-700">
+              {% translate "Data Pipelines" %}
+            </li>
+            <li class="rounded-full bg-slate-100 px-3 py-2 text-small font-medium text-slate-700">
+              Google Cloud
+            </li>
+            <li class="rounded-full bg-slate-100 px-3 py-2 text-small font-medium text-slate-700">
+              Looker Studio
+            </li>
+            <li class="rounded-full bg-slate-100 px-3 py-2 text-small font-medium text-slate-700">
+              Power BI
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </section>
 
 
@@ -409,10 +529,10 @@
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
         <div class="mb-16 text-center lg:text-left">
             <h2 class="mt-6 text-3xl font-medium tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-            Enterprise-Grade Stack. <span class="text-blue-600 text-emerald-600">Real-World Reliability.</span>
+            {% translate "Enterprise-Grade Stack." %} <span class="text-emerald-600">{% translate "Real-World Reliability." %}</span>
             </h2>
             <p class="mt-4 text-lg text-slate-600 max-w-2xl">
-            I don't just pick tools; I architect the foundation that ensures your business never stops, combining security with high-performance execution.
+            {% translate "I build solid, secure, growth-ready technology foundations so your business can operate with confidence, stability, and high performance." %}
             </p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -423,9 +543,9 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                 </div>
-                <h3 class="text-xl font-bold text-slate-900 mb-3">Python & Django Ecosystem</h3>
+                <h3 class="text-xl font-bold text-slate-900 mb-3">{% translate "Python & Django Ecosystem" %}</h3>
                 <p class="text-slate-600 text-sm leading-relaxed">
-                    Built for high-security and rapid scaling. I deliver robust web backends and APIs that handle complex logic without compromising performance.
+                    {% translate "Built for high-security and rapid scaling. I deliver robust web backends and APIs that handle complex logic without compromising performance." %}
                 </p>
             </div>
 
@@ -435,9 +555,9 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                     </svg>
                 </div>
-                <h3 class="text-xl font-bold text-slate-900 mb-3">Advanced Data Analytics</h3>
+                <h3 class="text-xl font-bold text-slate-900 mb-3">{% translate "Advanced Data Analytics" %}</h3>
                 <p class="text-slate-600 text-sm leading-relaxed">
-                    Beyond simple charts. I use scientific-grade processing to uncover deep patterns, ensuring your reports are backed by mathematical precision.
+                    {% translate "Beyond simple charts. I use scientific-grade processing to uncover deep patterns, ensuring your reports are backed by mathematical precision." %}
                 </p>
             </div>
 
@@ -447,9 +567,9 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                     </svg>
                 </div>
-                <h3 class="text-xl font-bold text-slate-900 mb-3">Automated Data Pipelines</h3>
+                <h3 class="text-xl font-bold text-slate-900 mb-3">{% translate "Automated Data Pipelines" %}</h3>
                 <p class="text-slate-600 text-sm leading-relaxed">
-                    Goodbye to manual entry. I engineer custom ETL processes that clean, transform, and move your data 24/7 with zero human error.
+                    {% translate "Goodbye to manual entry. I engineer custom ETL processes that clean, transform, and move your data 24/7 with zero human error." %}
                 </p>
             </div>
 
@@ -459,15 +579,15 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
                     </svg>
                 </div>
-                <h3 class="text-xl font-bold text-slate-900 mb-3">Hybrid Infrastructure</h3>
+                <h3 class="text-xl font-bold text-slate-900 mb-3">{% translate "Hybrid Infrastructure" %}</h3>
                 <p class="text-slate-600 text-sm leading-relaxed">
-                    Google Cloud Platform or On-Premise. I deploy solutions that respect Panama’s data residency requirements and international compliance standards.
+                    {% translate "Google Cloud Platform or On-Premise. I deploy solutions that respect Panama’s data residency requirements and international compliance standards." %}
                 </p>
             </div>
         </div>
         <div class="mt-12 p-6 border-l-4 border-emerald-600 bg-white shadow-sm inline-block">
             <p class="text-slate-700 font-medium italic">
-            "Need a specific integration? I specialize in making legacy systems talk to modern architectures."
+            {% translate 'Need a specific integration? I specialize in making legacy systems talk to modern architectures.' %}
             </p>
         </div>
 
@@ -478,40 +598,40 @@
  <section class="py-24 bg-slate-900 text-white scroll-mt-24" id="contact-cooltimedia">
   <div class="max-w-4xl mx-auto px-6 text-center">
     <span class="text-emerald-400 font-bold uppercase tracking-widest text-sm">
-      Ready to start?
+      {% translate "Ready to start?" %}
     </span>
     <h2 class="mt-6 text-4xl md:text-5xl font-bold tracking-tight">
-      Let’s Engineer Your Next <span class="text-emerald-500">Success Story.</span>
+      {% translate "Let’s Engineer Your Next" %} <span class="text-emerald-500">{% translate "Success Story." %}</span>
     </h2>
     <p class="mt-8 text-xl text-slate-300 leading-relaxed">
-      Whether you need to untangle complex data or build a high-performance web platform, I'm ready to help. No complex forms, just a direct conversation about your business goals. 
+      {% translate "Whether you need to untangle complex data or build a high-performance web platform, I'm ready to help. No complex forms, just a direct conversation about your business goals." %} 
     </p>
     <div class="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6">
-      <a href="https://wa.me/+50767590424" target="_blank" class="w-full sm:w-auto flex items-center justify-center gap-3 bg-green-600 hover:bg-green-500 text-white font-bold py-4 px-8 rounded-xl transition-all shadow-lg hover:shadow-green-900/20 transform hover:-translate-y-1">
-        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+      <a href="https://wa.me/50767590424" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto flex items-center justify-center gap-3 bg-green-700 hover:bg-green-800 text-white font-bold py-4 px-8 rounded-xl transition-all shadow-lg hover:shadow-green-900/20 transform hover:-translate-y-1">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
         </svg>
-        <span>Let's talk on WhatsApp</span>
+        <span>{% translate "Let's talk on WhatsApp" %}</span>
       </a>
       <a href="mailto:jair@cooltimedia.com" class="w-full sm:w-auto flex items-center justify-center gap-3 bg-slate-800 border border-slate-700 hover:bg-slate-700 text-white font-bold py-4 px-8 rounded-xl transition-all transform hover:-translate-y-1">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
         </svg>
-        <span>Send me an Email</span>
+        <span>{% translate "Send me an Email" %}</span>
       </a>
     </div>
     <div class="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8 pt-12 border-t border-slate-800 text-slate-400 text-sm">
       <div class="flex items-center justify-center gap-2">
         <svg class="w-5 h-5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg>
-        Panama-based expert
+        {% translate "Panama-based expert" %}
       </div>
       <div class="flex items-center justify-center gap-2">
         <svg class="w-5 h-5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg>
-        Bilingual Support (EN/ES)
+        {% translate "Bilingual Support (EN/ES)" %}
       </div>
       <div class="flex items-center justify-center gap-2">
         <svg class="w-5 h-5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/></svg>
-        No-obligation strategy call
+        {% translate "No-obligation strategy call" %}
       </div>
     </div>
   </div>
