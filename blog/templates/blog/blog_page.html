@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags i18n %}
 
 {% block extra_css %}
 <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
@@ -10,6 +10,7 @@
   "@type": "TechArticle",
   "headline": "{{ page.title|escapejs }}",
   "description": "{{ page.intro|escapejs }}",
+  "inLanguage": "{{ page.locale.language_code }}",
   "image": [
     {% if page.search_image %}
         "{{ page.search_image.url }}"
@@ -46,10 +47,16 @@
         <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4 leading-tight">
             {{ page.title }}
         </h1>
+        {% translate "Cooltimedia Team" as default_author %}
         <div class="flex items-center text-sm font-medium">
-            <span class="text-emerald-600 bg-emerald-50 px-2 py-1 rounded">{{ page.date|date:"F d, Y" }}</span>
+            <span class="text-emerald-600 bg-emerald-50 px-2 py-1 rounded">
+                {{ page.date|date:"DATE_FORMAT" }}
+            </span>
             <span class="mx-3 text-slate-300">|</span>
-            <span class="text-slate-500 font-light">Por {{ page.author.name|default:"Cooltimedia Team" }}</span>
+            <span class="text-slate-500 font-light">
+                {% translate "By" %}
+                {{ page.author.name|default:default_author }}
+            </span>
         </div>
     </header>
 

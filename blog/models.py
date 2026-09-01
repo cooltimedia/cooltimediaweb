@@ -80,7 +80,7 @@ class BlogIndexPage(MetadataPageMixin, Page):
     subpage_types = ['blog.BlogPage']
     
     # Ensures only one instance of the Blog Index can exist in the CMS
-    max_count = 1
+    max_count_per_parent = 1
 
     class Meta:
         verbose_name = "Blog Index Page"

@@ -1,6 +1,5 @@
 {% extends "base.html" %}
-{% load static wagtailcore_tags %}
-{% load wagtailcore_tags %}
+{% load static wagtailcore_tags i18n %}
 {% block extra_css %}
 <style>
     .perspective {
@@ -42,18 +41,22 @@
 
 
 {% block ld_json %}
+{% translate "Solutions Lab" as schema_name %}
+{% translate "A gallery of custom-built automation and software proofs of concept designed for business efficiency." as schema_description %}
+{% translate "Panama & International" as schema_area %}
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Service",
-  "name": "Solutions Lab",
+  "name": "{{ schema_name|escapejs }}",
   "provider": {
     "@type": "Organization",
     "name": "Cooltimedia",
     "url": "https://cooltimedia.com"
   },
-  "description": "A gallery of custom-built automation and software proofs of concept designed for business efficiency.",
-  "areaServed": "Panama & International"
+  "description": "{{ schema_description|escapejs }}",
+  "areaServed": "{{ schema_area|escapejs }}"
 }
 </script>
 {% endblock ld_json %}
@@ -61,16 +64,19 @@
 {% block content %}
 <div class="bg-white font-sans text-slate-900">
     <!-- Hero -->
-    <section class="relative pt-30 pb-32 overflow-hidden hero-gradient">
+    <section class="relative pt-30 pb-20 overflow-hidden hero-gradient">
         <div class="max-w-7xl mx-auto px-6 text-center">
             <span class="inline-block py-1 px-3 rounded-full bg-emerald-100 text-emerald-700 text-xs font-light tracking-widest mb-4">
-                The Innovation Sandbox
+                {% translate "The Innovation Sandbox" %}
             </span>
+
             <h1 class="text-5xl md:text-6xl font-medium mb-6">
-                From Concept to <span class="text-emerald-600">Scalable Code</span>
+                {% translate "From Concept to" %}
+                <span class="text-emerald-600">{% translate "Scalable Code" %}</span>
             </h1>
+
             <p class="max-w-2xl mx-auto text-lg text-slate-600 mb-12">
-                Explore our gallery of live Proofs of Concept (PoCs) designed to solve real-world business friction through high-end engineering.
+                {% translate "Explore our gallery of live Proofs of Concept (PoCs) designed to solve real-world business friction through high-end engineering." %}
             </p>
 
             <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
@@ -79,8 +85,8 @@
                 <img src="{% static 'images/icons/wagtail.png' %}" alt="Wagtail CMS" class="h-10 w-10 icon-float" style="animation-delay: 2s;">
                 <img src="{% static 'images/icons/tailwind.svg' %}" alt="Tailwind" class="h-10 w-10 icon-float" style="animation-delay: 3s;">
                 <img src="{% static 'images/icons/postgresql.png' %}" alt="PostgreSQL" class="h-10 w-10 icon-float" style="animation-delay: 4s;">
-                <img src="{% static 'images/icons/google-cloud.svg' %}" alt="Cloud Architecture" class="h-10 w-10 icon-float" style="animation-delay: 5s;">
-                <img src="{% static 'images/icons/aws.svg' %}" alt="Cloud Architecture" class="h-10 w-10 icon-float" style="animation-delay: 6s;">
+                <img src="{% static 'images/icons/google-cloud.svg' %}" alt="{% translate 'Cloud Architecture' %}" class="h-10 w-10 icon-float" style="animation-delay: 5s;">
+                <img src="{% static 'images/icons/aws.svg' %}" alt="{% translate 'Cloud Architecture' %}" class="h-10 w-10 icon-float" style="animation-delay: 6s;">
                 <!-- <img src="{% static 'images/icons/fastapi.png' %}" alt="FastAPI" class="h-10 w-10 icon-float" style="animation-delay: 2s;"> -->
             </div>
         </div>
@@ -89,74 +95,83 @@
     <section class="py-24 bg-slate-100">
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex flex-col lg:flex-row items-center gap-16">
-
-
                 <div class="flex-1 w-full order-2 lg:order-1" >
                     <div class="relative group">
                         <div class="absolute -inset-1 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
                         <div class="relative bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-2xl">
-                            <img src="{% static 'images/lab/smart-accounting.png' %}" alt="Smart Accounting Demo" class="w-full h-auto">
+                            <img src="{% static 'images/lab/smart-accounting.png' %}" alt="{% translate 'Smart Accounting Demo' %}" class="w-full h-auto">
                             
                             <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1.5 rounded-lg shadow-sm border border-slate-100 flex items-center gap-2">
                                 <span class="flex h-2 w-2 relative">
                                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                                     <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                                 </span>
-                                <span class="text-[10px] font-bold text-slate-700 tracking-tight">Live Demo</span>
+                                <span class="text-[10px] font-bold text-slate-700 tracking-tight">{% translate "Live Demo" %}</span>
                             </div>
                         </div>
                     </div>
                 </div>   
 
                 <div class="flex-1 space-y-6 lg:w-1/2 order-1 lg:order-2">
-                    <div class="inline-flex items-center space-x-2">
-                        <span class="inline-flex items-center rounded-md border border-emerald-200 bg-slate-50 px-2 py-0.5 text-xs font-medium text-slate-500 shadow-sm">
-                            OCR & Data Extraction
-                        </span>  
-                        <span class="inline-flex items-center rounded-md border border-emerald-200 bg-slate-50 px-2 py-0.5 text-xs font-medium text-slate-500 shadow-sm">
-                            DGI Fiscal Compliance
-                        </span>
-                        <span class="inline-flex items-center rounded-md border border-emerald-200 bg-slate-50 px-2 py-0.5 text-xs font-medium text-slate-500 shadow-sm">
-                            CUFE/RUC Validation
-                        </span> 
-                        <span class="inline-flex items-center rounded-md border border-emerald-200 bg-slate-50 px-2 py-0.5 text-xs font-medium text-slate-500 shadow-sm">
-                            Workflow Orchestration
-                        </span>   
-                    </div>
-                    <h2 class="text-4xl font-bold tracking-tight">Smart Accounting <br><span class="text-emerald-600">Automation.</span></h2>
+                    <h2 class="text-4xl font-bold tracking-tight">{% translate "Smart Accounting" %}<br><span class="text-emerald-600">{% translate "Automation." %}</span></h2>
                     <p class="text-slate-600 leading-relaxed">
-                        Accounting teams spend a significant portion of their time performing repetitive data entry tasks. <strong>This is a bottleneck for growth</strong>. Our first PoC demonstrates how high-precision extraction engines can process Panamanian fiscal documents (DGI), validating CUFE, RUC, and taxes in milliseconds. 
+                        {% blocktranslate trimmed %}
+                            Accounting teams spend a significant portion of their time performing repetitive data entry tasks.
+                            <strong>This is a bottleneck for growth</strong>. Our first PoC demonstrates how high-precision
+                            extraction engines can process Panamanian fiscal documents (DGI), validating CUFE, RUC, and
+                            taxes in milliseconds.
+                        {% endblocktranslate %}
                     </p>
                     <ul class="space-y-3">
                         <li class="flex items-center text-sm font-medium text-slate-700">
                             <svg class="h-5 w-5 text-emerald-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Document ingestion (PDF)
+                            {% translate "Document ingestion (PDF)" %}
                         </li>
                         <li class="flex items-center text-sm font-medium text-slate-700">
                             <svg class="h-5 w-5 text-emerald-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Automated data extraction (DGI tax invoice)
+                            {% translate "Automated data extraction (DGI tax invoice)" %}
                         </li>
                         <li class="flex items-center text-sm font-medium text-slate-700">
                             <svg class="h-5 w-5 text-emerald-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Accounting validation workflows
+                            {% translate "Accounting validation workflows" %}
                         </li>
                         <li class="flex items-center text-sm font-medium text-slate-700">
                             <svg class="h-5 w-5 text-emerald-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Operational dashboards
+                            {% translate "Operational dashboards" %}
                         </li>
                         <li class="flex items-center text-sm font-medium text-slate-700">
                             <svg class="h-5 w-5 text-emerald-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                            Automated financial insights
+                            {% translate "Automated financial insights" %}
                         </li>
                     </ul>
-                    <p class="text-sm text-slate-700"><strong>Impact:</strong> Reduce invoice registration time by up to <strong>80%</strong>.</p>
+                    <p class="text-sm text-slate-700">
+                        {% blocktranslate trimmed %}
+                            <strong>Impact:</strong> Reduce invoice registration time by up to <strong>80%</strong>.
+                        {% endblocktranslate %}
+                    </p>
+                    <div class="inline-flex items-center space-x-2">
+                        <span class="inline-flex items-center rounded-md border border-emerald-200 bg-slate-50 px-2 py-0.5 text-xs font-medium text-slate-500 shadow-sm">
+                            {% translate "OCR & Data Extraction" %}
+                        </span>
+                        <span class="inline-flex items-center rounded-md border border-emerald-200 bg-slate-50 px-2 py-0.5 text-xs font-medium text-slate-500 shadow-sm">
+                            {% translate "DGI Fiscal Compliance" %}
+                        </span>
+                        <span class="inline-flex items-center rounded-md border border-emerald-200 bg-slate-50 px-2 py-0.5 text-xs font-medium text-slate-500 shadow-sm">
+                            {% translate "CUFE/RUC Validation" %}
+                        </span>
+                        <span class="inline-flex items-center rounded-md border border-emerald-200 bg-slate-50 px-2 py-0.5 text-xs font-medium text-slate-500 shadow-sm">
+                            {% translate "Workflow Orchestration" %}
+                        </span>
+                    </div>
                     <div class="pt-4">
-                        <a href="/solutions-lab/accounting-automation-dgi-fiscal-compliance-panama/" class="inline-flex items-center px-8 py-4 bg-slate-900 text-white font-bold rounded-xl hover:bg-emerald-600 transition-all transform hover:-translate-y-1">
-                            Explore System Architecture
-                            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                        </a>
+                        <div class="pb-4">
+                            <a href="/solutions-lab/accounting-automation-dgi-fiscal-compliance-panama/" class="inline-flex items-center px-8 py-4 bg-slate-900 text-white font-bold rounded-xl hover:bg-emerald-600 transition-all transform hover:-translate-y-1">
+                                {% translate "Explore System Architecture" %}
+                                <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                            </a>
+                        </div>
                         <a href="{% url 'mvp_smart_accounting:login' %}" class="inline-flex items-center px-8 py-4 bg-slate-900 text-white font-bold rounded-xl hover:bg-emerald-600 transition-all transform hover:-translate-y-1">
-                            Explore the Demo
+                            {% translate "Explore the Demo" %}
                             <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                         </a>
                     </div>   
@@ -173,22 +188,27 @@
                 <div class="flex-1 space-y-8 order-2 lg:order-1">
                     <div class="inline-flex items-center space-x-2">
                         <span class="inline-flex items-center rounded-md border border-emerald-200 bg-slate-50 px-2 py-0.5 text-xs font-medium text-slate-500 shadow-sm">
-                            Reduced Wait Perception
+                            {% translate "Reduced Wait Perception" %}
                         </span>
                         <span class="inline-flex items-center rounded-md border border-emerald-200 bg-slate-50 px-2 py-0.5 text-xs font-medium text-slate-500 shadow-sm">
-                            Omnichannel Tracking
+                            {% translate "Omnichannel Tracking" %}
                         </span>
                         <span class="inline-flex items-center rounded-md border border-emerald-200 bg-slate-50 px-2 py-0.5 text-xs font-medium text-slate-500 shadow-sm">
-                            Capacity Analytics
+                            {% translate "Capacity Analytics" %}
                         </span>
                     </div>
                     
                     <div class="space-y-4">
                         <h2 class="text-4xl font-bold tracking-tight text-slate-900">
-                            Smart Queue <br><span class="text-emerald-600">Management System.</span>
+                            {% translate "Smart Queue" %}<br>
+                            <span class="text-emerald-600">{% translate "Management System." %}</span>
                         </h2>
                         <p class="text-slate-600 leading-relaxed text-lg">
-                            This MVP demonstrates a modern digital ecosystem designed to eliminate physical bottlenecks. We simulate the entire lifecycle of a service interaction, from self-service kiosks to real-time staff orchestration.
+                            {% blocktranslate trimmed %}
+                                This MVP demonstrates a modern digital ecosystem designed to eliminate physical bottlenecks.
+                                We simulate the entire lifecycle of a service interaction, from self-service kiosks to
+                                real-time staff orchestration.
+                            {% endblocktranslate %}
                         </p>
                     </div>
 
@@ -196,54 +216,77 @@
                         <ul class="space-y-3">
                             <li class="flex items-start text-sm font-medium text-slate-700">
                                 <svg class="h-5 w-5 text-emerald-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                Self-service kiosk & ticket generation
+                                {% translate "Self-service kiosk & ticket generation" %}
                             </li>
                             <li class="flex items-start text-sm font-medium text-slate-700">
                                 <svg class="h-5 w-5 text-emerald-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                Service-specific prioritization logic
+                                {% translate "Service-specific prioritization logic" %}
                             </li>
                             <li class="flex items-start text-sm font-medium text-slate-700">
                                 <svg class="h-5 w-5 text-emerald-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                QR-based mobile ticket tracking
+                                {% translate "QR-based mobile ticket tracking" %}
                             </li>
                         </ul>
                         <ul class="space-y-3">
                             <li class="flex items-start text-sm font-medium text-slate-700">
                                 <svg class="h-5 w-5 text-emerald-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                Real-time staff control dashboard
+                                {% translate "Real-time staff control dashboard" %}
                             </li>
                             <li class="flex items-start text-sm font-medium text-slate-700">
                                 <svg class="h-5 w-5 text-emerald-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                Automatic call retry algorithms
+                                {% translate "Automatic call retry algorithms" %}
                             </li>
                             <li class="flex items-start text-sm font-medium text-slate-700">
                                 <svg class="h-5 w-5 text-emerald-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                Public display visibility
+                                {% translate "Public display visibility" %}
                             </li>
                         </ul>
                     </div>
 
                     <div class="pt-6 border-t border-slate-100">
-                        <h3 class="text-sm font-bold text-slate-900 uppercase tracking-widest mb-6">How the System Works</h3>
+                        <h3 class="text-sm font-bold text-slate-900 uppercase tracking-widest mb-6">
+                            {% translate "How the System Works" %}
+                        </h3>
                         <div class="space-y-6">
                             <div class="flex gap-4">
                                 <span class="flex-none flex items-center justify-center w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 font-bold text-xs">01</span>
-                                <p class="text-sm text-slate-600"><strong class="text-slate-900">Request:</strong> Customers generate a ticket via kiosk with real-time wait estimates.</p>
+                                <p class="text-sm text-slate-600">
+                                    {% blocktranslate trimmed %}
+                                        <strong class="text-slate-900">Request:</strong>
+                                        Customers generate a ticket via kiosk with real-time wait estimates.
+                                    {% endblocktranslate %}
+                                </p>
                             </div>
                             <div class="flex gap-4">
                                 <span class="flex-none flex items-center justify-center w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 font-bold text-xs">02</span>
-                                <p class="text-sm text-slate-600"><strong class="text-slate-900">Orchestrate:</strong> Staff call and manage sessions from a live WebSocket-powered dashboard.</p>
+                                <p class="text-sm text-slate-600">
+                                    {% blocktranslate trimmed %}
+                                        <strong class="text-slate-900">Orchestrate:</strong>
+                                        Staff call and manage sessions from a live WebSocket-powered dashboard.
+                                    {% endblocktranslate %}
+                                </p>
                             </div>
                             <div class="flex gap-4">
                                 <span class="flex-none flex items-center justify-center w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 font-bold text-xs">03</span>
-                                <p class="text-sm text-slate-600"><strong class="text-slate-900">Track:</strong> Customers monitor their status on mobile via QR, reducing lobby anxiety.</p>
+                                <p class="text-sm text-slate-600">
+                                    {% blocktranslate trimmed %}
+                                        <strong class="text-slate-900">Track:</strong>
+                                        Customers monitor their status on mobile via QR, reducing lobby anxiety.
+                                    {% endblocktranslate %}
+                                </p>
                             </div>
                         </div>
                     </div>
-                    <p class="text-sm text-slate-700"><strong>Impact:</strong> Keep advancing your efforts to <strong>serve your customers better</strong>, with statistics and features designed around their needs.</p>
+                    <p class="text-sm text-slate-700">
+                        {% blocktranslate trimmed %}
+                            <strong>Impact:</strong> Keep advancing your efforts to
+                            <strong>serve your customers better</strong>, with statistics and features
+                            designed around their needs.
+                        {% endblocktranslate %}
+                    </p>
                     <div class="pt-4">
                         <a href="/solutions-lab/queue-management-system/" class="inline-flex items-center px-8 py-4 bg-slate-900 text-white font-bold rounded-xl hover:bg-emerald-600 transition-all transform hover:-translate-y-1">
-                            Explore System Architecture
+                            {% translate "Explore System Architecture" %}
                             <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                         </a>
                     </div>
@@ -253,14 +296,14 @@
                     <div class="relative group">
                         <div class="absolute -inset-1 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-3xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
                         <div class="relative bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-2xl">
-                            <img src="{% static 'images/lab/queue-management.png' %}" alt="Smart Queue Dashboard" class="w-full h-auto">
+                            <img src="{% static 'images/lab/queue-management.png' %}" alt="{% translate 'Smart Queue Dashboard' %}" class="w-full h-auto">
                             
                             <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1.5 rounded-lg shadow-sm border border-slate-100 flex items-center gap-2">
                                 <span class="flex h-2 w-2 relative">
                                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                                     <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                                 </span>
-                                <span class="text-[10px] font-bold text-slate-700 tracking-tight">Live Demo</span>
+                                <span class="text-[10px] font-bold text-slate-700 tracking-tight">{% translate "Live Demo" %}</span>
                             </div>
                         </div>
                     </div>
@@ -274,30 +317,51 @@
     <section class="py-24 bg-white border-y border-slate-100">
         <div class="max-w-7xl mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-black mb-4">Why Engineering <span class="text-emerald-600">Locally</span> Matters.</h2>
-                <p class="text-slate-500 max-w-2xl mx-auto font-medium">Technology should adapt to your department, not the other way around.</p>
+                <h2 class="text-3xl md:text-4xl font-black mb-4">
+                    {% translate "Why Engineering" %}
+                    <span class="text-emerald-600">{% translate "Locally" %}</span>
+                    {% translate "Matters." %}
+                </h2>
+                <p class="text-slate-500 max-w-2xl mx-auto font-medium">
+                    {% translate "Technology should adapt to your department, not the other way around." %}
+                </p>
             </div>
             <div class="grid md:grid-cols-3 gap-12">
                 <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-lg transition-all">
                     <div class="h-12 w-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center mb-6">
                         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 011-1h1a2 2 0 100-4H7a1 1 0 01-1-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"></path></svg>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Seamless Integration</h3>
-                    <p class="text-sm text-slate-500 leading-relaxed font-medium">We build the "glue" between your existing ERPs, CRMs, and legacy databases, ensuring data flows without manual friction.</p>
+                    <h3 class="text-xl font-bold mb-4">{% translate "Seamless Integration" %}</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed font-medium">
+                        {% blocktranslate trimmed %}
+                            We build the "glue" between your existing ERPs, CRMs, and legacy databases,
+                            ensuring data flows without manual friction.
+                        {% endblocktranslate %}
+                    </p>
                 </div>
                 <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-lg transition-all">
                     <div class="h-12 w-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center mb-6">
                         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Departmental Productivity</h3>
-                    <p class="text-sm text-slate-500 leading-relaxed font-medium">Custom tools designed for the specific needs of your Accounting, Logistics, or Sales teams, reducing burnout and human error.</p>
+                    <h3 class="text-xl font-bold mb-4">{% translate "Departmental Productivity" %}</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed font-medium">
+                        {% blocktranslate trimmed %}
+                            Custom tools designed for the specific needs of your Accounting, Logistics,
+                            or Sales teams, reducing burnout and human error.
+                        {% endblocktranslate %}
+                    </p>
                 </div>
                 <div class="p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:shadow-lg transition-all">
                     <div class="h-12 w-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center mb-6">
                         <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
                     </div>
-                    <h3 class="text-xl font-bold mb-4">Local Compliance</h3>
-                    <p class="text-sm text-slate-500 leading-relaxed font-medium">Built in Panama for Panama. We understand the local tax structures, banking regulations, and business culture nuances.</p>
+                    <h3 class="text-xl font-bold mb-4">{% translate "Local Compliance" %}</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed font-medium">
+                        {% blocktranslate trimmed %}
+                            Built in Panama for Panama. We understand the local tax structures,
+                            banking regulations, and business culture nuances.
+                        {% endblocktranslate %}
+                    </p>
                 </div>
             </div>
         </div>
@@ -306,44 +370,66 @@
     <!-- FAQ -->
     <section class="py-24 bg-slate-50">
         <div class="max-w-4xl mx-auto px-6">
-            <h2 class="text-3xl font-black mb-12 text-center">Frequently Asked <span class="text-emerald-600">Questions</span></h2>
+            <h2 class="text-3xl font-black mb-12 text-center">
+                {% translate "Frequently Asked" %}
+                <span class="text-emerald-600">{% translate "Questions" %}</span>
+            </h2>
             <div class="space-y-4">
                 <details class="group bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
                     <summary class="flex justify-between items-center font-bold cursor-pointer list-none">
-                        Are these third-party software products you resell?
+                        {% translate "Are these third-party software products you resell?" %}
                         <span class="transition group-open:rotate-180"><svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg></span>
                     </summary>
                     <p class="mt-4 text-slate-600 text-sm font-medium leading-relaxed">
-                        No. Every Proof of Concept (PoC) in this Lab was designed and developed from scratch by Cooltimedia. We are not resellers; we are engineers. These demos show the quality of logic and design we can build specifically for your company.
+                        {% blocktranslate trimmed %}
+                            No. Every Proof of Concept (PoC) in this Lab was designed and developed from
+                            scratch by Cooltimedia. We are not resellers; we are engineers. These demos
+                            show the quality of logic and design we can build specifically for your company.
+                        {% endblocktranslate %}
                     </p>
                 </details>
 
                 <details class="group bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
                     <summary class="flex justify-between items-center font-bold cursor-pointer list-none">
-                        Can the Smart Accounting engine be integrated with my SAP or QuickBooks?
+                        {% translate "Can the Smart Accounting engine be integrated with my SAP or QuickBooks?" %}
                         <span class="transition group-open:rotate-180"><svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg></span>
                     </summary>
                     <p class="mt-4 text-slate-600 text-sm font-medium leading-relaxed">
-                        Yes. Because we built the engine from the ground up, we can create custom API connectors to sync extracted data directly into your existing ERP or accounting software without manual intervention.
+                        {% blocktranslate trimmed %}
+                            Yes. Because we built the engine from the ground up, we can create custom API
+                            connectors to sync extracted data directly into your existing ERP or accounting
+                            software without manual intervention.
+                        {% endblocktranslate %}
                     </p>
                 </details>
 
                 <details class="group bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
                     <summary class="flex justify-between items-center font-bold cursor-pointer list-none">
-                        What happens if my document structure changes?
+                        {% translate "What happens if my document structure changes?" %}
                         <span class="transition group-open:rotate-180"><svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"></path></svg></span>
                     </summary>
                     <p class="mt-4 text-slate-600 text-sm font-medium leading-relaxed">
-                        Our architecture is modular. Unlike rigid "off-the-shelf" software, our engine is built to be adaptable. We can quickly update the extraction logic to align with new fiscal requirements from the DGI or changes in your suppliers' document formats. This ensures your workflow remains uninterrupted and your data stays within a controlled, private environment, perfectly synchronized with the evolving tax landscape.
+                        {% blocktranslate trimmed %}
+                            Our architecture is modular. Unlike rigid "off-the-shelf" software, our engine
+                            is built to be adaptable. We can quickly update the extraction logic to align
+                            with new fiscal requirements from the DGI or changes in your suppliers' document
+                            formats. This ensures your workflow remains uninterrupted and your data stays
+                            within a controlled, private environment, perfectly synchronized with the
+                            evolving tax landscape.
+                        {% endblocktranslate %}
                     </p>
                 </details>
             </div>
             
             <div class="mt-16 p-8 bg-slate-900 rounded-3xl text-center text-white">
-                <h3 class="text-xl font-bold mb-2">Want to see a custom PoC for your company?</h3>
-                <p class="text-slate-400 text-sm mb-6">Let's discuss your department's specific friction in a 15-min technical session.</p>
+                <h3 class="text-xl font-bold mb-2">
+                    {% translate "Want to see a custom PoC for your company?" %}
+                </h3>
+                <p class="text-slate-400 text-sm mb-6">
+                    {% translate "Let's discuss your department's specific friction in a 15-min technical session." %}
+                </p>
                 <a target="_blank" data-event="demo_request" data-demo="15min_technical" data-source="cooltimedia_solutions" href="https://calendly.com/cooltimedia/15min" class="inline-block px-8 py-3 bg-emerald-600 text-white font-black rounded-xl hover:bg-emerald-500 transition-colors">
-                    Book a Quick Demo
+                    {% translate "Book a Quick Demo" %}
                 </a>
             </div>
         </div>

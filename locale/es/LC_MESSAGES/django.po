@@ -1,13 +1,13 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# FIRST AUTHOR jair@cooltimedia.com, 2026.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-31 21:01-0500\n"
+"POT-Creation-Date: 2026-09-01 12:49-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,13 +17,45 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/settings/base.py:157
+#: app/settings/base.py:155
 msgid "English"
 msgstr "Inglés"
 
-#: app/settings/base.py:158
+#: app/settings/base.py:156
 msgid "Spanish"
 msgstr "Español"
+
+#: app/templates/includes/footer.html:12
+msgid "Built with Wagtail"
+msgstr "Creado con Wagtail"
+
+#: app/templates/includes/footer.html:21
+msgid "Follow me"
+msgstr "Redes Sociales"
+
+#: app/templates/includes/footer.html:68
+msgid " All rights reserved"
+msgstr "Todos los derechos reservados"
+
+#: blog/templates/blog/blog_index_page.html:12
+msgid "Explore our"
+msgstr "Explorar demo"
+
+#: blog/templates/blog/blog_index_page.html:74
+msgid "Read more"
+msgstr "Leer más"
+
+#: blog/templates/blog/blog_index_page.html:96
+msgid "We will soon share our experiences."
+msgstr "Pronto compartiremos nuestras experiencias."
+
+#: blog/templates/blog/blog_page.html:50
+msgid "Cooltimedia Team"
+msgstr "Equipo de Cooltimedia"
+
+#: blog/templates/blog/blog_page.html:57
+msgid "By"
+msgstr "Por"
 
 #: home/templates/home/home_page.html:132
 msgid "Independent Python, Django & Data Engineer · Panama / Global"
@@ -86,6 +118,8 @@ msgstr ""
 "crecimiento sin exigir una reconstrucción completa."
 
 #: home/templates/home/home_page.html:199
+#: home/templates/home/solutions/solutions_page.html:88
+#: home/templates/home/solutions/solutions_page.html:89
 msgid "Cloud Architecture"
 msgstr "Arquitectura en la nube"
 
@@ -142,7 +176,7 @@ msgstr ""
 "equipo puede utilizar con seguridad."
 
 #: home/templates/home/home_page.html:253
-#: home/templates/home/home_page.html:504
+#: home/templates/home/home_page.html:424
 msgid "Data Engineering"
 msgstr "Ingeniería de datos"
 
@@ -196,19 +230,209 @@ msgstr ""
 msgid "Discuss your current challenge →"
 msgstr "Conversemos sobre el desafío actual →"
 
-#: home/templates/home/home_page.html:306
+#: home/templates/home/home_page.html:305
+msgid "Selected Work & Impact"
+msgstr "Proyectos seleccionados e impacto"
+
+#: home/templates/home/home_page.html:308
+msgid "Private systems."
+msgstr "Sistemas privados."
+
+#: home/templates/home/home_page.html:309
+msgid "Visible business impact."
+msgstr "Impacto empresarial visible."
+
+#: home/templates/home/home_page.html:315
+msgid "Selected client organizations"
+msgstr "Organizaciones de clientes seleccionadas"
+
+#: home/templates/home/home_page.html:336
+msgid "The most valuable software often works behind a login."
+msgstr "El software más valioso suele funcionar detrás de un inicio de sesión."
+
+#: home/templates/home/home_page.html:339
+msgid ""
+"Much of my work supports internal portals, confidential operations, and data "
+"workflows that cannot be shown publicly. What I can show is the range of "
+"business challenges I’ve helped solve."
+msgstr ""
+"Gran parte de mi trabajo respalda portales internos, operaciones "
+"confidenciales y flujos de datos que no pueden mostrarse públicamente. Lo "
+"que sí puedo mostrar es la variedad de desafíos empresariales que he ayudado "
+"a resolver."
+
+#: home/templates/home/home_page.html:342
+msgid ""
+"Since 2016, I’ve contributed to projects for more than 20 organizations in "
+"Panama and international markets, working directly with clients or joining "
+"other software teams as a specialist partner."
+msgstr ""
+"Desde 2016, he contribuido a proyectos para más de 20 organizaciones en "
+"Panamá y mercados internacionales, trabajando directamente con clientes o "
+"integrándome a otros equipos de software como socio especialista."
+
+#: home/templates/home/home_page.html:345
+msgid ""
+"My experience includes Python and Django development, process automation, "
+"data engineering, cloud infrastructure, business intelligence, and platforms "
+"that support critical commercial operations."
+msgstr ""
+"Mi experiencia incluye desarrollo con Python y Django, automatización de "
+"procesos, ingeniería de datos, infraestructura en la nube, inteligencia de "
+"negocios y plataformas que respaldan operaciones comerciales críticas."
+
+#: home/templates/home/home_page.html:349
+msgid "Discuss a similar challenge →"
+msgstr "Conversemos sobre un desafío similar →"
+
+#: home/templates/home/home_page.html:354
+msgid "More selected client organizations"
+msgstr "Más organizaciones de clientes seleccionadas"
+
+#: home/templates/home/home_page.html:376
+msgid "Experience across projects and industries"
+msgstr "Experiencia en proyectos e industrias"
+
+#: home/templates/home/home_page.html:381
+msgid "Project capabilities"
+msgstr "Capacidades para proyectos"
+
+#: home/templates/home/home_page.html:386
+msgid "Application Engineering"
+msgstr "Ingeniería de aplicaciones"
+
+#: home/templates/home/home_page.html:390
+msgid ""
+"Custom web platforms, internal tools, and integrations built around real "
+"operational workflows."
+msgstr ""
+"Plataformas web a medida, herramientas internas e integraciones construidas "
+"alrededor de flujos operativos reales."
+
+#: home/templates/home/home_page.html:395
+msgid "Custom Web Platform Development"
+msgstr "Desarrollo de plataformas web a medida"
+
+#: home/templates/home/home_page.html:398
+msgid "Python Development"
+msgstr "Desarrollo en Python"
+
+#: home/templates/home/home_page.html:401
+msgid "Django Development"
+msgstr "Desarrollo en Django"
+
+#: home/templates/home/home_page.html:404
+msgid "Process Automation"
+msgstr "Automatización de procesos"
+
+#: home/templates/home/home_page.html:407
+msgid "Commercial Portals"
+msgstr "Portales comerciales"
+
+#: home/templates/home/home_page.html:415
+msgid "Data & Analytics"
+msgstr "Datos y analítica"
+
+#: home/templates/home/home_page.html:419
+msgid ""
+"Reliable data pipelines and analytics systems that turn scattered "
+"information into decision-ready insights."
+msgstr ""
+"Canalizaciones de datos confiables y sistemas analíticos que convierten "
+"información dispersa en conocimiento listo para tomar decisiones."
+
+#: home/templates/home/home_page.html:427
+msgid "Data Pipelines"
+msgstr "Canalizaciones de datos"
+
+#: home/templates/home/home_page.html:451
+msgid "Enterprise-Grade Stack."
+msgstr "Tecnología de nivel empresarial."
+
+#: home/templates/home/home_page.html:451
+msgid "Real-World Reliability."
+msgstr "Confiabilidad en el mundo real."
+
+#: home/templates/home/home_page.html:454
+msgid ""
+"I build solid, secure, growth-ready technology foundations so your business "
+"can operate with confidence, stability, and high performance."
+msgstr ""
+"Construyo bases tecnológicas sólidas, seguras y preparadas para crecer, para "
+"que tu negocio opere con confianza, estabilidad y alto rendimiento."
+
+#: home/templates/home/home_page.html:465
+msgid "Python & Django Ecosystem"
+msgstr "Ecosistema Python y Django"
+
+#: home/templates/home/home_page.html:467
+msgid ""
+"Built for high-security and rapid scaling. I deliver robust web backends and "
+"APIs that handle complex logic without compromising performance."
+msgstr ""
+"Diseñado para ofrecer alta seguridad y escalar rápidamente. Desarrollo "
+"backends web y APIs robustas que gestionan lógica compleja sin comprometer "
+"el rendimiento."
+
+#: home/templates/home/home_page.html:477
+msgid "Advanced Data Analytics"
+msgstr "Analítica avanzada de datos"
+
+#: home/templates/home/home_page.html:479
+msgid ""
+"Beyond simple charts. I use scientific-grade processing to uncover deep "
+"patterns, ensuring your reports are backed by mathematical precision."
+msgstr ""
+"Más allá de los gráficos básicos. Utilizo procesamiento de nivel científico "
+"para descubrir patrones profundos y garantizar que tus reportes estén "
+"respaldados por precisión matemática."
+
+#: home/templates/home/home_page.html:489
+msgid "Automated Data Pipelines"
+msgstr "Canalizaciones de datos automatizadas"
+
+#: home/templates/home/home_page.html:491
+msgid ""
+"Goodbye to manual entry. I engineer custom ETL processes that clean, "
+"transform, and move your data 24/7 with zero human error."
+msgstr ""
+"Despídete de la carga manual. Diseño procesos ETL personalizados que "
+"limpian, transforman y trasladan tus datos las 24 horas, sin errores humanos."
+
+#: home/templates/home/home_page.html:501
+msgid "Hybrid Infrastructure"
+msgstr "Infraestructura híbrida"
+
+#: home/templates/home/home_page.html:503
+msgid ""
+"Google Cloud Platform or On-Premise. I deploy solutions that respect "
+"Panama’s data residency requirements and international compliance standards."
+msgstr ""
+"Google Cloud Platform o infraestructura local. Implemento soluciones que "
+"respetan los requisitos de residencia de datos de Panamá y los estándares "
+"internacionales de cumplimiento."
+
+#: home/templates/home/home_page.html:509
+msgid ""
+"Need a specific integration? I specialize in making legacy systems talk to "
+"modern architectures."
+msgstr ""
+"¿Necesitas una integración específica? Me especializo en conectar sistemas "
+"heredados con arquitecturas modernas."
+
+#: home/templates/home/home_page.html:522
 msgid "About Cooltimedia"
 msgstr "Sobre Cooltimedia"
 
-#: home/templates/home/home_page.html:310
+#: home/templates/home/home_page.html:526
 msgid "Independent by design."
 msgstr "Independiente por diseño."
 
-#: home/templates/home/home_page.html:311
+#: home/templates/home/home_page.html:527
 msgid "Built for high-impact work."
 msgstr "Creado para trabajos de alto impacto."
 
-#: home/templates/home/home_page.html:316
+#: home/templates/home/home_page.html:532
 msgid ""
 "Cooltimedia is the independent engineering practice of Jair Manuel Poveda "
 "Frago, a Python, Django, and data engineer based in Panama."
@@ -216,7 +440,7 @@ msgstr ""
 "Cooltimedia es la práctica independiente de ingeniería de Jair Manuel Poveda "
 "Frago, ingeniero especializado en Python, Django y datos con sede en Panamá."
 
-#: home/templates/home/home_page.html:319
+#: home/templates/home/home_page.html:535
 msgid ""
 "Since 2016, I’ve worked with more than 20 companies in Panama and "
 "internationally, from focused productivity improvements to larger platforms "
@@ -226,7 +450,7 @@ msgstr ""
 "internacionales, desde mejoras puntuales de productividad hasta plataformas "
 "de mayor alcance que automatizan operaciones y conectan datos críticos."
 
-#: home/templates/home/home_page.html:322
+#: home/templates/home/home_page.html:538
 msgid ""
 "I work directly with clients and can also join internal teams or software "
 "companies as a specialist partner. My personal projects have also earned "
@@ -238,213 +462,23 @@ msgstr ""
 "personales también han recibido reconocimientos en Panamá, reflejando la "
 "iniciativa y dedicación que aporto a cada proyecto."
 
-#: home/templates/home/home_page.html:336
+#: home/templates/home/home_page.html:552
 msgid "View my LinkedIn profile"
 msgstr "Ver mi perfil en LinkedIn"
 
-#: home/templates/home/home_page.html:385
-msgid "Selected Work & Impact"
-msgstr "Proyectos seleccionados e impacto"
-
-#: home/templates/home/home_page.html:388
-msgid "Private systems."
-msgstr "Sistemas privados."
-
-#: home/templates/home/home_page.html:389
-msgid "Visible business impact."
-msgstr "Impacto empresarial visible."
-
-#: home/templates/home/home_page.html:395
-msgid "Selected client organizations"
-msgstr "Organizaciones de clientes seleccionadas"
-
-#: home/templates/home/home_page.html:416
-msgid "The most valuable software often works behind a login."
-msgstr "El software más valioso suele funcionar detrás de un inicio de sesión."
-
-#: home/templates/home/home_page.html:419
-msgid ""
-"Much of my work supports internal portals, confidential operations, and data "
-"workflows that cannot be shown publicly. What I can show is the range of "
-"business challenges I’ve helped solve."
-msgstr ""
-"Gran parte de mi trabajo respalda portales internos, operaciones "
-"confidenciales y flujos de datos que no pueden mostrarse públicamente. Lo "
-"que sí puedo mostrar es la variedad de desafíos empresariales que he ayudado "
-"a resolver."
-
-#: home/templates/home/home_page.html:422
-msgid ""
-"Since 2016, I’ve contributed to projects for more than 20 organizations in "
-"Panama and international markets, working directly with clients or joining "
-"other software teams as a specialist partner."
-msgstr ""
-"Desde 2016, he contribuido a proyectos para más de 20 organizaciones en "
-"Panamá y mercados internacionales, trabajando directamente con clientes o "
-"integrándome a otros equipos de software como socio especialista."
-
-#: home/templates/home/home_page.html:425
-msgid ""
-"My experience includes Python and Django development, process automation, "
-"data engineering, cloud infrastructure, business intelligence, and platforms "
-"that support critical commercial operations."
-msgstr ""
-"Mi experiencia incluye desarrollo con Python y Django, automatización de "
-"procesos, ingeniería de datos, infraestructura en la nube, inteligencia de "
-"negocios y plataformas que respaldan operaciones comerciales críticas."
-
-#: home/templates/home/home_page.html:429
-msgid "Discuss a similar challenge →"
-msgstr "Conversemos sobre un desafío similar →"
-
-#: home/templates/home/home_page.html:434
-msgid "More selected client organizations"
-msgstr "Más organizaciones de clientes seleccionadas"
-
-#: home/templates/home/home_page.html:456
-msgid "Experience across projects and industries"
-msgstr "Experiencia en proyectos e industrias"
-
-#: home/templates/home/home_page.html:461
-msgid "Project capabilities"
-msgstr "Capacidades para proyectos"
-
-#: home/templates/home/home_page.html:466
-msgid "Application Engineering"
-msgstr "Ingeniería de aplicaciones"
-
-#: home/templates/home/home_page.html:470
-msgid ""
-"Custom web platforms, internal tools, and integrations built around real "
-"operational workflows."
-msgstr ""
-"Plataformas web a medida, herramientas internas e integraciones construidas "
-"alrededor de flujos operativos reales."
-
-#: home/templates/home/home_page.html:475
-msgid "Custom Web Platform Development"
-msgstr "Desarrollo de plataformas web a medida"
-
-#: home/templates/home/home_page.html:478
-msgid "Python Development"
-msgstr "Desarrollo en Python"
-
-#: home/templates/home/home_page.html:481
-msgid "Django Development"
-msgstr "Desarrollo en Django"
-
-#: home/templates/home/home_page.html:484
-msgid "Process Automation"
-msgstr "Automatización de procesos"
-
-#: home/templates/home/home_page.html:487
-msgid "Commercial Portals"
-msgstr "Portales comerciales"
-
-#: home/templates/home/home_page.html:495
-msgid "Data & Analytics"
-msgstr "Datos y analítica"
-
-#: home/templates/home/home_page.html:499
-msgid ""
-"Reliable data pipelines and analytics systems that turn scattered "
-"information into decision-ready insights."
-msgstr ""
-"Canalizaciones de datos confiables y sistemas analíticos que convierten "
-"información dispersa en conocimiento listo para tomar decisiones."
-
-#: home/templates/home/home_page.html:507
-msgid "Data Pipelines"
-msgstr "Canalizaciones de datos"
-
-#: home/templates/home/home_page.html:532
-msgid "Enterprise-Grade Stack."
-msgstr "Tecnología de nivel empresarial."
-
-#: home/templates/home/home_page.html:532
-msgid "Real-World Reliability."
-msgstr "Confiabilidad en el mundo real."
-
-#: home/templates/home/home_page.html:535
-msgid ""
-"I build solid, secure, growth-ready technology foundations so your business "
-"can operate with confidence, stability, and high performance."
-msgstr ""
-"Construyo bases tecnológicas sólidas, seguras y preparadas para crecer, para "
-"que tu negocio opere con confianza, estabilidad y alto rendimiento."
-
-#: home/templates/home/home_page.html:546
-msgid "Python & Django Ecosystem"
-msgstr "Ecosistema Python y Django"
-
-#: home/templates/home/home_page.html:548
-msgid ""
-"Built for high-security and rapid scaling. I deliver robust web backends and "
-"APIs that handle complex logic without compromising performance."
-msgstr ""
-"Diseñado para ofrecer alta seguridad y escalar rápidamente. Desarrollo "
-"backends web y APIs robustas que gestionan lógica compleja sin comprometer "
-"el rendimiento."
-
-#: home/templates/home/home_page.html:558
-msgid "Advanced Data Analytics"
-msgstr "Analítica avanzada de datos"
-
-#: home/templates/home/home_page.html:560
-msgid ""
-"Beyond simple charts. I use scientific-grade processing to uncover deep "
-"patterns, ensuring your reports are backed by mathematical precision."
-msgstr ""
-"Más allá de los gráficos básicos. Utilizo procesamiento de nivel científico "
-"para descubrir patrones profundos y garantizar que tus reportes estén "
-"respaldados por precisión matemática."
-
-#: home/templates/home/home_page.html:570
-msgid "Automated Data Pipelines"
-msgstr "Canalizaciones de datos automatizadas"
-
-#: home/templates/home/home_page.html:572
-msgid ""
-"Goodbye to manual entry. I engineer custom ETL processes that clean, "
-"transform, and move your data 24/7 with zero human error."
-msgstr ""
-"Despídete de la carga manual. Diseño procesos ETL personalizados que "
-"limpian, transforman y trasladan tus datos las 24 horas, sin errores humanos."
-
-#: home/templates/home/home_page.html:582
-msgid "Hybrid Infrastructure"
-msgstr "Infraestructura híbrida"
-
-#: home/templates/home/home_page.html:584
-msgid ""
-"Google Cloud Platform or On-Premise. I deploy solutions that respect "
-"Panama’s data residency requirements and international compliance standards."
-msgstr ""
-"Google Cloud Platform o infraestructura local. Implemento soluciones que "
-"respetan los requisitos de residencia de datos de Panamá y los estándares "
-"internacionales de cumplimiento."
-
-#: home/templates/home/home_page.html:590
-msgid ""
-"Need a specific integration? I specialize in making legacy systems talk to "
-"modern architectures."
-msgstr ""
-"¿Necesitas una integración específica? Me especializo en conectar sistemas "
-"heredados con arquitecturas modernas."
-
-#: home/templates/home/home_page.html:601
+#: home/templates/home/home_page.html:600
 msgid "Ready to start?"
 msgstr "¿Listo para comenzar?"
 
-#: home/templates/home/home_page.html:604
+#: home/templates/home/home_page.html:603
 msgid "Let’s Engineer Your Next"
 msgstr "Construyamos juntos tu próxima"
 
-#: home/templates/home/home_page.html:604
+#: home/templates/home/home_page.html:603
 msgid "Success Story."
 msgstr "historia de éxito."
 
-#: home/templates/home/home_page.html:607
+#: home/templates/home/home_page.html:606
 msgid ""
 "Whether you need to untangle complex data or build a high-performance web "
 "platform, I'm ready to help. No complex forms, just a direct conversation "
@@ -454,25 +488,375 @@ msgstr ""
 "de alto rendimiento, estoy listo para ayudarte. Sin formularios complicados: "
 "solo una conversación directa sobre los objetivos de tu negocio."
 
-#: home/templates/home/home_page.html:614
+#: home/templates/home/home_page.html:613
 msgid "Let's talk on WhatsApp"
 msgstr "Mensaje por WhatsApp"
 
-#: home/templates/home/home_page.html:620
+#: home/templates/home/home_page.html:619
 msgid "Send me an Email"
 msgstr "Contactar por correo"
 
-#: home/templates/home/home_page.html:626
+#: home/templates/home/home_page.html:625
 msgid "Panama-based expert"
 msgstr "Experto con sede en Panamá"
 
-#: home/templates/home/home_page.html:630
+#: home/templates/home/home_page.html:629
 msgid "Bilingual Support (EN/ES)"
 msgstr "Atención bilingüe (EN/ES)"
 
-#: home/templates/home/home_page.html:634
+#: home/templates/home/home_page.html:633
 msgid "No-obligation strategy call"
 msgstr "Consulta estratégica sin compromiso"
+
+#: home/templates/home/solutions/solutions_page.html:44
+msgid "Solutions Lab"
+msgstr "Laboratorio de soluciones"
+
+#: home/templates/home/solutions/solutions_page.html:45
+msgid ""
+"A gallery of custom-built automation and software proofs of concept designed "
+"for business efficiency."
+msgstr ""
+"Una galería de automatizaciones a medida y pruebas de concepto de software "
+"diseñadas para mejorar la eficiencia empresarial."
+
+#: home/templates/home/solutions/solutions_page.html:46
+msgid "Panama & International"
+msgstr "Panamá y mercados internacionales"
+
+#: home/templates/home/solutions/solutions_page.html:70
+msgid "The Innovation Sandbox"
+msgstr "Laboratorio de innovación"
+
+#: home/templates/home/solutions/solutions_page.html:74
+msgid "From Concept to"
+msgstr "Del concepto al"
+
+#: home/templates/home/solutions/solutions_page.html:75
+msgid "Scalable Code"
+msgstr "código escalable"
+
+#: home/templates/home/solutions/solutions_page.html:79
+msgid ""
+"Explore our gallery of live Proofs of Concept (PoCs) designed to solve real-"
+"world business friction through high-end engineering."
+msgstr ""
+"Explora nuestra galería de Pruebas de Concepto (PoC) funcionales, diseñadas "
+"para resolver desafíos empresariales reales mediante ingeniería de alto "
+"nivel."
+
+#: home/templates/home/solutions/solutions_page.html:102
+msgid "Smart Accounting Demo"
+msgstr "Demo de contabilidad inteligente"
+
+#: home/templates/home/solutions/solutions_page.html:109
+#: home/templates/home/solutions/solutions_page.html:306
+msgid "Live Demo"
+msgstr "Demo en vivo"
+
+#: home/templates/home/solutions/solutions_page.html:116
+msgid "Smart Accounting"
+msgstr "Contabilidad inteligente"
+
+#: home/templates/home/solutions/solutions_page.html:116
+msgid "Automation."
+msgstr "Automatización."
+
+#: home/templates/home/solutions/solutions_page.html:118
+msgid ""
+"Accounting teams spend a significant portion of their time performing "
+"repetitive data entry tasks. <strong>This is a bottleneck for growth</"
+"strong>. Our first PoC demonstrates how high-precision extraction engines "
+"can process Panamanian fiscal documents (DGI), validating CUFE, RUC, and "
+"taxes in milliseconds."
+msgstr ""
+"Los equipos contables dedican una parte significativa de su tiempo a tareas "
+"repetitivas de ingreso de datos. <strong>Esto limita la capacidad de "
+"crecimiento</strong>. Nuestro primer PoC demuestra cómo motores de "
+"extracción de alta precisión pueden procesar documentos fiscales panameños "
+"(DGI), validando CUFE, RUC e impuestos en milisegundos."
+
+#: home/templates/home/solutions/solutions_page.html:128
+msgid "Document ingestion (PDF)"
+msgstr "Ingesta de documentos (PDF)"
+
+#: home/templates/home/solutions/solutions_page.html:132
+msgid "Automated data extraction (DGI tax invoice)"
+msgstr "Extracción automatizada de datos (factura fiscal DGI)"
+
+#: home/templates/home/solutions/solutions_page.html:136
+msgid "Accounting validation workflows"
+msgstr "Flujos de validación contable"
+
+#: home/templates/home/solutions/solutions_page.html:140
+msgid "Operational dashboards"
+msgstr "Paneles operativos"
+
+#: home/templates/home/solutions/solutions_page.html:144
+msgid "Automated financial insights"
+msgstr "Análisis financiero automatizado"
+
+#: home/templates/home/solutions/solutions_page.html:148
+#, python-format
+msgid ""
+"<strong>Impact:</strong> Reduce invoice registration time by up to "
+"<strong>80%%</strong>."
+msgstr ""
+"<strong>Impacto:</strong> Reduce el tiempo de registro de facturas hasta en "
+"un <strong>80%%</strong>."
+
+#: home/templates/home/solutions/solutions_page.html:154
+msgid "OCR & Data Extraction"
+msgstr "OCR y extracción de datos"
+
+#: home/templates/home/solutions/solutions_page.html:157
+msgid "DGI Fiscal Compliance"
+msgstr "Cumplimiento fiscal DGI"
+
+#: home/templates/home/solutions/solutions_page.html:160
+msgid "CUFE/RUC Validation"
+msgstr "Validación de CUFE/RUC"
+
+#: home/templates/home/solutions/solutions_page.html:163
+msgid "Workflow Orchestration"
+msgstr "Orquestación de flujos de trabajo"
+
+#: home/templates/home/solutions/solutions_page.html:169
+#: home/templates/home/solutions/solutions_page.html:289
+msgid "Explore System Architecture"
+msgstr "Explorar la arquitectura del sistema"
+
+#: home/templates/home/solutions/solutions_page.html:174
+msgid "Explore the Demo"
+msgstr "Explorar la demo"
+
+#: home/templates/home/solutions/solutions_page.html:191
+msgid "Reduced Wait Perception"
+msgstr "Menor percepción del tiempo de espera"
+
+#: home/templates/home/solutions/solutions_page.html:194
+msgid "Omnichannel Tracking"
+msgstr "Seguimiento omnicanal"
+
+#: home/templates/home/solutions/solutions_page.html:197
+msgid "Capacity Analytics"
+msgstr "Análisis de capacidad"
+
+#: home/templates/home/solutions/solutions_page.html:203
+msgid "Smart Queue"
+msgstr "Sistema inteligente de"
+
+#: home/templates/home/solutions/solutions_page.html:204
+msgid "Management System."
+msgstr "gestión de filas."
+
+#: home/templates/home/solutions/solutions_page.html:207
+msgid ""
+"This MVP demonstrates a modern digital ecosystem designed to eliminate "
+"physical bottlenecks. We simulate the entire lifecycle of a service "
+"interaction, from self-service kiosks to real-time staff orchestration."
+msgstr ""
+"Este MVP demuestra un ecosistema digital moderno diseñado para agilizar la "
+"atención y reducir cuellos de botella físicos. Simulamos todo el ciclo de "
+"vida de una interacción de servicio, desde kioscos de autoservicio hasta la "
+"coordinación del personal en tiempo real."
+
+#: home/templates/home/solutions/solutions_page.html:219
+msgid "Self-service kiosk & ticket generation"
+msgstr "Kiosco de autoservicio y generación de turnos"
+
+#: home/templates/home/solutions/solutions_page.html:223
+msgid "Service-specific prioritization logic"
+msgstr "Lógica de priorización específica por servicio"
+
+#: home/templates/home/solutions/solutions_page.html:227
+msgid "QR-based mobile ticket tracking"
+msgstr "Seguimiento móvil del turno mediante QR"
+
+#: home/templates/home/solutions/solutions_page.html:233
+msgid "Real-time staff control dashboard"
+msgstr "Panel de control del personal en tiempo real"
+
+#: home/templates/home/solutions/solutions_page.html:237
+msgid "Automatic call retry algorithms"
+msgstr "Algoritmos automáticos de reintento de llamadas"
+
+#: home/templates/home/solutions/solutions_page.html:241
+msgid "Public display visibility"
+msgstr "Visualización en pantallas públicas"
+
+#: home/templates/home/solutions/solutions_page.html:248
+msgid "How the System Works"
+msgstr "Cómo funciona el sistema"
+
+#: home/templates/home/solutions/solutions_page.html:254
+msgid ""
+"<strong class=\"text-slate-900\">Request:</strong> Customers generate a "
+"ticket via kiosk with real-time wait estimates."
+msgstr ""
+"<strong class=\"text-slate-900\">Solicitud:</strong> Los clientes generan un "
+"turno desde el kiosco con estimaciones del tiempo de espera en tiempo real."
+
+#: home/templates/home/solutions/solutions_page.html:263
+msgid ""
+"<strong class=\"text-slate-900\">Orchestrate:</strong> Staff call and manage "
+"sessions from a live WebSocket-powered dashboard."
+msgstr ""
+"<strong class=\"text-slate-900\">Coordinación:</strong> El personal llama y "
+"gestiona las sesiones desde un panel en vivo basado en WebSockets."
+
+#: home/templates/home/solutions/solutions_page.html:272
+msgid ""
+"<strong class=\"text-slate-900\">Track:</strong> Customers monitor their "
+"status on mobile via QR, reducing lobby anxiety."
+msgstr ""
+"<strong class=\"text-slate-900\">Seguimiento:</strong> Los clientes "
+"consultan el estado de su turno desde el móvil mediante QR, reduciendo la "
+"incertidumbre en la sala de espera."
+
+#: home/templates/home/solutions/solutions_page.html:281
+msgid ""
+"<strong>Impact:</strong> Keep advancing your efforts to <strong>serve your "
+"customers better</strong>, with statistics and features designed around "
+"their needs."
+msgstr ""
+"<strong>Impacto:</strong> Continúa fortaleciendo tus esfuerzos para "
+"<strong>atender mejor a tus clientes</strong>, con estadísticas y funciones "
+"diseñadas en torno a sus necesidades."
+
+#: home/templates/home/solutions/solutions_page.html:299
+msgid "Smart Queue Dashboard"
+msgstr "Panel de gestión inteligente de filas"
+
+#: home/templates/home/solutions/solutions_page.html:321
+msgid "Why Engineering"
+msgstr "Por qué la ingeniería"
+
+#: home/templates/home/solutions/solutions_page.html:322
+msgid "Locally"
+msgstr "local"
+
+#: home/templates/home/solutions/solutions_page.html:323
+msgid "Matters."
+msgstr "importa."
+
+#: home/templates/home/solutions/solutions_page.html:326
+msgid "Technology should adapt to your department, not the other way around."
+msgstr "La tecnología debe adaptarse a las necesidades de tu departamento."
+
+#: home/templates/home/solutions/solutions_page.html:334
+msgid "Seamless Integration"
+msgstr "Integración fluida"
+
+#: home/templates/home/solutions/solutions_page.html:336
+msgid ""
+"We build the \"glue\" between your existing ERPs, CRMs, and legacy "
+"databases, ensuring data flows without manual friction."
+msgstr ""
+"Construimos la conexión entre tus ERP, CRM y bases de datos heredadas, "
+"asegurando que la información fluya de forma integrada y eficiente."
+
+#: home/templates/home/solutions/solutions_page.html:346
+msgid "Departmental Productivity"
+msgstr "Productividad por departamento"
+
+#: home/templates/home/solutions/solutions_page.html:348
+msgid ""
+"Custom tools designed for the specific needs of your Accounting, Logistics, "
+"or Sales teams, reducing burnout and human error."
+msgstr ""
+"Herramientas a medida diseñadas para las necesidades específicas de tus "
+"equipos de Contabilidad, Logística o Ventas, reduciendo la carga operativa y "
+"los errores humanos."
+
+#: home/templates/home/solutions/solutions_page.html:358
+msgid "Local Compliance"
+msgstr "Cumplimiento local"
+
+#: home/templates/home/solutions/solutions_page.html:360
+msgid ""
+"Built in Panama for Panama. We understand the local tax structures, banking "
+"regulations, and business culture nuances."
+msgstr ""
+"Desarrollado en Panamá para Panamá. Comprendemos las estructuras fiscales "
+"locales, las regulaciones bancarias y las particularidades de la cultura "
+"empresarial."
+
+#: home/templates/home/solutions/solutions_page.html:374
+msgid "Frequently Asked"
+msgstr "Preguntas"
+
+#: home/templates/home/solutions/solutions_page.html:375
+msgid "Questions"
+msgstr "frecuentes"
+
+#: home/templates/home/solutions/solutions_page.html:380
+msgid "Are these third-party software products you resell?"
+msgstr "¿Son productos de software de terceros que revenden?"
+
+#: home/templates/home/solutions/solutions_page.html:384
+msgid ""
+"No. Every Proof of Concept (PoC) in this Lab was designed and developed from "
+"scratch by Cooltimedia. We are not resellers; we are engineers. These demos "
+"show the quality of logic and design we can build specifically for your "
+"company."
+msgstr ""
+"No. Cada Prueba de Concepto (PoC) de este laboratorio fue diseñada y "
+"desarrollada desde cero por Cooltimedia. No somos revendedores; somos "
+"ingenieros. Estas demos muestran la calidad de la lógica y el diseño que "
+"podemos construir específicamente para tu empresa."
+
+#: home/templates/home/solutions/solutions_page.html:394
+msgid ""
+"Can the Smart Accounting engine be integrated with my SAP or QuickBooks?"
+msgstr ""
+"¿Se puede integrar el motor de Contabilidad Inteligente con SAP o QuickBooks?"
+
+#: home/templates/home/solutions/solutions_page.html:398
+msgid ""
+"Yes. Because we built the engine from the ground up, we can create custom "
+"API connectors to sync extracted data directly into your existing ERP or "
+"accounting software without manual intervention."
+msgstr ""
+"Sí. Como construimos el motor desde cero, podemos crear conectores API a "
+"medida para sincronizar los datos extraídos directamente con tu ERP o "
+"software contable existente, sin intervención manual."
+
+#: home/templates/home/solutions/solutions_page.html:408
+msgid "What happens if my document structure changes?"
+msgstr "¿Qué sucede si cambia la estructura de mis documentos?"
+
+#: home/templates/home/solutions/solutions_page.html:412
+msgid ""
+"Our architecture is modular. Unlike rigid \"off-the-shelf\" software, our "
+"engine is built to be adaptable. We can quickly update the extraction logic "
+"to align with new fiscal requirements from the DGI or changes in your "
+"suppliers' document formats. This ensures your workflow remains "
+"uninterrupted and your data stays within a controlled, private environment, "
+"perfectly synchronized with the evolving tax landscape."
+msgstr ""
+"Nuestra arquitectura es modular y está diseñada para adaptarse. Podemos "
+"actualizar rápidamente la lógica de extracción para alinearla con nuevos "
+"requisitos fiscales de la DGI o con cambios en los formatos de documentos de "
+"tus proveedores. Esto permite que tu flujo de trabajo continúe sin "
+"interrupciones y que tus datos permanezcan dentro de un entorno privado y "
+"controlado, sincronizado con la evolución del entorno fiscal."
+
+#: home/templates/home/solutions/solutions_page.html:426
+msgid "Want to see a custom PoC for your company?"
+msgstr "¿Quieres ver una PoC personalizada para tu empresa?"
+
+#: home/templates/home/solutions/solutions_page.html:429
+msgid ""
+"Let's discuss your department's specific friction in a 15-min technical "
+"session."
+msgstr ""
+"Conversemos sobre las necesidades específicas de tu departamento en una "
+"sesión técnica de 15 minutos."
+
+#: home/templates/home/solutions/solutions_page.html:432
+msgid "Book a Quick Demo"
+msgstr "Agendar una demo rápida"
 
 #: home/templates/home/welcome_page.html:6
 msgid "Visit the Wagtail website"
@@ -1068,11 +1452,11 @@ msgstr "Metadatos opcionales o detalles del error sin procesar."
 
 #: mvp_qflow_core/models.py:445
 msgid "Processing Log"
-msgstr "Procesando Log"
+msgstr "Registro de procesamiento"
 
 #: mvp_qflow_core/models.py:446
 msgid "Processing Logs"
-msgstr "Procesando Log"
+msgstr "Registros de procesamiento"
 
 #~ msgid ""
 #~ "I don't just pick tools; I architect the foundation that ensures your "
@@ -1258,9 +1642,6 @@ msgstr "Procesando Log"
 #~ "Los equipos dedican horas cada semana a crear reportes manualmente en "
 #~ "lugar de actuar a partir de la información."
 
-#~ msgid "Live Dashboards"
-#~ msgstr "Tableros en tiempo real"
-
 #~ msgid ""
 #~ "Real-time dashboards that update automatically, so your team wakes up to "
 #~ "answers instead of tasks."
@@ -1298,9 +1679,6 @@ msgstr "Procesando Log"
 
 #~ msgid "Growth Strategy"
 #~ msgstr "Estrategia de crecimiento"
-
-#~ msgid "Cooltimedia in your"
-#~ msgstr "Cooltimedia en tu"
 
 #~ msgid "Digital Maturity Cycle"
 #~ msgstr "ciclo de madurez digital"
@@ -1383,6 +1761,3 @@ msgstr "Procesando Log"
 #~ "Desde 2016, ayudamos a las empresas a crecer mediante aplicaciones "
 #~ "robustas en Django, canalizaciones de datos seguras y automatizaciones "
 #~ "inteligentes con Python."
-
-#~ msgid "Explore Solutions Lab →"
-#~ msgstr "Explora nuestro laboratorio de soluciones →"

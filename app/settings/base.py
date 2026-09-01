@@ -59,6 +59,8 @@ INSTALLED_APPS = [
     "django.contrib.postgres",
     "django.contrib.humanize",
     "django.contrib.sitemaps",
+    "wagtail.locales",
+    "wagtail.contrib.simple_translation",
     "wagtail.contrib.sitemaps",
     "wagtail.contrib.settings",
 ]
@@ -146,20 +148,22 @@ LANGUAGE_CODE = "en"
 TIME_ZONE = "America/Panama"
 
 USE_I18N = True
-
 USE_TZ = True
-
-USE_L10N = True
-
 USE_THOUSAND_SEPARATOR = True
 
 LANGUAGES = [
-    ('en', _('English')),
-    ('es', _('Spanish')),
+    ("en", _("English")),
+    ("es", _("Spanish")),
 ]
 
+
+WAGTAIL_I18N_ENABLED = True
+WAGTAIL_CONTENT_LANGUAGES = LANGUAGES
+
+WAGTAILSIMPLETRANSLATION_SYNC_PAGE_TREE = False
+
 LOCALE_PATHS = [
-    os.path.join(BASE_DIR, 'locale'),
+    os.path.join(BASE_DIR, "locale"),
 ]
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = 20971520
@@ -182,7 +186,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-STATIC_ROOT = BASE_DIR / "static"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 STATIC_URL = "/static/"
 
 MEDIA_ROOT = PROJECT_DIR / "media"
