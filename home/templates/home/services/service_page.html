@@ -1,582 +1,672 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags %}
+
+{% load wagtailcore_tags wagtailimages_tags i18n %}
+
 
 {% block extra_css %}
-{# Prism.js se mantiene optimizado solo para el bloque de código del Tech Stack #}
-<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+<link
+    href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
+    rel="stylesheet"
+>
 
-<style>
-    html {
-        scroll-behavior: smooth;
-    }
-    .hero-gradient {
-        background: radial-gradient(circle at center, rgba(16, 185, 129, 0.04) 0%, transparent 70%);
-    }
-</style>
-
-{# 1. SEO METADATOS TÉCNICOS: Cambiado de TechArticle a Service + FAQPage para conversiones #}
 <script type="application/ld+json">
 {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Service",
-      "@id": "https://cooltimedia.com{% pageurl page %}#service",
-      "name": "{% if 'data' in page.slug or 'engineering' in page.slug %}Data Engineering{% else %}{{ page.title|escapejs }}{% endif %} Services",
-      "provider": {
-        "@type": "Organization",
-        "name": "Cooltimedia",
-        "url": "https://cooltimedia.com"
-      },
-      "description": "{% if 'data' in page.slug or 'engineering' in page.slug %}Automated data pipelines and data warehousing solutions using BigQuery and MotherDuck to eliminate data silos and deliver a 360-degree view of your operations.{% else %}Custom {{ page.title|escapejs }} architecture designed to automate workflows and scale operations.{% endif %}",
-      "areaServed": ["Panama", "International"],
-      "serviceType": "{% if 'data' in page.slug or 'engineering' in page.slug %}Data Engineering & Business Intelligence{% else %}Custom Software Development{% endif %}"
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        {% if "django" in page.slug %}
-          {
-            "@type": "Question",
-            "name": "How long does a custom {{ page.title|escapejs }} project take?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Most custom platforms take between 4 and 16 weeks, depending on operational architecture complexity, scope of workflows, and target enterprise API endpoints."
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "Service",
+            "@id": "{% fullpageurl page %}#service",
+            "url": "{% fullpageurl page %}",
+            "name": "{{ page.hero_title|default:page.title|escapejs }}",
+            "description": "{% if page.hero_subtitle %}{{ page.hero_subtitle|escapejs }}{% else %}{{ page.search_description|escapejs }}{% endif %}",
+            "serviceType": "{{ page.get_service_type_display|default:page.title|escapejs }}",
+            "inLanguage": "{{ page.locale.language_code }}",
+            "areaServed": [
+                "Panama",
+                "International"
+            ],
+            "provider": {
+                "@type": "Person",
+                "name": "Jair Manuel Poveda Frago",
+                "url": "https://cooltimedia.com"
+            },
+            "brand": {
+                "@type": "Brand",
+                "name": "Cooltimedia"
             }
-          },
-          {
-            "@type": "Question",
-            "name": "Do you provide long-term software maintenance?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, we offer dedicated ongoing support plans that cover security updates, server monitoring, performance optimization, and new feature implementation."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Can you integrate with our legacy software database?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Absolutely. Python infrastructures excel at programmatic connectivity. We consistently wrap legacy databases into micro-service layers using secure REST API practices."
-            }
-          }
-        {% elif "data" in page.slug or "engineering" in page.slug %}
-          {
-            "@type": "Question",
-            "name": "What is MotherDuck and why do you use it instead of traditional data warehouses?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "MotherDuck extends DuckDB into the cloud. It is a highly optimized columnar database designed for analytical queries that allows us to process millions of rows in milliseconds. We use it because it eliminates the massive infrastructure overhead, compute management, and excessive costs associated with platforms like Snowflake or Redshift for medium-sized data operations."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Can you connect data from tools like HubSpot, Salesforce, or custom proprietary APIs?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. We specialize in building custom ETL/ELT pipelines and ingestion workers to pull data from any system that exposes a REST or GraphQL API, centralizing everything into your secure cloud data warehouse."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How do you guarantee the data in our live reporting dashboards is accurate?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "We implement automated data quality and validation steps directly inside our transformation pipelines. If a source API sends corrupted, duplicated, or missing values, the pipeline isolates the bad records and alerts us immediately, preventing broken metrics from polluting your live production reports."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "We have multiple web platforms running, but no clear view of our overall operations. Can you help us see the big picture?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "This is where Data Engineering delivers the highest value. We connect your isolated websites, CRMs, and operational tools into a single warehouse. This allows you to track cause-and-effect across your entire business—such as how a specific digital platform update directly impacts customer retention or inventory levels."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Do you build the visual dashboards, or do you only handle the backend data pipelines?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "We engineer the entire pipeline, from raw data extraction to the final visual layer. Once your data is centralized and cleaned in BigQuery or MotherDuck, we connect it to modern Business Intelligence tools (like Looker Studio or Power BI) to deliver clean, interactive, and automated dashboards for your executive team."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Our operational data contains sensitive customer and financial information. How do you ensure it remains secure during transit?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Security is built into every pipeline we design. We utilize enterprise-grade encryption (SSL/TLS) for data in transit, implement strict API authentication protocols, and apply Role-Based Access Control (RBAC) within the data warehouse to ensure sensitive information is only accessible to authorized team members."
-            }
-          }
+        }
+        {% if page.faq_items %}
+        ,
+        {
+            "@type": "FAQPage",
+            "@id": "{% fullpageurl page %}#faq",
+            "inLanguage": "{{ page.locale.language_code }}",
+            "mainEntity": [
+                {% for faq in page.faq_items %}
+                {
+                    "@type": "Question",
+                    "name": "{{ faq.question|escapejs }}",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "{{ faq.answer|striptags|escapejs }}"
+                    }
+                }{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            ]
+        }
         {% endif %}
-      ]
-    }
-  ]
+    ]
 }
 </script>
 {% endblock %}
 
+
 {% block content %}
 <div class="bg-white font-sans text-slate-900 antialiased">
-    
-    <section class="relative pt-32 pb-20 overflow-hidden hero-gradient">
-        <div class="max-w-5xl mx-auto px-4 text-center">
-            <span class="inline-block py-1 px-3 rounded-full bg-emerald-100 text-emerald-700 text-xs font-semibold tracking-widest mb-4 uppercase">
-                {{ page.title }} Solution
+
+    {# Hero #}
+    <section
+        class="relative overflow-hidden bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.08)_0%,transparent_70%)] pt-32 pb-20"
+    >
+        <div class="mx-auto max-w-5xl px-4 text-center">
+
+            <span class="mb-4 inline-block rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-emerald-700">
+                {% blocktranslate trimmed with service_title=page.title %}
+                    {{ service_title }} service
+                {% endblocktranslate %}
             </span>
-            <h1 class="mx-auto max-w-4xl text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight leading-[1.1] text-slate-900">
-                {% if "django" in page.slug %}
-                    Scalable Custom Software Built with Django
-                {% elif "data" and "engineering" in page.slug %}
-                    Enterprise Data Architecture & High-Performance Pipelines
-                {% elif "python" and "automation" in page.slug %}
-                    Python Automation for Smarter Business Operations
-                {% elif "api" and "integration" in page.slug %}
-                    Secure API Integrations to Connect Your Business Systems
-                {% endif %}
+
+            <h1 class="mx-auto max-w-4xl text-4xl font-semibold leading-[1.1] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+                {{ page.hero_title|default:page.title }}
             </h1>
-            {% if "django" in page.slug %}
-            <p class="max-w-3xl mx-auto mt-6 text-lg sm:text-xl text-slate-600 leading-relaxed">
-                Replace inefficient processes and legacy software with robust systems designed to automate your workflows, centralize your data, and scale alongside your business growth.
-            </p>
-            {% elif "data" and "engineering" in page.slug %}
-            <p class="max-w-3xl mx-auto mt-6 text-lg sm:text-xl text-slate-600 leading-relaxed">
-                We build fast, cost-effective data infrastructures using Google Cloud. Transform your scattered data silos into centralized, automated pipelines designed for real-time decision-making.
-            </p>
-            {% elif "python" and "automation" in page.slug %}
-            <p class="max-w-3xl mx-auto mt-6 text-lg sm:text-xl text-slate-600 leading-relaxed">
-                We build Python-powered automation solutions that reduce manual work, connect systems, and improve operational efficiency. From scheduled scripts and API integrations to automated reports and data workflows.
-            </p>
-            {% elif "api" and "integration" in page.slug %}
-            <p class="max-w-3xl mx-auto mt-6 text-lg sm:text-xl text-slate-600 leading-relaxed">
-                We design reliable, scalable API architectures that eliminate data silos, automate information exchange, and turn your fragmented applications into a unified technology ecosystem.
-            </p>
+
+            {% if page.hero_subtitle %}
+                <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-slate-600 sm:text-xl">
+                    {{ page.hero_subtitle }}
+                </p>
             {% endif %}
+
             <div class="mt-10">
-                <a href="#contact-cooltimedia" class="inline-flex items-center px-8 py-4 bg-slate-900 text-white font-bold rounded-xl hover:bg-emerald-600 transition-all transform hover:-translate-y-0.5 shadow-lg shadow-slate-900/10">
-                    Book a Discovery Call
-                    <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                <a
+                    href="#contact-cooltimedia"
+                    class="inline-flex items-center rounded-xl bg-slate-900 px-8 py-4 font-bold text-white shadow-lg shadow-slate-900/10 transition-all hover:-translate-y-0.5 hover:bg-blue-700"
+                >
+                    {% translate "Discuss a project" %}
+
+                    <svg
+                        class="ml-2 h-5 w-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M14 5l7 7m0 0l-7 7m7-7H3"
+                        ></path>
+                    </svg>
                 </a>
             </div>
+
         </div>
     </section>
 
-    <section class="py-16 bg-white">
-        <div class="max-w-4xl mx-auto px-4">
-            <div class="prose prose-slate lg:prose-xl max-w-none">
+
+    {# Wagtail body #}
+    {% if page.body %}
+    <section class="bg-white py-16">
+        <div class="mx-auto max-w-4xl px-4">
+            <div class="prose prose-slate max-w-none lg:prose-xl">
+
                 {% for block in page.body %}
-                    <div class="mb-8">
-                        {% if block.block_type == 'heading' %}
-                            <h2 class="text-2xl md:text-3xl font-bold mt-12 mb-6 text-slate-900 flex items-center">
-                                <span class="w-6 h-1 bg-emerald-500 mr-3 rounded-full"></span>
-                                {{ block.value }}
-                            </h2>
-                        {% elif block.block_type == 'paragraph' %}
-                            <div class="text-slate-600 leading-relaxed text-base sm:text-lg">
-                                {{ block.value }}
-                            </div>
 
-                        {% elif block.block_type == 'image' %}
-                            <figure class="my-10 w-full">
-                                {% image block.value width-1200 format-webp as webp_img %}
-                                <img src="{{ webp_img.url }}" 
-                                    alt="{{ block.value.caption|default:page.title }}"
-                                    class="w-full h-auto block rounded-2xl shadow-xl border border-slate-100" 
-                                    loading="lazy">
-                                {% if block.value.caption %}
-                                    <figcaption class="mt-3 text-center text-sm text-slate-500 italic">
-                                        {{ block.value.caption }}
-                                    </figcaption>
-                                {% endif %}
-                            </figure>
+                    {% if block.block_type == "heading" %}
+                        <h2 class="mt-12 mb-6 flex items-center text-2xl font-bold text-slate-900 md:text-3xl">
+                            <span
+                                class="mr-3 h-1 w-6 rounded-full bg-emerald-500"
+                                aria-hidden="true"
+                            ></span>
 
-                        {% elif block.block_type == 'code' %}
-                            <div class="my-8 rounded-xl overflow-hidden bg-slate-900 shadow-2xl">
-                                <div class="flex justify-between bg-slate-800/60 px-4 py-2.5 text-xs font-bold uppercase tracking-widest text-emerald-400 border-b border-slate-800">
-                                    <span>{{ block.value.language }}</span>
-                                    <span class="flex gap-1.5 items-center">
-                                        <span class="w-2 h-2 rounded-full bg-slate-700"></span>
-                                        <span class="w-2 h-2 rounded-full bg-slate-700"></span>
-                                        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                    </span>
+                            {{ block.value }}
+                        </h2>
+
+                    {% elif block.block_type == "paragraph" %}
+                        <div class="mb-8 text-base leading-relaxed text-slate-600 sm:text-lg">
+                            {{ block.value }}
+                        </div>
+
+                    {% elif block.block_type == "image" %}
+                        <figure class="mt-10 mb-2 w-full">
+                            {% image block.value width-1200 format-webp as service_image %}
+
+                            <img
+                                src="{{ service_image.url }}"
+                                width="{{ service_image.width }}"
+                                height="{{ service_image.height }}"
+                                alt="{{ block.value.title|default:page.title }}"
+                                class="block h-auto w-full rounded-2xl border border-slate-100 shadow-xl"
+                                loading="lazy"
+                            >
+                        </figure>
+
+                    {% elif block.block_type == "caption" %}
+                        <div class="mb-10 text-center text-sm italic leading-relaxed text-slate-500">
+                            {{ block.value }}
+                        </div>
+
+                    {% elif block.block_type == "cta" %}
+                        <aside class="my-12 rounded-2xl bg-slate-900 px-6 py-8 text-white sm:px-10">
+                            <div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+
+                                <div class="max-w-2xl">
+                                    <h2 class="text-2xl font-bold text-white">
+                                        {{ block.value.title }}
+                                    </h2>
+
+                                    {% if block.value.text %}
+                                        <p class="mt-3 text-base leading-relaxed text-slate-300">
+                                            {{ block.value.text }}
+                                        </p>
+                                    {% endif %}
                                 </div>
-                                <pre class="p-4 m-0 bg-slate-900"><code class="language-{{ block.value.language }}">{{ block.value.code }}</code></pre>
+
+                                <a
+                                    href="{{ block.value.button_url }}"
+                                    class="inline-flex shrink-0 items-center justify-center rounded-xl bg-blue-700 px-6 py-3 font-bold text-white transition-colors hover:bg-blue-800"
+                                >
+                                    {{ block.value.button_text }}
+
+                                    <span class="ml-2" aria-hidden="true">→</span>
+                                </a>
+
                             </div>
-                        {% endif %}
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-    </section>
+                        </aside>
 
-    <section class="py-16 bg-white">
-        <div class="max-w-4xl mx-auto px-4">
-            <div class="prose prose-slate lg:prose-xl max-w-none">
-                {% for block in page.body %}
-                    <div class="mb-8">
-                        {% if block.block_type == 'heading' %}
-                            <h2 class="text-2xl md:text-3xl font-bold mt-12 mb-6 text-slate-900 flex items-center">
-                                <span class="w-6 h-1 bg-emerald-500 mr-3 rounded-full"></span>
-                                {{ block.value }}
-                            </h2>
-                        {% elif block.block_type == 'paragraph' %}
-                            <div class="text-slate-600 leading-relaxed text-base sm:text-lg">
-                                {{ block.value }}
-                            </div>
+                    {% elif block.block_type == "code" %}
+                        <div class="my-8 overflow-hidden rounded-xl bg-slate-900 shadow-2xl">
 
-                        {% elif block.block_type == 'image' %}
-                            <figure class="mt-10 mb-2 w-full">
-                                {% image block.value width-1200 format-webp as webp_img %}
-                                <img src="{{ webp_img.url }}" 
-                                    alt="{{ page.title }}"
-                                    class="w-full h-auto block rounded-2xl shadow-xl border border-slate-100" 
-                                    loading="lazy">
-                            </figure>
+                            <div class="flex justify-between border-b border-slate-800 bg-slate-800/60 px-4 py-2.5 text-xs font-bold uppercase tracking-widest text-emerald-400">
 
-                        {% elif block.block_type == 'caption' %}
-                            {# Renderiza el bloque caption de forma independiente justo debajo de la imagen #}
-                            <div class="text-center text-sm text-slate-500 italic mt-[-1rem] mb-10 leading-relaxed">
-                                {{ block.value }}
+                                <span>{{ block.value.language }}</span>
+
+                                <span
+                                    class="flex items-center gap-1.5"
+                                    aria-hidden="true"
+                                >
+                                    <span class="h-2 w-2 rounded-full bg-slate-700"></span>
+                                    <span class="h-2 w-2 rounded-full bg-slate-700"></span>
+                                    <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+                                </span>
+
                             </div>
 
-                        {% elif block.block_type == 'code' %}
-                            <div class="my-8 rounded-xl overflow-hidden bg-slate-900 shadow-2xl">
-                                <div class="flex justify-between bg-slate-800/60 px-4 py-2.5 text-xs font-bold uppercase tracking-widest text-emerald-400 border-b border-slate-800">
-                                    <span>{{ block.value.language }}</span>
-                                    <span class="flex gap-1.5 items-center">
-                                        <span class="w-2 h-2 rounded-full bg-slate-700"></span>
-                                        <span class="w-2 h-2 rounded-full bg-slate-700"></span>
-                                        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                                    </span>
-                                </div>
-                                <pre class="p-4 m-0 bg-slate-900"><code class="language-{{ block.value.language }}">{{ block.value.code }}</code></pre>
-                            </div>
-                        {% endif %}
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-    </section>
+                            <pre class="m-0 bg-slate-900 p-4"><code class="language-{{ block.value.language }}">{{ block.value.code }}</code></pre>
+                        </div>
 
-
-
-    <section class="py-20 bg-slate-50 border-t border-b border-slate-100">
-        {% if "django" in page.slug %}
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-center text-2xl sm:text-3xl font-bold text-slate-900 mb-12">Common Industry Use Cases</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white p-6 rounded-xl border border-slate-200/50 shadow-sm">
-                    <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider">Healthcare</span>
-                    <h3 class="font-bold text-slate-900 mt-1 mb-2">Organizations</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">Patient management portals, HIPAA-compliant storage architectures, and secure medical reporting systems.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl border border-slate-200/50 shadow-sm">
-                    <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider">Marketing</span>
-                    <h3 class="font-bold text-slate-900 mt-1 mb-2">Agencies & Tech</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">Custom omni-channel campaign dashboards, performance logs, and deep API automation workers.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl border border-slate-200/50 shadow-sm">
-                    <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider">Education</span>
-                    <h3 class="font-bold text-slate-900 mt-1 mb-2">Institutions</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">Scalable learning management systems (LMS), digital tracing nodes, and unified student tracking portals.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl border border-slate-200/50 shadow-sm">
-                    <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider">Professional</span>
-                    <h3 class="font-bold text-slate-900 mt-1 mb-2">Services</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">Internal workflow automations, programmatic data sync bridges, and document compliance pipelines.</p>
-                </div>
-            </div>
-        </div>
-        {% elif "data" and "engineering" in page.slug %}
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-center text-2xl sm:text-3xl font-bold text-slate-900 mb-12">Data Frameworks Built Around Your Business Architecture</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white p-6 rounded-xl border border-slate-200/50 shadow-sm">
-                    <h3 class="font-bold text-emerald-600 mt-1 mb-2">E-Commerce Platforms</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">Centralizing Shopify/WooCommerce data, multi-channel marketing spend (Facebook/Google Ads), and inventory logs into a single BigQuery warehouse for unified ROI metrics.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl border border-slate-200/50 shadow-sm">
-                    <h3 class="font-bold text-emerald-600 mt-1 mb-2">B2B SaaS Companies</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">Building customer behavior telemetry pipelines and loading them into MotherDuck to feed internal product usage dashboards with ultra-low latency.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl border border-slate-200/50 shadow-sm">
-                    <h3 class="font-bold text-emerald-600 mt-1 mb-2">Fintech & Operations</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">Automating continuous transaction reconciliation pipelines, pulling data from multiple banking gateways, and cleaning it automatically before live auditing.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl border border-slate-200/50 shadow-sm">
-                    <h3 class="font-bold text-emerald-600 mt-1 mb-2">Unified Business Intelligence</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">Centralizing fragmented data from Marketing, CRM, and POS systems into a Single Source of Truth. We build automated data loops to reconcile sales, costs, and inventory, providing a 360-degree view of your entire business performance.</p>
-                </div>
-            </div>
-        </div>
-        {% elif "python" and "automation" in page.slug %}
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-center text-2xl sm:text-3xl font-bold text-slate-900 mb-12">Automation Solutions Built Around Your Business Processes</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white p-6 rounded-xl border border-slate-200/50 shadow-sm">
-                    <h3 class="font-bold text-emerald-600 mt-1 mb-2">Business Process Automation</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">Automate repetitive operational tasks such as data entry, report generation, notifications, approvals, and routine business workflows, allowing your team to focus on higher-value work.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl border border-slate-200/50 shadow-sm">
-                    <h3 class="font-bold text-emerald-600 mt-1 mb-2">API & System Integrations</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">Connect CRMs, ERPs, cloud applications, databases, marketing platforms, and third-party APIs to create seamless, automated data flows across your organization.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl border border-slate-200/50 shadow-sm">
-                    <h3 class="font-bold text-emerald-600 mt-1 mb-2">Reporting & Data Automation</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">Automatically collect, process, validate, and distribute business reports from multiple data sources, ensuring your teams always have accurate and up-to-date information.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl border border-slate-200/50 shadow-sm">
-                    <h3 class="font-bold text-emerald-600 mt-1 mb-2">File & Document Processing</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">Automate the handling of Excel, CSV, PDF, XML, and other business documents by validating, transforming, importing, and exporting data without manual intervention.</p>
-                </div>
-            </div>
-        </div>
-        {% elif "api" and "integration" in page.slug %}
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-center text-2xl sm:text-3xl font-bold text-slate-900 mb-12">Integration Solutions Built Around Your Technology Stack</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="bg-white p-6 rounded-xl border border-slate-200/50 shadow-sm">
-                    <h3 class="font-bold text-emerald-600 mt-1 mb-2">CRM & Sales Platforms</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">Connect Salesforce, HubSpot, Zoho CRM, Microsoft Dynamics, Pipedrive, and other customer management platforms with your business applications.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl border border-slate-200/50 shadow-sm">
-                    <h3 class="font-bold text-emerald-600 mt-1 mb-2">ERP & Business Systems</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">Synchronize financial, operational, inventory, and customer information across ERP systems and internal business platforms.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl border border-slate-200/50 shadow-sm">
-                    <h3 class="font-bold text-emerald-600 mt-1 mb-2">Marketing & Customer Platforms</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">Integrate Google Ads, Meta Ads, LinkedIn Ads, email marketing platforms, analytics tools, and customer engagement solutions.</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl border border-slate-200/50 shadow-sm">
-                    <h3 class="font-bold text-emerald-600 mt-1 mb-2">Custom Business Applications</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">Build secure integrations between proprietary software, cloud services, databases, mobile applications, and internal systems.</p>
-                </div>
-            </div>
-        </div>
-        
-        {% endif %}
-
-    </section>
-
-    <section class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4">
-            <h2 class="text-center text-2xl sm:text-3xl font-bold text-slate-900 mb-16">Our Structured Development Process</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-6 gap-6 relative">
-                <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
-                    <div class="text-xs font-bold text-emerald-600">01</div>
-                    <h3 class="font-bold text-slate-900 text-sm mt-1">Discovery Call</h3>
-                </div>
-                <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
-                    <div class="text-xs font-bold text-emerald-600">02</div>
-                    <h3 class="font-bold text-slate-900 text-sm mt-1">Requirements</h3>
-                </div>
-                <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
-                    <div class="text-xs font-bold text-emerald-600">03</div>
-                    <h3 class="font-bold text-slate-900 text-sm mt-1">Solution Design</h3>
-                </div>
-                <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
-                    <div class="text-xs font-bold text-emerald-600">04</div>
-                    <h3 class="font-bold text-slate-900 text-sm mt-1">Development</h3>
-                </div>
-                <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
-                    <div class="text-xs font-bold text-emerald-600">05</div>
-                    <h3 class="font-bold text-slate-900 text-sm mt-1">Testing & QA</h3>
-                </div>
-                <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
-                    <div class="text-xs font-bold text-emerald-600">06</div>
-                    <h3 class="font-bold text-slate-900 text-sm mt-1">Support</h3>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <section class="py-20 bg-slate-100 sm:py-24">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="mx-auto max-w-3xl text-center mb-16">
-                <h2 class="text-xs font-bold uppercase tracking-widest text-emerald-600 mb-4">Why Work With Cooltimedia?</h2>
-                <h3 class="text-center text-2xl sm:text-3xl font-bold text-slate-900 mb-4">
-                    Business-first technology solutions designed for long-term growth.
-                </h3>
-                <p class="mt-2 text-slate-600">We combine software engineering, data infrastructure, automation, and cloud technologies to help organizations build reliable systems that solve real business problems.</p>
-            </div>
-
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="group p-8 bg-white border border-slate-200 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                    <div class="w-12 h-12 mb-6 flex items-center justify-center bg-emerald-50 text-emerald-600 rounded-lg group-hover:bg-emerald-600 group-hover:text-white transition-colors">
-                        ↗
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Business-First Engineering</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">
-                        We start with your business goals, workflows, and operational challenges before recommending any technology.
-                    </p>
-                </div>
-                <div class="group p-8 bg-white border border-slate-200 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                    <div class="w-12 h-12 mb-6 flex items-center justify-center bg-emerald-50 text-emerald-600 rounded-lg group-hover:bg-emerald-600 group-hover:text-white transition-colors">
-                        ◎
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Vendor-Neutral Solutions</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">
-                        We design solutions around what fits your organization best, whether that means Google Cloud, Azure, AWS, MotherDuck, or other modern platforms.
-                    </p>
-                </div>
-                <div class="group p-8 bg-white border border-slate-200 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                    <div class="w-12 h-12 mb-6 flex items-center justify-center bg-emerald-50 text-emerald-600 rounded-lg group-hover:bg-emerald-600 group-hover:text-white transition-colors">
-                        ⚙
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">End-to-End Delivery</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">
-                        From architecture and development to integration, automation, deployment, and support, we help you move from idea to production.
-                    </p>
-                </div>
-                <div class="group p-8 bg-white border border-slate-200 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                    <div class="w-12 h-12 mb-6 flex items-center justify-center bg-emerald-50 text-emerald-600 rounded-lg group-hover:bg-emerald-600 group-hover:text-white transition-colors">
-                        ✓
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-900 mb-3">Built for Growth</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">
-                        We create scalable, maintainable systems that can evolve as your data, users, integrations, and business needs grow.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <section class="py-20 bg-slate-50 border-t border-slate-100">
-        <div class="max-w-4xl mx-auto px-4">
-            <h2 class="text-center text-2xl sm:text-3xl font-bold text-slate-900 mb-12">Frequently Asked Questions</h2>
-            <div class="space-y-4">
-                
-                {% if "django" in page.slug %}
-                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
-                        <h3 class="font-bold text-slate-900 text-base">How long does a custom {{ page.title }} project take?</h3>
-                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Most projects take between 4 and 16 weeks depending on operational architecture complexity, scope of workflows, and target enterprise API endpoints.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
-                        <h3 class="font-bold text-slate-900 text-base">Do you provide ongoing technical maintenance?</h3>
-                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Yes, we deliver long-term support plans covering proactive runtime monitoring, server patch operations, package bumps, and iterative scale testing.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
-                        <h3 class="font-bold text-slate-900 text-base">Can you integrate with our legacy software database?</h3>
-                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Absolutely. Python infrastructures excel at programmatic connectivity. We consistently wrap legacy databases into micro-service layers using secure REST API practices.</p>
-                    </div>
-                {% elif "data" in page.slug and "engineering" in page.slug %}
-                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
-                        <h3 class="font-bold text-slate-900 text-base">What is MotherDuck and why do you use it instead of traditional data warehouses?</h3>
-                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">MotherDuck extends DuckDB into the cloud. It is a highly optimized columnar database designed for analytical queries that allows us to process millions of rows in milliseconds. We use it because it eliminates the massive infrastructure overhead, compute management, and excessive costs associated with platforms like Snowflake or Redshift for medium-sized data operations.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
-                        <h3 class="font-bold text-slate-900 text-base">Can you connect data from tools like HubSpot, Salesforce, or custom proprietary APIs?</h3>
-                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Yes. We specialize in building custom ETL/ELT pipelines and ingestion workers to pull data from any system that exposes a REST or GraphQL API, centralizing everything into your secure cloud data warehouse.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
-                        <h3 class="font-bold text-slate-900 text-base">How do you guarantee the data in our live reporting dashboards is accurate?</h3>
-                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">We implement automated data quality and validation steps directly inside our transformation pipelines. If a source API sends corrupted, duplicated, or missing values, the pipeline isolates the bad records and alerts us immediately, preventing broken metrics from polluting your live production reports.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
-                        <h3 class="font-bold text-slate-900 text-base">We have multiple web platforms running, but no clear view of our overall operations. Can you help us see the big picture?</h3>
-                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">This is where Data Engineering delivers the highest value. We connect your isolated websites, CRMs, and operational tools into a single warehouse. This allows you to track cause-and-effect across your entire business—such as how a specific digital platform update directly impacts customer retention or inventory levels.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
-                        <h3 class="font-bold text-slate-900 text-base">Do you build the visual dashboards, or do you only handle the backend data pipelines?</h3>
-                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">We engineer the entire pipeline, from raw data extraction to the final visual layer. Once your data is centralized and cleaned in BigQuery or MotherDuck, we connect it to modern Business Intelligence tools (like Looker Studio or Power BI) to deliver clean, interactive, and automated dashboards for your executive team.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
-                        <h3 class="font-bold text-slate-900 text-base">Our operational data contains sensitive customer and financial information. How do you ensure it remains secure during transit?</h3>
-                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Security is built into every pipeline we design. We utilize enterprise-grade encryption (SSL/TLS) for data in transit, implement strict API authentication protocols, and apply Role-Based Access Control (RBAC) within the data warehouse to ensure sensitive information is only accessible to authorized team members.</p>
-                    </div>
-                {% elif "python" in page.slug and "automation" in page.slug %}
-                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
-                        <h3 class="font-bold text-slate-900 text-base">What types of tasks can be automated with Python?</h3>
-                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Python can automate data processing, API integrations, reports, file handling, web tasks, scheduled workflows, database updates, notifications, and many other repetitive business processes.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
-                        <h3 class="font-bold text-slate-900 text-base">Do you build one-time scripts or long-term automation systems?</h3>
-                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">We can support both, but our main focus is building reliable automation workflows that are structured, documented, monitored, and ready to grow with your business.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
-                        <h3 class="font-bold text-slate-900 text-base">Can Python automation connect with existing business tools?</h3>
-                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Yes. We regularly work with APIs, databases, cloud platforms, spreadsheets, advertising platforms, CRMs, and internal systems to connect and automate business workflows.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
-                        <h3 class="font-bold text-slate-900 text-base">Can automated workflows run on a schedule?</h3>
-                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Yes. Workflows can run daily, weekly, monthly, or based on specific events using cloud services, cron jobs, serverless functions, or other scheduling options.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
-                        <h3 class="font-bold text-slate-900 text-base">Do you provide monitoring and support?</h3>
-                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Yes. We can include logging, alerts, error handling, and ongoing support to help ensure your automation continues running reliably.</p>
-                    </div>
-                {% elif "api" in page.slug and "integration" in page.slug %}
-                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
-                        <h3 class="font-bold text-slate-900 text-base">Can you integrate with our existing software?</h3>
-                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Yes. We build integrations for CRMs, ERPs, cloud platforms, marketing tools, databases, payment gateways, and custom business applications using modern APIs and industry standards.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
-                        <h3 class="font-bold text-slate-900 text-base">Do you develop custom APIs?</h3>
-                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Absolutely. We design and develop RESTful APIs that allow your applications to communicate securely and efficiently with internal systems and third-party services.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
-                        <h3 class="font-bold text-slate-900 text-base">Can integrations run automatically?</h3>
-                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Yes. Integrations can operate in real time, on scheduled intervals, or through event-driven architectures depending on your business requirements.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
-                        <h3 class="font-bold text-slate-900 text-base">How do you ensure data security?</h3>
-                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">We implement secure authentication, encryption, validation, logging, and access controls following modern API security best practices.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl border border-slate-200/60 shadow-sm">
-                        <h3 class="font-bold text-slate-900 text-base">Do you monitor integrations after deployment?</h3>
-                        <p class="mt-2 text-sm text-slate-600 leading-relaxed">Yes. We can implement monitoring, alerts, logging, and ongoing support to ensure your integrations remain reliable as external platforms evolve.</p>
-                    </div>
-                {% endif %}
-
-            </div>
-        </div>
-    </section>
-
-
-    {% if page.author %}
-    <section class="max-w-4xl mx-auto px-4 py-12">
-        <div class="bg-slate-50 rounded-2xl p-8 flex flex-col md:flex-row items-center gap-6">
-            {% if page.author.image %}
-                {% image page.author.image fill-200x200 format-webp as author_img %}
-                <img src="{{ author_img.url }}" alt="{{ page.author.name }}" class="w-24 h-24 rounded-full object-cover shadow-sm">
-            {% endif %}
-            
-            <div class="text-center md:text-left">
-                <h3 class="text-xl font-bold text-slate-900">{{ page.author.name }}</h3>
-                <p class="text-emerald-600 font-medium text-sm mb-2">{{ page.author.job_title }}</p>
-                <p class="text-slate-600 leading-relaxed text-sm mb-4">{{ page.author.bio }}</p>
-                
-                <div class="flex justify-center md:justify-start gap-4">
-                    {% if page.author.linkedin_url %}
-                        <a href="{{ page.author.linkedin_url }}" class="text-slate-400 hover:text-[#0077b5] transition-colors" target="_blank" rel="noopener">
-                            <span class="sr-only">LinkedIn</span>
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                        </a>
                     {% endif %}
-                </div>
+
+                {% endfor %}
+
             </div>
         </div>
     </section>
     {% endif %}
 
-    <section class="py-24 bg-slate-900 text-white scroll-mt-24" id="contact-cooltimedia">
-      <div class="max-w-4xl mx-auto px-4 text-center">
-        <span class="text-emerald-400 font-bold uppercase tracking-widest text-sm">Ready to start?</span>
-        <h2 class="mt-6 text-4xl md:text-5xl font-bold tracking-tight">Let’s Engineer Your Next <span class="text-emerald-500">Success Story.</span></h2>
-        <p class="mt-8 text-xl text-slate-300 leading-relaxed">Whether you need to untangle complex data or build a high-performance web platform, I'm ready to help. No complex forms, just a direct conversation about your business goals.</p>
-        <div class="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6">
-          <a href="https://wa.me/+50767590424" target="_blank" class="w-full sm:w-auto flex items-center justify-center gap-3 bg-green-600 hover:bg-green-500 text-white font-bold py-4 px-8 rounded-xl transition-all shadow-lg transform hover:-translate-y-1"><span>Let's talk on WhatsApp</span></a>
-          <a href="mailto:jair@cooltimedia.com" class="w-full sm:w-auto flex items-center justify-center gap-3 bg-slate-800 border border-slate-700 hover:bg-slate-700 text-white font-bold py-4 px-8 rounded-xl transition-all transform hover:-translate-y-1"><span>Send me an Email</span></a>
+
+    {# Service-specific use cases #}
+    {% if page.service_type %}
+    <section class="border-y border-slate-100 bg-slate-50 py-20">
+        <div class="mx-auto max-w-7xl px-4">
+
+            {% if page.service_type == "django" %}
+
+                <h2 class="mb-12 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+                    {% translate "Custom platforms for critical business operations" %}
+                </h2>
+
+                <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+
+                    <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
+                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">
+                            {% translate "Operations" %}
+                        </span>
+
+                        <h3 class="mt-1 mb-2 font-bold text-slate-900">
+                            {% translate "Internal platforms" %}
+                        </h3>
+
+                        <p class="text-sm leading-relaxed text-slate-600">
+                            {% translate "Custom platforms that centralize workflows, permissions, documents, and operational information." %}
+                        </p>
+                    </article>
+
+                    <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
+                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">
+                            {% translate "Commercial" %}
+                        </span>
+
+                        <h3 class="mt-1 mb-2 font-bold text-slate-900">
+                            {% translate "Customer and partner portals" %}
+                        </h3>
+
+                        <p class="text-sm leading-relaxed text-slate-600">
+                            {% translate "Secure portals for quotations, orders, customers, suppliers, and specialized business processes." %}
+                        </p>
+                    </article>
+
+                    <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
+                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">
+                            {% translate "Integration" %}
+                        </span>
+
+                        <h3 class="mt-1 mb-2 font-bold text-slate-900">
+                            {% translate "Connected applications" %}
+                        </h3>
+
+                        <p class="text-sm leading-relaxed text-slate-600">
+                            {% translate "Web applications that connect existing databases, APIs, cloud services, and legacy systems." %}
+                        </p>
+                    </article>
+
+                    <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
+                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">
+                            {% translate "Growth" %}
+                        </span>
+
+                        <h3 class="mt-1 mb-2 font-bold text-slate-900">
+                            {% translate "Scalable foundations" %}
+                        </h3>
+
+                        <p class="text-sm leading-relaxed text-slate-600">
+                            {% translate "Maintainable Django architectures designed to evolve as users, data, and operational requirements grow." %}
+                        </p>
+                    </article>
+
+                </div>
+
+
+            {% elif page.service_type == "data_engineering" %}
+
+                <h2 class="mb-12 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+                    {% translate "Data systems designed around your business decisions" %}
+                </h2>
+
+                <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+
+                    <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
+                        <h3 class="mb-2 font-bold text-emerald-700">
+                            {% translate "Data pipelines" %}
+                        </h3>
+
+                        <p class="text-sm leading-relaxed text-slate-600">
+                            {% translate "Automated extraction, transformation, validation, and delivery of data from multiple operational sources." %}
+                        </p>
+                    </article>
+
+                    <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
+                        <h3 class="mb-2 font-bold text-emerald-700">
+                            {% translate "Centralized information" %}
+                        </h3>
+
+                        <p class="text-sm leading-relaxed text-slate-600">
+                            {% translate "Reliable data warehouses that consolidate fragmented information into a controlled source of truth." %}
+                        </p>
+                    </article>
+
+                    <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
+                        <h3 class="mb-2 font-bold text-emerald-700">
+                            {% translate "Data quality" %}
+                        </h3>
+
+                        <p class="text-sm leading-relaxed text-slate-600">
+                            {% translate "Validation and monitoring processes that identify missing, duplicated, inconsistent, or corrupted information." %}
+                        </p>
+                    </article>
+
+                    <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
+                        <h3 class="mb-2 font-bold text-emerald-700">
+                            {% translate "Business intelligence" %}
+                        </h3>
+
+                        <p class="text-sm leading-relaxed text-slate-600">
+                            {% translate "Prepared and documented data models for dependable dashboards, operational reports, and strategic analysis." %}
+                        </p>
+                    </article>
+
+                </div>
+
+
+            {% elif page.service_type == "python_automation" %}
+
+                <h2 class="mb-12 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+                    {% translate "Automation designed around your operational bottlenecks" %}
+                </h2>
+
+                <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+
+                    <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
+                        <h3 class="mb-2 font-bold text-emerald-700">
+                            {% translate "Process automation" %}
+                        </h3>
+
+                        <p class="text-sm leading-relaxed text-slate-600">
+                            {% translate "Automation for repetitive tasks, approvals, notifications, reconciliations, and recurring operational workflows." %}
+                        </p>
+                    </article>
+
+                    <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
+                        <h3 class="mb-2 font-bold text-emerald-700">
+                            {% translate "Reporting automation" %}
+                        </h3>
+
+                        <p class="text-sm leading-relaxed text-slate-600">
+                            {% translate "Scheduled collection, validation, generation, and distribution of recurring business reports." %}
+                        </p>
+                    </article>
+
+                    <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
+                        <h3 class="mb-2 font-bold text-emerald-700">
+                            {% translate "Document processing" %}
+                        </h3>
+
+                        <p class="text-sm leading-relaxed text-slate-600">
+                            {% translate "Reliable processing of Excel, CSV, PDF, XML, and other structured business documents." %}
+                        </p>
+                    </article>
+
+                    <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
+                        <h3 class="mb-2 font-bold text-emerald-700">
+                            {% translate "Scheduled workflows" %}
+                        </h3>
+
+                        <p class="text-sm leading-relaxed text-slate-600">
+                            {% translate "Monitored Python workflows that run on a schedule or respond automatically to specific business events." %}
+                        </p>
+                    </article>
+
+                </div>
+
+
+            {% elif page.service_type == "api_integration" %}
+
+                <h2 class="mb-12 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+                    {% translate "Integrations that connect your technology ecosystem" %}
+                </h2>
+
+                <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+
+                    <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
+                        <h3 class="mb-2 font-bold text-emerald-700">
+                            {% translate "CRM and sales platforms" %}
+                        </h3>
+
+                        <p class="text-sm leading-relaxed text-slate-600">
+                            {% translate "Secure synchronization between customer platforms, sales tools, and internal applications." %}
+                        </p>
+                    </article>
+
+                    <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
+                        <h3 class="mb-2 font-bold text-emerald-700">
+                            {% translate "ERP and business systems" %}
+                        </h3>
+
+                        <p class="text-sm leading-relaxed text-slate-600">
+                            {% translate "Controlled exchange of financial, operational, inventory, and customer information." %}
+                        </p>
+                    </article>
+
+                    <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
+                        <h3 class="mb-2 font-bold text-emerald-700">
+                            {% translate "Marketing platforms" %}
+                        </h3>
+
+                        <p class="text-sm leading-relaxed text-slate-600">
+                            {% translate "Connections between advertising, analytics, email, customer engagement, and reporting platforms." %}
+                        </p>
+                    </article>
+
+                    <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
+                        <h3 class="mb-2 font-bold text-emerald-700">
+                            {% translate "Custom APIs" %}
+                        </h3>
+
+                        <p class="text-sm leading-relaxed text-slate-600">
+                            {% translate "Purpose-built APIs that allow proprietary applications and external services to communicate securely." %}
+                        </p>
+                    </article>
+
+                </div>
+
+            {% endif %}
+
         </div>
-      </div>
+    </section>
+    {% endif %}
+
+
+    {# Development process #}
+    <section class="bg-white py-20">
+        <div class="mx-auto max-w-7xl px-4">
+
+            <h2 class="mb-16 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+                {% translate "A structured development process" %}
+            </h2>
+
+            <div class="relative grid grid-cols-1 gap-6 sm:grid-cols-3 lg:grid-cols-6">
+
+                <div class="rounded-xl border border-slate-100 bg-slate-50 p-4">
+                    <div class="text-xs font-bold text-emerald-600">01</div>
+                    <h3 class="mt-1 text-sm font-bold text-slate-900">
+                        {% translate "Discovery and fit" %}
+                    </h3>
+                </div>
+
+                <div class="rounded-xl border border-slate-100 bg-slate-50 p-4">
+                    <div class="text-xs font-bold text-emerald-600">02</div>
+                    <h3 class="mt-1 text-sm font-bold text-slate-900">
+                        {% translate "Requirements" %}
+                    </h3>
+                </div>
+
+                <div class="rounded-xl border border-slate-100 bg-slate-50 p-4">
+                    <div class="text-xs font-bold text-emerald-600">03</div>
+                    <h3 class="mt-1 text-sm font-bold text-slate-900">
+                        {% translate "Solution design" %}
+                    </h3>
+                </div>
+
+                <div class="rounded-xl border border-slate-100 bg-slate-50 p-4">
+                    <div class="text-xs font-bold text-emerald-600">04</div>
+                    <h3 class="mt-1 text-sm font-bold text-slate-900">
+                        {% translate "Development" %}
+                    </h3>
+                </div>
+
+                <div class="rounded-xl border border-slate-100 bg-slate-50 p-4">
+                    <div class="text-xs font-bold text-emerald-600">05</div>
+                    <h3 class="mt-1 text-sm font-bold text-slate-900">
+                        {% translate "Testing and QA" %}
+                    </h3>
+                </div>
+
+                <div class="rounded-xl border border-slate-100 bg-slate-50 p-4">
+                    <div class="text-xs font-bold text-emerald-600">06</div>
+                    <h3 class="mt-1 text-sm font-bold text-slate-900">
+                        {% translate "Deployment and support" %}
+                    </h3>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    {# Independent specialist positioning #}
+    <section class="bg-slate-100 py-20 sm:py-24">
+        <div class="mx-auto max-w-7xl px-4">
+
+            <div class="mx-auto mb-16 max-w-3xl text-center">
+
+                <p class="mb-4 text-xs font-bold uppercase tracking-widest text-emerald-700">
+                    {% translate "Why work with me?" %}
+                </p>
+
+                <h2 class="text-2xl font-bold text-slate-900 sm:text-3xl">
+                    {% translate "Independent by design. Focused on measurable business outcomes." %}
+                </h2>
+
+                <p class="mt-4 leading-relaxed text-slate-600">
+                    {% translate "I combine software engineering, data infrastructure, automation, and cloud technologies to solve specific operational problems and build reliable systems." %}
+                </p>
+
+            </div>
+
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+
+                <article class="group rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+                    <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-50 text-emerald-600 transition-colors group-hover:bg-emerald-600 group-hover:text-white">
+                        <span aria-hidden="true">↗</span>
+                    </div>
+
+                    <h3 class="mb-3 text-xl font-bold text-slate-900">
+                        {% translate "Business-first engineering" %}
+                    </h3>
+
+                    <p class="text-sm leading-relaxed text-slate-600">
+                        {% translate "I begin with your goals, workflows, and operational constraints before recommending technology." %}
+                    </p>
+                </article>
+
+                <article class="group rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+                    <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-50 text-emerald-600 transition-colors group-hover:bg-emerald-600 group-hover:text-white">
+                        <span aria-hidden="true">◎</span>
+                    </div>
+
+                    <h3 class="mb-3 text-xl font-bold text-slate-900">
+                        {% translate "Vendor-neutral solutions" %}
+                    </h3>
+
+                    <p class="text-sm leading-relaxed text-slate-600">
+                        {% translate "I select technologies according to the problem, existing systems, budget, and long-term maintenance needs." %}
+                    </p>
+                </article>
+
+                <article class="group rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+                    <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-50 text-emerald-600 transition-colors group-hover:bg-emerald-600 group-hover:text-white">
+                        <span aria-hidden="true">⚙</span>
+                    </div>
+
+                    <h3 class="mb-3 text-xl font-bold text-slate-900">
+                        {% translate "Direct collaboration" %}
+                    </h3>
+
+                    <p class="text-sm leading-relaxed text-slate-600">
+                        {% translate "You work directly with the specialist designing and developing your solution, without unnecessary layers." %}
+                    </p>
+                </article>
+
+                <article class="group rounded-2xl border border-slate-200 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+                    <div class="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-50 text-emerald-600 transition-colors group-hover:bg-emerald-600 group-hover:text-white">
+                        <span aria-hidden="true">✓</span>
+                    </div>
+
+                    <h3 class="mb-3 text-xl font-bold text-slate-900">
+                        {% translate "Built for growth" %}
+                    </h3>
+
+                    <p class="text-sm leading-relaxed text-slate-600">
+                        {% translate "I create maintainable systems that can evolve as your users, data, integrations, and operational needs grow." %}
+                    </p>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+
+    {# FAQ rendered from Wagtail and reused by JSON-LD #}
+    {% if page.faq_items %}
+    <section
+        class="border-t border-slate-100 bg-slate-50 py-20"
+        aria-labelledby="service-faq-title"
+    >
+        <div class="mx-auto max-w-4xl px-4">
+
+            <h2
+                id="service-faq-title"
+                class="mb-12 text-center text-2xl font-bold text-slate-900 sm:text-3xl"
+            >
+                {% translate "Frequently asked questions" %}
+            </h2>
+
+            <div class="space-y-4">
+
+                {% for faq in page.faq_items %}
+                    <article class="rounded-xl border border-slate-200/60 bg-white p-6 shadow-sm">
+
+                        <h3 class="text-base font-bold text-slate-900">
+                            {{ faq.question }}
+                        </h3>
+
+                        <div class="prose prose-slate mt-2 max-w-none text-sm leading-relaxed text-slate-600">
+                            {{ faq.answer }}
+                        </div>
+
+                    </article>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+
+    {# Contact #}
+    <section
+        class="scroll-mt-24 bg-slate-900 py-24 text-white"
+        id="contact-cooltimedia"
+    >
+        <div class="mx-auto max-w-4xl px-4 text-center">
+
+            <p class="text-sm font-bold uppercase tracking-widest text-emerald-400">
+                {% translate "Ready to start?" %}
+            </p>
+
+            <h2 class="mt-6 text-4xl font-bold tracking-tight md:text-5xl">
+                {% translate "Let’s discuss the challenge you need to solve." %}
+            </h2>
+
+            <p class="mt-8 text-xl leading-relaxed text-slate-300">
+                {% translate "Whether you need to remove a small productivity bottleneck or develop a larger operational platform, I can help you define a practical next step." %}
+            </p>
+
+            <div class="mt-12 flex flex-col items-center justify-center gap-6 sm:flex-row">
+
+                <a
+                    href="https://wa.me/50767590424"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="flex w-full items-center justify-center gap-3 rounded-xl bg-green-600 px-8 py-4 font-bold text-white shadow-lg transition-all hover:-translate-y-1 hover:bg-green-700 sm:w-auto"
+                >
+                    {% translate "Let’s talk on WhatsApp" %}
+                </a>
+
+                <a
+                    href="mailto:jair@cooltimedia.com"
+                    class="flex w-full items-center justify-center gap-3 rounded-xl border border-slate-600 bg-slate-800 px-8 py-4 font-bold text-white transition-all hover:-translate-y-1 hover:bg-slate-700 sm:w-auto"
+                >
+                    {% translate "Send me an email" %}
+                </a>
+
+            </div>
+        </div>
     </section>
 
 </div>
 {% endblock content %}
+
 
 {% block extra_js %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>

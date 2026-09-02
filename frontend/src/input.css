@@ -1,4 +1,12 @@
 @import "tailwindcss";
 @import "./components.css";
+
 @config "../tailwind.config.js";
 
+@source inline("peer");
+@source inline("sr-only");
+@source inline("peer-checked:border-emerald-500");
+@source inline("peer-checked:bg-emerald-50/30");
+@source inline("focus:ring-emerald-500");
+@source inline("focus:border-emerald-700");
+@source inline("focus:ring-emerald-500/20");

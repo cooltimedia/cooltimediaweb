@@ -197,6 +197,7 @@ class SolutionsPage(Page):
 
 class ServicesPage(Page):
     """Main services index page."""
+
     template = "home/services/services_page.html"
 
     description = RichTextField(blank=True)
@@ -208,57 +209,172 @@ class ServicesPage(Page):
     parent_page_types = ["home.HomePage"]
     subpage_types = ["home.ServicePage"]
 
-    max_count = 1
+    # Permite una página Services debajo de cada Home localizada.
+    max_count_per_parent = 1
+
 
 class ServicePage(Page):
     """Individual service landing page."""
 
     template = "home/services/service_page.html"
 
-    hero_subtitle = models.TextField(blank=True)
+    SERVICE_TYPE_CHOICES = [
+        ("django", "Django Development"),
+        ("data_engineering", "Data Engineering"),
+        ("python_automation", "Python Automation"),
+        ("api_integration", "API Integration"),
+    ]
 
-    body = StreamField([
-        ("heading", blocks.CharBlock(form_class="title", label="Heading")),
-        ("paragraph", blocks.RichTextBlock(label="Paragraph text")),
-        ("image", ImageChooserBlock(label="Image")),
+    service_type = models.CharField(
+        max_length=32,
+        choices=SERVICE_TYPE_CHOICES,
+        blank=True,
+        verbose_name="Service type",
+        help_text=(
+            "Technical identifier used to select the appropriate "
+            "template sections. It should be the same in every language."
+        ),
+    )
 
-        ("caption", blocks.RichTextBlock(
-            label="Caption / Image credit",
-            required=False,
-            features=["bold", "italic", "link"],
-        )),
+    hero_title = models.CharField(
+        max_length=180,
+        blank=True,
+        verbose_name="Hero title",
+        help_text=(
+            "Main heading displayed in the hero. "
+            "Leave blank to use the page title."
+        ),
+    )
 
-        ("cta", blocks.StructBlock([
-            ("title", blocks.CharBlock(label="CTA Title")),
-            ("text", blocks.TextBlock(label="CTA Text", required=False)),
-            ("button_text", blocks.CharBlock(label="Button Text")),
-            ("button_url", blocks.URLBlock(label="Button URL")),
-        ], label="Call to Action", icon="plus-inverse")),
+    hero_subtitle = models.TextField(
+        blank=True,
+        verbose_name="Hero subtitle",
+    )
 
-        ("faq", blocks.StructBlock([
-            ("question", blocks.CharBlock(label="Question")),
-            ("answer", blocks.RichTextBlock(label="Answer")),
-        ], label="FAQ", icon="help")),
-
-        ("code", blocks.StructBlock([
-            ("language", blocks.ChoiceBlock(choices=[
-                ("python", "Python"),
-                ("javascript", "JavaScript"),
-                ("html", "HTML/Django Template"),
-                ("bash", "Bash/Terminal"),
-                ("yaml", "YAML/Docker"),
-            ], label="Programming Language")),
-            ("code", blocks.TextBlock(label="Code snippet")),
-        ], label="Code Block", icon="code")),
-    ], use_json_field=True, blank=True)
+    body = StreamField(
+        [
+            (
+                "heading",
+                blocks.CharBlock(
+                    form_class="title",
+                    label="Heading",
+                ),
+            ),
+            (
+                "paragraph",
+                blocks.RichTextBlock(
+                    label="Paragraph text",
+                ),
+            ),
+            (
+                "image",
+                ImageChooserBlock(
+                    label="Image",
+                ),
+            ),
+            (
+                "caption",
+                blocks.RichTextBlock(
+                    label="Caption / Image credit",
+                    required=False,
+                    features=["bold", "italic", "link"],
+                ),
+            ),
+            (
+                "cta",
+                blocks.StructBlock(
+                    [
+                        (
+                            "title",
+                            blocks.CharBlock(label="CTA Title"),
+                        ),
+                        (
+                            "text",
+                            blocks.TextBlock(
+                                label="CTA Text",
+                                required=False,
+                            ),
+                        ),
+                        (
+                            "button_text",
+                            blocks.CharBlock(label="Button Text"),
+                        ),
+                        (
+                            "button_url",
+                            blocks.URLBlock(label="Button URL"),
+                        ),
+                    ],
+                    label="Call to Action",
+                    icon="plus-inverse",
+                ),
+            ),
+            (
+                "faq",
+                blocks.StructBlock(
+                    [
+                        (
+                            "question",
+                            blocks.CharBlock(label="Question"),
+                        ),
+                        (
+                            "answer",
+                            blocks.RichTextBlock(label="Answer"),
+                        ),
+                    ],
+                    label="FAQ",
+                    icon="help",
+                ),
+            ),
+            (
+                "code",
+                blocks.StructBlock(
+                    [
+                        (
+                            "language",
+                            blocks.ChoiceBlock(
+                                choices=[
+                                    ("python", "Python"),
+                                    ("javascript", "JavaScript"),
+                                    ("html", "HTML/Django Template"),
+                                    ("bash", "Bash/Terminal"),
+                                    ("yaml", "YAML/Docker"),
+                                ],
+                                label="Programming Language",
+                            ),
+                        ),
+                        (
+                            "code",
+                            blocks.TextBlock(label="Code snippet"),
+                        ),
+                    ],
+                    label="Code Block",
+                    icon="code",
+                ),
+            ),
+        ],
+        use_json_field=True,
+        blank=True,
+    )
 
     content_panels = Page.content_panels + [
+        FieldPanel("service_type"),
+        FieldPanel("hero_title"),
         FieldPanel("hero_subtitle"),
         FieldPanel("body"),
     ]
 
     parent_page_types = ["home.ServicesPage"]
     subpage_types = []
+
+    @property
+    def faq_items(self):
+        """Return FAQ values for visible content and structured data."""
+
+        return [
+            block.value
+            for block in self.body
+            if block.block_type == "faq"
+        ]
 
 class SmartQueueMVPPage(Page):
     """Page to detail individual solutions (Smart Queue MVP)"""
