@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-01 19:22-0500\n"
+"POT-Creation-Date: 2026-09-03 09:17-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,21 +37,34 @@ msgstr "Redes Sociales"
 msgid " All rights reserved"
 msgstr "Todos los derechos reservados"
 
-#: app/templates/includes/top_menu.html:32
-msgid "Main navigation"
-msgstr "Navegación principal"
+#: app/templates/includes/top_menu.html:5
+msgid "Open navigation"
+msgstr "Abrir navegación"
 
-#: app/templates/includes/top_menu.html:47
+#: app/templates/includes/top_menu.html:6
+msgid "Close navigation"
+msgstr "Cerrar navegación"
+
+#: app/templates/includes/top_menu.html:33
+msgid "Main navigation"
+msgstr "Navegación"
+
+#: app/templates/includes/top_menu.html:48
+#: app/templates/includes/top_menu.html:159
 msgid "Contact"
 msgstr "Contacto"
 
-#: app/templates/includes/top_menu.html:64
+#: app/templates/includes/top_menu.html:65
 msgid "Switch to Spanish"
 msgstr "Cambiar a español"
 
-#: app/templates/includes/top_menu.html:76
+#: app/templates/includes/top_menu.html:77
 msgid "Switch to English"
 msgstr "Cambiar a inglés"
+
+#: app/templates/includes/top_menu.html:142
+msgid "Mobile navigation"
+msgstr "Navegación móvil"
 
 #: blog/templates/blog/blog_index_page.html:12
 msgid "Explore our"
@@ -486,7 +499,7 @@ msgstr "Ver mi perfil en LinkedIn"
 
 #: home/templates/home/home_page.html:599
 #: home/templates/home/services/service_page.html:634
-#: home/templates/home/services/services_page.html:277
+#: home/templates/home/services/services_page.html:316
 msgid "Ready to start?"
 msgstr "¿Listo para comenzar?"
 
@@ -853,12 +866,12 @@ msgid "Frequently asked questions"
 msgstr "Preguntas frecuentes"
 
 #: home/templates/home/services/service_page.html:638
-#: home/templates/home/services/services_page.html:281
+#: home/templates/home/services/services_page.html:320
 msgid "Let’s discuss the challenge you need to solve."
 msgstr "Conversemos sobre el reto que necesitas resolver."
 
 #: home/templates/home/services/service_page.html:642
-#: home/templates/home/services/services_page.html:285
+#: home/templates/home/services/services_page.html:324
 msgid ""
 "Whether you need to remove a small productivity bottleneck or develop a "
 "larger operational platform, I can help you define a practical next step."
@@ -868,12 +881,12 @@ msgstr ""
 "definir un próximo paso práctico."
 
 #: home/templates/home/services/service_page.html:653
-#: home/templates/home/services/services_page.html:305
+#: home/templates/home/services/services_page.html:344
 msgid "Let’s talk on WhatsApp"
 msgstr "Conversemos por WhatsApp"
 
 #: home/templates/home/services/service_page.html:660
-#: home/templates/home/services/services_page.html:327
+#: home/templates/home/services/services_page.html:366
 msgid "Send me an email"
 msgstr "Contactar por correo"
 
@@ -889,28 +902,28 @@ msgstr ""
 msgid "Available services"
 msgstr "Servicios disponibles"
 
-#: home/templates/home/services/services_page.html:196
+#: home/templates/home/services/services_page.html:235
 #, python-format
 msgid "View details about %(service_title)s"
 msgstr "Ver detalles sobre %(service_title)s"
 
-#: home/templates/home/services/services_page.html:206
+#: home/templates/home/services/services_page.html:245
 msgid "View service"
 msgstr "Ver servicio"
 
-#: home/templates/home/services/services_page.html:231
+#: home/templates/home/services/services_page.html:270
 msgid "No services have been published yet."
 msgstr "Aún no se han publicado servicios."
 
-#: home/templates/home/services/services_page.html:250
+#: home/templates/home/services/services_page.html:289
 msgid "Flexible collaboration"
 msgstr "Colaboración flexible"
 
-#: home/templates/home/services/services_page.html:254
+#: home/templates/home/services/services_page.html:293
 msgid "Focused improvements or larger engineering projects."
 msgstr "Mejoras puntuales o proyectos de ingeniería de mayor alcance."
 
-#: home/templates/home/services/services_page.html:260
+#: home/templates/home/services/services_page.html:299
 msgid ""
 "I can help remove a specific productivity bottleneck, improve an existing "
 "system, or develop a larger platform that automates critical operations. The "
@@ -921,15 +934,15 @@ msgstr ""
 "automatice operaciones críticas. El alcance comienza con el problema que "
 "produce el mayor impacto práctico."
 
-#: home/templates/home/services/services_page.html:336
+#: home/templates/home/services/services_page.html:375
 msgid "Based in Panama"
 msgstr "Con base en Panamá"
 
-#: home/templates/home/services/services_page.html:341
+#: home/templates/home/services/services_page.html:380
 msgid "Bilingual support in English and Spanish"
 msgstr "Atención bilingüe en inglés y español"
 
-#: home/templates/home/services/services_page.html:346
+#: home/templates/home/services/services_page.html:385
 msgid "Direct collaboration with an independent specialist"
 msgstr "Colaboración directa con un especialista independiente"
 
