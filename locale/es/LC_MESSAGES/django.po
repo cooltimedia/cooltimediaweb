@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-03 09:17-0500\n"
+"POT-Creation-Date: 2026-09-05 12:49-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,7 +50,7 @@ msgid "Main navigation"
 msgstr "Navegación"
 
 #: app/templates/includes/top_menu.html:48
-#: app/templates/includes/top_menu.html:159
+#: app/templates/includes/top_menu.html:160
 msgid "Contact"
 msgstr "Contacto"
 
@@ -62,7 +62,7 @@ msgstr "Cambiar a español"
 msgid "Switch to English"
 msgstr "Cambiar a inglés"
 
-#: app/templates/includes/top_menu.html:142
+#: app/templates/includes/top_menu.html:143
 msgid "Mobile navigation"
 msgstr "Navegación móvil"
 
@@ -173,7 +173,7 @@ msgstr ""
 "para reducir tareas repetitivas, errores manuales y fricción operativa."
 
 #: home/templates/home/home_page.html:223
-#: home/templates/home/services/service_page.html:233
+#: home/templates/home/services/service_page.html:244
 msgid "Operations"
 msgstr "Operaciones"
 
@@ -231,7 +231,7 @@ msgstr ""
 "sin interrumpir los procesos de los que depende tu empresa."
 
 #: home/templates/home/home_page.html:277
-#: home/templates/home/services/service_page.html:261
+#: home/templates/home/services/service_page.html:272
 msgid "Integration"
 msgstr "Integración"
 
@@ -498,7 +498,7 @@ msgid "View my LinkedIn profile"
 msgstr "Ver mi perfil en LinkedIn"
 
 #: home/templates/home/home_page.html:599
-#: home/templates/home/services/service_page.html:634
+#: home/templates/home/services/service_page.html:670
 #: home/templates/home/services/services_page.html:316
 msgid "Ready to start?"
 msgstr "¿Listo para comenzar?"
@@ -550,342 +550,449 @@ msgstr "Servicio de %(service_title)s"
 msgid "Discuss a project"
 msgstr "Conversemos sobre un proyecto"
 
-#: home/templates/home/services/service_page.html:226
+#: home/templates/home/services/service_page.html:230
 msgid "Custom platforms for critical business operations"
 msgstr "Plataformas a medida para operaciones empresariales críticas"
 
-#: home/templates/home/services/service_page.html:237
+#: home/templates/home/services/service_page.html:234
+msgid ""
+"We build high-engineered Django and Python solutions that eliminate "
+"operational chaos, return time to your team, and lay the foundation for "
+"frictionless growth."
+msgstr ""
+"Desarrollamos soluciones web de alta ingeniería en Django y Python que "
+"eliminan el caos operativo, devuelven tiempo a tu equipo y sientan las bases "
+"para un crecimiento sin fricciones."
+
+#: home/templates/home/services/service_page.html:248
 msgid "Internal platforms"
 msgstr "Plataformas internas"
 
-#: home/templates/home/services/service_page.html:241
+#: home/templates/home/services/service_page.html:252
 msgid ""
-"Custom platforms that centralize workflows, permissions, documents, and "
-"operational information."
+"Custom-built systems designed to automate repetitive tasks, centralize "
+"workflows, and unleash your team's creative potential by removing "
+"operational bottlenecks."
 msgstr ""
-"Plataformas a medida que centralizan flujos de trabajo, permisos, documentos "
-"e información operativa."
+"Sistemas a medida diseñados para automatizar tareas repetitivas, centralizar "
+"flujos de trabajo y liberar el potencial creativo de tus colaboradores al "
+"eliminar los cuellos de botella operativos."
 
-#: home/templates/home/services/service_page.html:247
+#: home/templates/home/services/service_page.html:258
 msgid "Commercial"
 msgstr "Comercial"
 
-#: home/templates/home/services/service_page.html:251
+#: home/templates/home/services/service_page.html:262
 msgid "Customer and partner portals"
 msgstr "Portales para clientes y socios"
 
-#: home/templates/home/services/service_page.html:255
+#: home/templates/home/services/service_page.html:266
 msgid ""
-"Secure portals for quotations, orders, customers, suppliers, and specialized "
-"business processes."
+"Secure, intuitive portals for quotations, orders, and specialized processes "
+"that elevate user experience and ensure fast, friction-free adoption."
 msgstr ""
-"Portales seguros para cotizaciones, pedidos, clientes, proveedores y "
-"procesos empresariales especializados."
+"Portales seguros e intuitivos para cotizaciones, pedidos y procesos "
+"especializados que mejoran la experiencia del usuario y facilitan una "
+"adopción rápida y sin complicaciones."
 
-#: home/templates/home/services/service_page.html:265
+#: home/templates/home/services/service_page.html:276
 msgid "Connected applications"
 msgstr "Aplicaciones conectadas"
 
-#: home/templates/home/services/service_page.html:269
+#: home/templates/home/services/service_page.html:280
 msgid ""
-"Web applications that connect existing databases, APIs, cloud services, and "
-"legacy systems."
+"Advanced data engineering to interconnect your databases, APIs, cloud "
+"services, and legacy systems into a reliable, error-free ecosystem."
 msgstr ""
-"Aplicaciones web que conectan bases de datos existentes, APIs, servicios en "
-"la nube y sistemas heredados."
+"Ingeniería de datos avanzada que interconecta tus bases de datos, APIs, "
+"servicios en la nube y sistemas heredados en un ecosistema confiable y libre "
+"de errores."
 
-#: home/templates/home/services/service_page.html:275
+#: home/templates/home/services/service_page.html:286
 msgid "Growth"
 msgstr "Crecimiento"
 
-#: home/templates/home/services/service_page.html:279
+#: home/templates/home/services/service_page.html:290
 msgid "Scalable foundations"
 msgstr "Bases escalables"
 
-#: home/templates/home/services/service_page.html:283
+#: home/templates/home/services/service_page.html:294
 msgid ""
-"Maintainable Django architectures designed to evolve as users, data, and "
-"operational requirements grow."
+"Robust architectures designed under the principle of radical simplicity, "
+"built to scale securely as your data and business goals evolve."
 msgstr ""
-"Arquitecturas Django mantenibles, diseñadas para evolucionar a medida que "
-"crecen los usuarios, los datos y los requisitos operativos."
+"Arquitecturas robustas diseñadas bajo el estándar de simplicidad radical, "
+"preparadas para evolucionar de manera segura a medida que crecen tus datos y "
+"tus metas de negocio."
 
-#: home/templates/home/services/service_page.html:293
-msgid "Data systems designed around your business decisions"
-msgstr "Sistemas de datos diseñados en torno a tus decisiones empresariales"
-
-#: home/templates/home/services/service_page.html:300
-msgid "Data pipelines"
-msgstr "Canalizaciones de datos"
-
-#: home/templates/home/services/service_page.html:304
-msgid ""
-"Automated extraction, transformation, validation, and delivery of data from "
-"multiple operational sources."
+#: home/templates/home/services/service_page.html:303
+msgid "Reliable data systems built around your business decisions"
 msgstr ""
-"Extracción, transformación, validación y entrega automatizada de datos "
-"provenientes de múltiples fuentes operativas."
+"Sistemas de datos confiables diseñados en torno a tus decisiones de negocio"
 
 #: home/templates/home/services/service_page.html:310
-msgid "Centralized information"
-msgstr "Información centralizada"
+msgid "Automated data pipelines"
+msgstr "Pipelines de datos automatizados"
 
 #: home/templates/home/services/service_page.html:314
 msgid ""
-"Reliable data warehouses that consolidate fragmented information into a "
-"controlled source of truth."
+"Automated extraction, transformation, and secure delivery of operational "
+"data, eliminating manual processing bottlenecks."
 msgstr ""
-"Almacenes de datos confiables que consolidan información fragmentada en una "
-"fuente de verdad controlada."
+"Extracción, transformación y entrega segura de datos operativos de forma "
+"automatizada, eliminando cuellos de botella de procesamiento manual."
 
 #: home/templates/home/services/service_page.html:320
-msgid "Data quality"
-msgstr "Calidad de datos"
+msgid "Centralized source of truth"
+msgstr "Fuente única de verdad centralizada"
 
 #: home/templates/home/services/service_page.html:324
 msgid ""
-"Validation and monitoring processes that identify missing, duplicated, "
-"inconsistent, or corrupted information."
+"Consolidate fragmented business databases into a single, secure, and "
+"controlled repository for dependable analysis."
 msgstr ""
-"Procesos de validación y monitoreo que identifican información faltante, "
-"duplicada, inconsistente o dañada."
+"Consolidación de bases de datos fragmentadas en un repositorio único, seguro "
+"y controlado para realizar análisis empresariales confiables."
 
 #: home/templates/home/services/service_page.html:330
-msgid "Business intelligence"
-msgstr "Inteligencia de negocios"
+msgid "Bulletproof data quality"
+msgstr "Calidad de datos a prueba de fallos"
 
 #: home/templates/home/services/service_page.html:334
 msgid ""
-"Prepared and documented data models for dependable dashboards, operational "
-"reports, and strategic analysis."
+"Automated validation and continuous monitoring to detect and resolve "
+"corrupted, inconsistent, or duplicate information before it impacts "
+"decisions."
 msgstr ""
-"Modelos de datos preparados y documentados para tableros confiables, "
-"informes operativos y análisis estratégicos."
+"Validación automatizada y monitoreo continuo para detectar y resolver "
+"información corrupta, inconsistente o duplicada antes de que afecte la toma "
+"de decisiones."
+
+#: home/templates/home/services/service_page.html:340
+msgid "Ready-for-decision modeling"
+msgstr "Modelado de datos para toma de decisiones"
 
 #: home/templates/home/services/service_page.html:344
-msgid "Automation designed around your operational bottlenecks"
-msgstr "Automatización diseñada en torno a tus cuellos de botella operativos"
-
-#: home/templates/home/services/service_page.html:351
-msgid "Process automation"
-msgstr "Automatización de procesos"
-
-#: home/templates/home/services/service_page.html:355
 msgid ""
-"Automation for repetitive tasks, approvals, notifications, reconciliations, "
-"and recurring operational workflows."
+"Clean, deeply documented data models prepared for dependable dashboards, "
+"strategic reporting, and seamless team adoption."
 msgstr ""
-"Automatización de tareas repetitivas, aprobaciones, notificaciones, "
-"conciliaciones y flujos operativos recurrentes."
+"Modelos de datos limpios y profundamente documentados, preparados para "
+"tableros confiables, reportes estratégicos y una adopción ágil del equipo."
 
-#: home/templates/home/services/service_page.html:361
-msgid "Reporting automation"
-msgstr "Automatización de reportes"
-
-#: home/templates/home/services/service_page.html:365
+#: home/templates/home/services/service_page.html:353
 msgid ""
-"Scheduled collection, validation, generation, and distribution of recurring "
-"business reports."
+"Reliable automation designed to eliminate bottlenecks and return your time"
 msgstr ""
-"Recopilación, validación, generación y distribución programada de informes "
-"empresariales recurrentes."
+"Automatización confiable diseñada para eliminar cuellos de botella y "
+"devolverte tu tiempo"
 
-#: home/templates/home/services/service_page.html:371
-msgid "Document processing"
-msgstr "Procesamiento de documentos"
+#: home/templates/home/services/service_page.html:360
+msgid "Operational workflow automation"
+msgstr "Automatización de flujos de trabajo operativos"
 
-#: home/templates/home/services/service_page.html:375
+#: home/templates/home/services/service_page.html:364
 msgid ""
-"Reliable processing of Excel, CSV, PDF, XML, and other structured business "
-"documents."
+"Automate repetitive tasks, notifications, reconciliations, and approvals, "
+"freeing your team to focus on strategic work."
 msgstr ""
-"Procesamiento confiable de archivos Excel, CSV, PDF, XML y otros documentos "
-"empresariales estructurados."
+"Automatiza tareas repetitivas, notificaciones, conciliaciones y "
+"aprobaciones, liberando a tu equipo para concentrarse en trabajo estratégico."
 
-#: home/templates/home/services/service_page.html:381
-msgid "Scheduled workflows"
-msgstr "Flujos de trabajo programados"
+#: home/templates/home/services/service_page.html:370
+msgid "Automated reporting & analytics"
+msgstr "Reportes y analítica automatizados"
 
-#: home/templates/home/services/service_page.html:385
+#: home/templates/home/services/service_page.html:374
 msgid ""
-"Monitored Python workflows that run on a schedule or respond automatically "
-"to specific business events."
+"Scheduled collection, validation, and delivery of business reports, ensuring "
+"accurate and timely insights without manual errors."
 msgstr ""
-"Flujos de trabajo en Python monitoreados que se ejecutan según una "
-"programación o responden automáticamente a eventos empresariales específicos."
+"Recopilación, validación y entrega programada de reportes de negocio, "
+"asegurando información precisa y oportuna sin errores manuales."
 
-#: home/templates/home/services/service_page.html:395
-msgid "Integrations that connect your technology ecosystem"
-msgstr "Integraciones que conectan tu ecosistema tecnológico"
+#: home/templates/home/services/service_page.html:380
+msgid "Intelligent document processing"
+msgstr "Procesamiento inteligente de documentos"
 
-#: home/templates/home/services/service_page.html:402
-msgid "CRM and sales platforms"
-msgstr "Plataformas de CRM y ventas"
-
-#: home/templates/home/services/service_page.html:406
+#: home/templates/home/services/service_page.html:384
 msgid ""
-"Secure synchronization between customer platforms, sales tools, and internal "
-"applications."
+"Robust ingestion and transformation of Excel, CSV, PDF, and XML files, "
+"turning unstructured data chaos into clean database records."
 msgstr ""
-"Sincronización segura entre plataformas de clientes, herramientas de ventas "
-"y aplicaciones internas."
+"Ingesta y transformación robusta de archivos Excel, CSV, PDF y XML, "
+"convirtiendo el caos de datos desestructurados en registros limpios de base "
+"de datos."
 
-#: home/templates/home/services/service_page.html:412
-msgid "ERP and business systems"
-msgstr "ERP y sistemas empresariales"
+#: home/templates/home/services/service_page.html:390
+msgid "Monitored scheduled tasks"
+msgstr "Tareas programadas monitoreadas"
 
-#: home/templates/home/services/service_page.html:416
+#: home/templates/home/services/service_page.html:394
 msgid ""
-"Controlled exchange of financial, operational, inventory, and customer "
-"information."
+"Continuous, secure Python scripts that run on a schedule or trigger "
+"automatically, fully monitored to ensure silent, error-free operation."
 msgstr ""
-"Intercambio controlado de información financiera, operativa, de inventario y "
-"de clientes."
+"Scripts de Python continuos y seguros que se ejecutan de forma programada o "
+"por eventos, monitoreados para garantizar una operación silenciosa y sin "
+"errores."
 
-#: home/templates/home/services/service_page.html:422
-msgid "Marketing platforms"
-msgstr "Plataformas de marketing"
-
-#: home/templates/home/services/service_page.html:426
+#: home/templates/home/services/service_page.html:403
 msgid ""
-"Connections between advertising, analytics, email, customer engagement, and "
-"reporting platforms."
+"Bulletproof integrations that unify your systems and eliminate operational "
+"gaps"
 msgstr ""
-"Conexiones entre plataformas de publicidad, analítica, correo electrónico, "
-"interacción con clientes e informes."
+"Integraciones a prueba de fallos que unifican tus sistemas y eliminan "
+"brechas operativas"
 
-#: home/templates/home/services/service_page.html:432
-msgid "Custom APIs"
-msgstr "APIs a medida"
+#: home/templates/home/services/service_page.html:410
+msgid "Frictionless CRM & sales sync"
+msgstr "Sincronización de CRM y ventas sin fricciones"
 
-#: home/templates/home/services/service_page.html:436
+#: home/templates/home/services/service_page.html:414
 msgid ""
-"Purpose-built APIs that allow proprietary applications and external services "
-"to communicate securely."
+"Secure, real-time synchronization between sales pipelines, customer "
+"databases, and internal operational platforms."
 msgstr ""
-"APIs desarrolladas a medida que permiten que aplicaciones propietarias y "
-"servicios externos se comuniquen de forma segura."
+"Sincronización segura y en tiempo real entre tus embudos de ventas, bases de "
+"datos de clientes y plataformas operativas internas."
 
-#: home/templates/home/services/service_page.html:454
+#: home/templates/home/services/service_page.html:420
+msgid "Secure ERP & business systems"
+msgstr "ERP seguro y sistemas de negocio"
+
+#: home/templates/home/services/service_page.html:424
+msgid ""
+"Controlled, automated exchange of financial, operational, and inventory data "
+"across your core enterprise platforms."
+msgstr ""
+"Intercambio controlado y automatizado de datos financieros, operativos y de "
+"inventario a través de tus principales plataformas empresariales."
+
+#: home/templates/home/services/service_page.html:430
+msgid "Unified marketing ecosystems"
+msgstr "Ecosistemas de marketing unificados"
+
+#: home/templates/home/services/service_page.html:434
+msgid ""
+"Seamless data pipelines connecting advertising, analytics, email campaigns, "
+"and automated marketing reporting tools."
+msgstr ""
+"Pipelines de datos fluidos que conectan publicidad, analítica, campañas de "
+"correo y herramientas de reportes de marketing automatizados."
+
+#: home/templates/home/services/service_page.html:440
+msgid "Custom API engineering"
+msgstr "Ingeniería de APIs personalizadas"
+
+#: home/templates/home/services/service_page.html:444
+msgid ""
+"Purpose-built, high-performing APIs that allow your proprietary apps and "
+"external services to communicate safely under strict protocols."
+msgstr ""
+"APIs diseñadas a medida y de alto rendimiento que permiten a tus "
+"aplicaciones propietarias y servicios externos comunicarse de forma segura "
+"bajo estrictos protocolos."
+
+#: home/templates/home/services/service_page.html:464
 msgid "A structured development process"
 msgstr "Un proceso de desarrollo estructurado"
 
-#: home/templates/home/services/service_page.html:462
-msgid "Discovery and fit"
-msgstr "Descubrimiento y evaluación"
-
-#: home/templates/home/services/service_page.html:469
-msgid "Requirements"
-msgstr "Requisitos"
-
-#: home/templates/home/services/service_page.html:476
-msgid "Solution design"
-msgstr "Diseño de soluciones"
-
-#: home/templates/home/services/service_page.html:483
-msgid "Development"
-msgstr "Desarrollo"
-
-#: home/templates/home/services/service_page.html:490
-msgid "Testing and QA"
-msgstr "Pruebas y control de calidad"
-
-#: home/templates/home/services/service_page.html:497
-msgid "Deployment and support"
-msgstr "Despliegue y soporte"
-
-#: home/templates/home/services/service_page.html:513
-msgid "Why work with me?"
-msgstr "¿Por qué trabajar conmigo?"
-
-#: home/templates/home/services/service_page.html:517
-msgid "Independent by design. Focused on measurable business outcomes."
+#: home/templates/home/services/service_page.html:468
+msgid ""
+"We don't build for the sake of coding. Our workflow is structured to "
+"mitigate risks, validate ideas early, and ensure robust, production-ready "
+"systems from start to finish."
 msgstr ""
-"Independiente por elección. Enfocado en resultados empresariales medibles."
+"No desarrollamos por desarrollar. Nuestro flujo de trabajo está diseñado "
+"para mitigar riesgos, validar ideas rápidamente y asegurar sistemas robustos "
+"de inicio a fin."
+
+#: home/templates/home/services/service_page.html:478
+msgid "Discovery & alignment"
+msgstr "Descubrimiento y alineación"
+
+#: home/templates/home/services/service_page.html:481
+msgid ""
+"We target the real business problem and define the impact metrics we want to "
+"improve before recommending any technical solution."
+msgstr ""
+"Identificamos el problema de negocio real y definimos la métrica de impacto "
+"que queremos mejorar antes de proponer cualquier solución técnica."
+
+#: home/templates/home/services/service_page.html:488
+msgid "Simplified requirements"
+msgstr "Requerimientos simplificados"
+
+#: home/templates/home/services/service_page.html:491
+msgid ""
+"We distill technical complexity. We outline requirements focused on solving "
+"the core challenge, keeping the product intuitive and free of unnecessary "
+"bloat."
+msgstr ""
+"Destilamos la complejidad técnica. Definimos requerimientos enfocados en "
+"resolver el problema central, evitando funciones innecesarias que "
+"entorpezcan la adopción del usuario."
+
+#: home/templates/home/services/service_page.html:498
+msgid "Solutions Lab prototyping"
+msgstr "Prototipado en el Solutions Lab"
+
+#: home/templates/home/services/service_page.html:501
+msgid ""
+"We test and validate technology viability using fast, functional prototypes "
+"and live demos before committing resources to final development."
+msgstr ""
+"Probamos y validamos la viabilidad de la tecnología mediante demos y "
+"prototipos funcionales rápidos antes de comprometer recursos en el "
+"desarrollo final."
+
+#: home/templates/home/services/service_page.html:508
+msgid "Bulletproof development"
+msgstr "Ingeniería a prueba de fallos"
+
+#: home/templates/home/services/service_page.html:511
+msgid ""
+"We program the core Django and Python architecture following strict "
+"corporate standards for security, data redundancy, and high performance."
+msgstr ""
+"Desarrollamos la arquitectura core en Django y Python bajo las mejores "
+"prácticas de seguridad, redundancia de datos y rendimiento corporativo."
+
+#: home/templates/home/services/service_page.html:518
+msgid "Testing & interactive documentation"
+msgstr "Pruebas y documentación interactiva"
 
 #: home/templates/home/services/service_page.html:521
 msgid ""
-"I combine software engineering, data infrastructure, automation, and cloud "
-"technologies to solve specific operational problems and build reliable "
-"systems."
+"We run rigorous quality assurance tests and structure clean, accessible "
+"documentation so your team can understand and scale the platform "
+"autonomously."
 msgstr ""
-"Combino ingeniería de software, infraestructura de datos, automatización y "
-"tecnologías en la nube para resolver problemas operativos específicos y "
-"construir sistemas confiables."
+"Sometemos el sistema a pruebas de calidad rigurosas y estructuramos una "
+"documentación clara para que tu equipo pueda operar y hacer crecer el "
+"sistema con total autonomía."
 
-#: home/templates/home/services/service_page.html:534
+#: home/templates/home/services/service_page.html:528
+msgid "Infinite partnership & support"
+msgstr "Alianza infinita y soporte"
+
+#: home/templates/home/services/service_page.html:531
+msgid ""
+"We safely deploy the solution and proactively support its evolution, giving "
+"decision-makers absolute peace of mind."
+msgstr ""
+"Desplegamos el sistema de manera segura y te acompañamos proactivamente en "
+"su evolución, asegurando que los tomadores de decisiones duerman tranquilos."
+
+#: home/templates/home/services/service_page.html:546
+msgid "Why work with Cooltimedia?"
+msgstr "¿Por qué trabajar con Cooltimedia?"
+
+#: home/templates/home/services/service_page.html:550
+msgid "Independent by design. Systematically reliable."
+msgstr "Independientes por diseño. Sistemáticamente confiables."
+
+#: home/templates/home/services/service_page.html:554
+msgid ""
+"At Cooltimedia, we combine software engineering, process automation, and "
+"data infrastructure to eliminate operational chaos and build systems you can "
+"sleep easy with."
+msgstr ""
+"En Cooltimedia, combinamos ingeniería de software, automatización de "
+"procesos e infraestructura de datos para eliminar el caos operativo y "
+"construir sistemas que te permitan dormir tranquilo."
+
+#: home/templates/home/services/service_page.html:557
+msgid ""
+"We operate as a highly specialized boutique studio, ensuring institutional "
+"reliability with direct expert execution."
+msgstr ""
+"Operamos como un estudio boutique altamente especializado, garantizando "
+"solidez institucional con ejecución directa de expertos."
+
+#: home/templates/home/services/service_page.html:570
 msgid "Business-first engineering"
-msgstr "Ingeniería orientada al negocio"
+msgstr "Ingeniería enfocada en el negocio"
 
-#: home/templates/home/services/service_page.html:538
+#: home/templates/home/services/service_page.html:574
 msgid ""
-"I begin with your goals, workflows, and operational constraints before "
-"recommending technology."
+"We start by understanding your goals, workflows, and operational "
+"constraints. Technology must earn its place by solving a concrete business "
+"problem."
 msgstr ""
-"Comienzo por tus objetivos, flujos de trabajo y limitaciones operativas "
-"antes de recomendar una tecnología."
+"Comenzamos por entender tus objetivos, tus flujos de trabajo actuales y tus "
+"restricciones operativas. La tecnología debe justificar su existencia "
+"resolviendo un problema real."
 
-#: home/templates/home/services/service_page.html:548
-msgid "Vendor-neutral solutions"
-msgstr "Soluciones independientes del proveedor"
+#: home/templates/home/services/service_page.html:584
+msgid "Validated technical edge"
+msgstr "Vanguardia técnica validada"
 
-#: home/templates/home/services/service_page.html:552
+#: home/templates/home/services/service_page.html:588
 msgid ""
-"I select technologies according to the problem, existing systems, budget, "
-"and long-term maintenance needs."
+"Through our Solutions Lab, we actively research and safely integrate "
+"advanced tools and AI, ensuring your business gets modern, fully tested "
+"solutions."
 msgstr ""
-"Selecciono las tecnologías según el problema, los sistemas existentes, el "
-"presupuesto y las necesidades de mantenimiento a largo plazo."
+"A través de nuestro Solutions Lab, investigamos e integramos herramientas "
+"avanzadas e inteligencia artificial de forma segura, asegurando soluciones "
+"modernas pero completamente probadas."
 
-#: home/templates/home/services/service_page.html:562
-msgid "Direct collaboration"
-msgstr "Colaboración directa"
+#: home/templates/home/services/service_page.html:598
+msgid "Direct expert collaboration"
+msgstr "Colaboración directa con expertos"
 
-#: home/templates/home/services/service_page.html:566
+#: home/templates/home/services/service_page.html:602
 msgid ""
-"You work directly with the specialist designing and developing your "
-"solution, without unnecessary layers."
+"You work directly with the principal specialist designing and developing "
+"your solution. We eliminate unnecessary management layers to deliver real, "
+"hands-on partnership and clear communication."
 msgstr ""
-"Trabajas directamente conmigo, el especialista que diseña y desarrolla tu "
-"solución, sin intermediarios innecesarios."
+"Trabajas directamente con el especialista principal que diseña y programa tu "
+"sistema. Eliminamos las capas intermedias de gestión para ofrecerte una "
+"alianza real, directa y transparente."
 
-#: home/templates/home/services/service_page.html:576
-msgid "Built for growth"
-msgstr "Diseñado para crecer"
+#: home/templates/home/services/service_page.html:612
+msgid "Robust & documented systems"
+msgstr "Sistemas robustos y documentados"
 
-#: home/templates/home/services/service_page.html:580
+#: home/templates/home/services/service_page.html:616
 msgid ""
-"I create maintainable systems that can evolve as your users, data, "
-"integrations, and operational needs grow."
+"We build systems under our strict 'No Doc, No Deploy' standard. Your "
+"business gains a clean, secure, and maintainable tech asset, fully "
+"documented so you are never held hostage by a single developer and can scale "
+"freely."
 msgstr ""
-"Creo sistemas mantenibles que pueden evolucionar a medida que crecen tus "
-"usuarios, datos, integraciones y necesidades operativas."
+"Creamos plataformas bajo nuestro estándar estricto de 'No Doc, No Deploy'. "
+"Tu negocio obtiene un activo tecnológico limpio, seguro y fácil de mantener, "
+"completamente documentado para que nunca dependas de un solo programador y "
+"puedas escalar libremente."
 
-#: home/templates/home/services/service_page.html:601
+#: home/templates/home/services/service_page.html:637
 msgid "Frequently asked questions"
 msgstr "Preguntas frecuentes"
 
-#: home/templates/home/services/service_page.html:638
-#: home/templates/home/services/services_page.html:320
-msgid "Let’s discuss the challenge you need to solve."
-msgstr "Conversemos sobre el reto que necesitas resolver."
+#: home/templates/home/services/service_page.html:674
+msgid "Let's discuss the operational challenge you need to solve. "
+msgstr "Conversemos sobre el reto que necesita resolver."
 
-#: home/templates/home/services/service_page.html:642
-#: home/templates/home/services/services_page.html:324
+#: home/templates/home/services/service_page.html:678
 msgid ""
-"Whether you need to remove a small productivity bottleneck or develop a "
-"larger operational platform, I can help you define a practical next step."
+"Whether you are looking to remove a small bottleneck that eats up your time "
+"or develop a robust operational platform, I can help you outline a practical "
+"and direct next step."
 msgstr ""
-"Ya sea que necesites eliminar un pequeño bloqueo de productividad o "
-"desarrollar una plataforma operativa de mayor alcance, puedo ayudarte a "
+"Ya sea que necesite eliminar un pequeño bloqueo de productividad o "
+"desarrollar una plataforma operativa de mayor alcance, puedo ayudarle a "
 "definir un próximo paso práctico."
 
-#: home/templates/home/services/service_page.html:653
+#: home/templates/home/services/service_page.html:689
 #: home/templates/home/services/services_page.html:344
 msgid "Let’s talk on WhatsApp"
 msgstr "Conversemos por WhatsApp"
 
-#: home/templates/home/services/service_page.html:660
+#: home/templates/home/services/service_page.html:696
 #: home/templates/home/services/services_page.html:366
 msgid "Send me an email"
 msgstr "Contactar por correo"
@@ -933,6 +1040,18 @@ msgstr ""
 "sistema existente o desarrollar una plataforma de mayor alcance que "
 "automatice operaciones críticas. El alcance comienza con el problema que "
 "produce el mayor impacto práctico."
+
+#: home/templates/home/services/services_page.html:320
+#, fuzzy
+#| msgid "Let's discuss the challenge you need to solve."
+msgid "Let’s discuss the challenge you need to solve."
+msgstr "Conversemos sobre el desafío operativo que necesitas resolver hoy."
+
+#: home/templates/home/services/services_page.html:324
+msgid ""
+"Whether you need to remove a small productivity bottleneck or develop a "
+"larger operational platform, I can help you define a practical next step."
+msgstr "Ya sea que busques eliminar un pequeño cuello de botella que te quita tiempo o desarrollar una plataforma operativa robusta, puedo ayudarte a definir una solución práctica y directa."
 
 #: home/templates/home/services/services_page.html:375
 msgid "Based in Panama"
@@ -1895,6 +2014,125 @@ msgstr "Registro de procesamiento"
 #: mvp_qflow_core/models.py:446
 msgid "Processing Logs"
 msgstr "Registros de procesamiento"
+
+#~ msgid "Integrations that connect your technology ecosystem"
+#~ msgstr "Integraciones que conectan tu ecosistema tecnológico"
+
+#~ msgid "CRM and sales platforms"
+#~ msgstr "Plataformas de CRM y ventas"
+
+#~ msgid "Marketing platforms"
+#~ msgstr "Plataformas de marketing"
+
+#~ msgid "Custom APIs"
+#~ msgstr "APIs a medida"
+
+#~ msgid "Automation designed around your operational bottlenecks"
+#~ msgstr ""
+#~ "Automatización diseñada en torno a tus cuellos de botella operativos"
+
+#~ msgid "Process automation"
+#~ msgstr "Automatización de procesos"
+
+#~ msgid "Reporting automation"
+#~ msgstr "Automatización de reportes"
+
+#~ msgid ""
+#~ "Scheduled collection, validation, generation, and distribution of "
+#~ "recurring business reports."
+#~ msgstr ""
+#~ "Recopilación, validación, generación y distribución programada de "
+#~ "informes empresariales recurrentes."
+
+#~ msgid ""
+#~ "Reliable processing of Excel, CSV, PDF, XML, and other structured "
+#~ "business documents."
+#~ msgstr ""
+#~ "Procesamiento confiable de archivos Excel, CSV, PDF, XML y otros "
+#~ "documentos empresariales estructurados."
+
+#~ msgid "Scheduled workflows"
+#~ msgstr "Flujos de trabajo programados"
+
+#~ msgid "Data pipelines"
+#~ msgstr "Canalizaciones de datos"
+
+#~ msgid ""
+#~ "Reliable data warehouses that consolidate fragmented information into a "
+#~ "controlled source of truth."
+#~ msgstr ""
+#~ "Almacenes de datos confiables que consolidan información fragmentada en "
+#~ "una fuente de verdad controlada."
+
+#~ msgid "Data quality"
+#~ msgstr "Calidad de datos"
+
+#~ msgid ""
+#~ "Validation and monitoring processes that identify missing, duplicated, "
+#~ "inconsistent, or corrupted information."
+#~ msgstr ""
+#~ "Procesos de validación y monitoreo que identifican información faltante, "
+#~ "duplicada, inconsistente o dañada."
+
+#~ msgid "Business intelligence"
+#~ msgstr "Inteligencia de negocios"
+
+#~ msgid ""
+#~ "Custom platforms that centralize workflows, permissions, documents, and "
+#~ "operational information."
+#~ msgstr ""
+#~ "Plataformas a medida que centralizan flujos de trabajo, permisos, "
+#~ "documentos e información operativa."
+
+#~ msgid ""
+#~ "Secure portals for quotations, orders, customers, suppliers, and "
+#~ "specialized business processes."
+#~ msgstr ""
+#~ "Portales seguros para cotizaciones, pedidos, clientes, proveedores y "
+#~ "procesos empresariales especializados."
+
+#~ msgid ""
+#~ "Maintainable Django architectures designed to evolve as users, data, and "
+#~ "operational requirements grow."
+#~ msgstr ""
+#~ "Arquitecturas Django mantenibles, diseñadas para evolucionar a medida que "
+#~ "crecen los usuarios, los datos y los requisitos operativos."
+
+#~ msgid "Solution design"
+#~ msgstr "Diseño de soluciones"
+
+#~ msgid "Development"
+#~ msgstr "Desarrollo"
+
+#~ msgid "Testing and QA"
+#~ msgstr "Pruebas y control de calidad"
+
+#~ msgid "Deployment and support"
+#~ msgstr "Despliegue y soporte"
+
+#~ msgid "Independent by design. Focused on measurable business outcomes."
+#~ msgstr ""
+#~ "Independiente por elección. Enfocado en resultados empresariales medibles."
+
+#~ msgid "Vendor-neutral solutions"
+#~ msgstr "Soluciones independientes del proveedor"
+
+#~ msgid ""
+#~ "I select technologies according to the problem, existing systems, budget, "
+#~ "and long-term maintenance needs."
+#~ msgstr ""
+#~ "Selecciono las tecnologías según el problema, los sistemas existentes, el "
+#~ "presupuesto y las necesidades de mantenimiento a largo plazo."
+
+#~ msgid "Built for growth"
+#~ msgstr "Diseñado para crecer"
+
+#~ msgid ""
+#~ "I create maintainable systems that can evolve as your users, data, "
+#~ "integrations, and operational needs grow."
+#~ msgstr ""
+#~ "Creo sistemas mantenibles que pueden evolucionar a medida que crecen tus "
+#~ "usuarios, datos, integraciones y necesidades operativas."
 
 #~ msgid ""
 #~ "I don't just pick tools; I architect the foundation that ensures your "

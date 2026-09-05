@@ -89,7 +89,7 @@
             <div class="mt-10">
                 <a
                     href="#contact-cooltimedia"
-                    class="inline-flex items-center rounded-xl bg-slate-900 px-8 py-4 font-bold text-white shadow-lg shadow-slate-900/10 transition-all hover:-translate-y-0.5 hover:bg-blue-700"
+                    class="inline-flex items-center rounded-xl bg-slate-900 px-8 py-4 font-bold text-white shadow-lg shadow-slate-900/10 transition-all hover:-translate-y-0.5 hover:bg-emerald-700"
                 >
                     {% translate "Discuss a project" %}
 
@@ -174,7 +174,7 @@
 
                                 <a
                                     href="{{ block.value.button_url }}"
-                                    class="inline-flex shrink-0 items-center justify-center rounded-xl bg-blue-700 px-6 py-3 font-bold text-white transition-colors hover:bg-blue-800"
+                                    class="inline-flex shrink-0 items-center justify-center rounded-xl bg-emerald-700 px-6 py-3 font-bold text-white transition-colors hover:bg-emerald-800"
                                 >
                                     {{ block.value.button_text }}
 
@@ -222,222 +222,230 @@
 
             {% if page.service_type == "django" %}
 
-                <h2 class="mb-12 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+            
+            <div class="mx-auto mb-16 max-w-3xl text-center">
+
+            
+                <h2 class="mb-4 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
                     {% translate "Custom platforms for critical business operations" %}
                 </h2>
 
-                <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+                <p class="mt-3 mb-8 leading-relaxed text-slate-600">
+                    {% translate "We build high-engineered Django and Python solutions that eliminate operational chaos, return time to your team, and lay the foundation for frictionless growth." %}
+                </p>
 
-                    <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
-                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">
-                            {% translate "Operations" %}
-                        </span>
+            </div>
 
-                        <h3 class="mt-1 mb-2 font-bold text-slate-900">
-                            {% translate "Internal platforms" %}
-                        </h3>
 
-                        <p class="text-sm leading-relaxed text-slate-600">
-                            {% translate "Custom platforms that centralize workflows, permissions, documents, and operational information." %}
-                        </p>
-                    </article>
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
 
-                    <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
-                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">
-                            {% translate "Commercial" %}
-                        </span>
+                <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
+                    <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">
+                        {% translate "Operations" %}
+                    </span>
 
-                        <h3 class="mt-1 mb-2 font-bold text-slate-900">
-                            {% translate "Customer and partner portals" %}
-                        </h3>
+                    <h3 class="mt-1 mb-2 font-bold text-slate-900">
+                        {% translate "Internal platforms" %}
+                    </h3>
 
-                        <p class="text-sm leading-relaxed text-slate-600">
-                            {% translate "Secure portals for quotations, orders, customers, suppliers, and specialized business processes." %}
-                        </p>
-                    </article>
+                    <p class="text-sm leading-relaxed text-slate-600">
+                        {% translate "Custom-built systems designed to automate repetitive tasks, centralize workflows, and unleash your team's creative potential by removing operational bottlenecks." %}
+                    </p>
+                </article>
 
-                    <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
-                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">
-                            {% translate "Integration" %}
-                        </span>
+                <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
+                    <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">
+                        {% translate "Commercial" %}
+                    </span>
 
-                        <h3 class="mt-1 mb-2 font-bold text-slate-900">
-                            {% translate "Connected applications" %}
-                        </h3>
+                    <h3 class="mt-1 mb-2 font-bold text-slate-900">
+                        {% translate "Customer and partner portals" %}
+                    </h3>
 
-                        <p class="text-sm leading-relaxed text-slate-600">
-                            {% translate "Web applications that connect existing databases, APIs, cloud services, and legacy systems." %}
-                        </p>
-                    </article>
+                    <p class="text-sm leading-relaxed text-slate-600">
+                        {% translate "Secure, intuitive portals for quotations, orders, and specialized processes that elevate user experience and ensure fast, friction-free adoption." %}
+                    </p>
+                </article>
 
-                    <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
-                        <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">
-                            {% translate "Growth" %}
-                        </span>
+                <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
+                    <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">
+                        {% translate "Integration" %}
+                    </span>
 
-                        <h3 class="mt-1 mb-2 font-bold text-slate-900">
-                            {% translate "Scalable foundations" %}
-                        </h3>
+                    <h3 class="mt-1 mb-2 font-bold text-slate-900">
+                        {% translate "Connected applications" %}
+                    </h3>
 
-                        <p class="text-sm leading-relaxed text-slate-600">
-                            {% translate "Maintainable Django architectures designed to evolve as users, data, and operational requirements grow." %}
-                        </p>
-                    </article>
+                    <p class="text-sm leading-relaxed text-slate-600">
+                        {% translate "Advanced data engineering to interconnect your databases, APIs, cloud services, and legacy systems into a reliable, error-free ecosystem." %}
+                    </p>
+                </article>
 
-                </div>
+                <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
+                    <span class="text-xs font-bold uppercase tracking-wider text-emerald-600">
+                        {% translate "Growth" %}
+                    </span>
 
+                    <h3 class="mt-1 mb-2 font-bold text-slate-900">
+                        {% translate "Scalable foundations" %}
+                    </h3>
+
+                    <p class="text-sm leading-relaxed text-slate-600">
+                        {% translate "Robust architectures designed under the principle of radical simplicity, built to scale securely as your data and business goals evolve." %}
+                    </p>
+                </article>
+
+            </div>
 
             {% elif page.service_type == "data_engineering" %}
 
-                <h2 class="mb-12 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-                    {% translate "Data systems designed around your business decisions" %}
-                </h2>
+            <h2 class="mb-12 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+                {% translate "Reliable data systems built around your business decisions" %}
+            </h2>
 
-                <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
 
-                    <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
-                        <h3 class="mb-2 font-bold text-emerald-700">
-                            {% translate "Data pipelines" %}
-                        </h3>
+                <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
+                    <h3 class="mb-2 font-bold text-emerald-700">
+                        {% translate "Automated data pipelines" %}
+                    </h3>
 
-                        <p class="text-sm leading-relaxed text-slate-600">
-                            {% translate "Automated extraction, transformation, validation, and delivery of data from multiple operational sources." %}
-                        </p>
-                    </article>
+                    <p class="text-sm leading-relaxed text-slate-600">
+                        {% translate "Automated extraction, transformation, and secure delivery of operational data, eliminating manual processing bottlenecks." %}
+                    </p>
+                </article>
 
-                    <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
-                        <h3 class="mb-2 font-bold text-emerald-700">
-                            {% translate "Centralized information" %}
-                        </h3>
+                <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
+                    <h3 class="mb-2 font-bold text-emerald-700">
+                        {% translate "Centralized source of truth" %}
+                    </h3>
 
-                        <p class="text-sm leading-relaxed text-slate-600">
-                            {% translate "Reliable data warehouses that consolidate fragmented information into a controlled source of truth." %}
-                        </p>
-                    </article>
+                    <p class="text-sm leading-relaxed text-slate-600">
+                        {% translate "Consolidate fragmented business databases into a single, secure, and controlled repository for dependable analysis." %}
+                    </p>
+                </article>
 
-                    <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
-                        <h3 class="mb-2 font-bold text-emerald-700">
-                            {% translate "Data quality" %}
-                        </h3>
+                <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
+                    <h3 class="mb-2 font-bold text-emerald-700">
+                        {% translate "Bulletproof data quality" %}
+                    </h3>
 
-                        <p class="text-sm leading-relaxed text-slate-600">
-                            {% translate "Validation and monitoring processes that identify missing, duplicated, inconsistent, or corrupted information." %}
-                        </p>
-                    </article>
+                    <p class="text-sm leading-relaxed text-slate-600">
+                        {% translate "Automated validation and continuous monitoring to detect and resolve corrupted, inconsistent, or duplicate information before it impacts decisions." %}
+                    </p>
+                </article>
 
-                    <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
-                        <h3 class="mb-2 font-bold text-emerald-700">
-                            {% translate "Business intelligence" %}
-                        </h3>
+                <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
+                    <h3 class="mb-2 font-bold text-emerald-700">
+                        {% translate "Ready-for-decision modeling" %}
+                    </h3>
 
-                        <p class="text-sm leading-relaxed text-slate-600">
-                            {% translate "Prepared and documented data models for dependable dashboards, operational reports, and strategic analysis." %}
-                        </p>
-                    </article>
+                    <p class="text-sm leading-relaxed text-slate-600">
+                        {% translate "Clean, deeply documented data models prepared for dependable dashboards, strategic reporting, and seamless team adoption." %}
+                    </p>
+                </article>
 
-                </div>
-
+            </div>
 
             {% elif page.service_type == "python_automation" %}
 
-                <h2 class="mb-12 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-                    {% translate "Automation designed around your operational bottlenecks" %}
-                </h2>
+            <h2 class="mb-12 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+                {% translate "Reliable automation designed to eliminate bottlenecks and return your time" %}
+            </h2>
 
-                <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
 
-                    <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
-                        <h3 class="mb-2 font-bold text-emerald-700">
-                            {% translate "Process automation" %}
-                        </h3>
+                <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
+                    <h3 class="mb-2 font-bold text-emerald-700">
+                        {% translate "Operational workflow automation" %}
+                    </h3>
 
-                        <p class="text-sm leading-relaxed text-slate-600">
-                            {% translate "Automation for repetitive tasks, approvals, notifications, reconciliations, and recurring operational workflows." %}
-                        </p>
-                    </article>
+                    <p class="text-sm leading-relaxed text-slate-600">
+                        {% translate "Automate repetitive tasks, notifications, reconciliations, and approvals, freeing your team to focus on strategic work." %}
+                    </p>
+                </article>
 
-                    <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
-                        <h3 class="mb-2 font-bold text-emerald-700">
-                            {% translate "Reporting automation" %}
-                        </h3>
+                <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
+                    <h3 class="mb-2 font-bold text-emerald-700">
+                        {% translate "Automated reporting & analytics" %}
+                    </h3>
 
-                        <p class="text-sm leading-relaxed text-slate-600">
-                            {% translate "Scheduled collection, validation, generation, and distribution of recurring business reports." %}
-                        </p>
-                    </article>
+                    <p class="text-sm leading-relaxed text-slate-600">
+                        {% translate "Scheduled collection, validation, and delivery of business reports, ensuring accurate and timely insights without manual errors." %}
+                    </p>
+                </article>
 
-                    <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
-                        <h3 class="mb-2 font-bold text-emerald-700">
-                            {% translate "Document processing" %}
-                        </h3>
+                <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
+                    <h3 class="mb-2 font-bold text-emerald-700">
+                        {% translate "Intelligent document processing" %}
+                    </h3>
 
-                        <p class="text-sm leading-relaxed text-slate-600">
-                            {% translate "Reliable processing of Excel, CSV, PDF, XML, and other structured business documents." %}
-                        </p>
-                    </article>
+                    <p class="text-sm leading-relaxed text-slate-600">
+                        {% translate "Robust ingestion and transformation of Excel, CSV, PDF, and XML files, turning unstructured data chaos into clean database records." %}
+                    </p>
+                </article>
 
-                    <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
-                        <h3 class="mb-2 font-bold text-emerald-700">
-                            {% translate "Scheduled workflows" %}
-                        </h3>
+                <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
+                    <h3 class="mb-2 font-bold text-emerald-700">
+                        {% translate "Monitored scheduled tasks" %}
+                    </h3>
 
-                        <p class="text-sm leading-relaxed text-slate-600">
-                            {% translate "Monitored Python workflows that run on a schedule or respond automatically to specific business events." %}
-                        </p>
-                    </article>
+                    <p class="text-sm leading-relaxed text-slate-600">
+                        {% translate "Continuous, secure Python scripts that run on a schedule or trigger automatically, fully monitored to ensure silent, error-free operation." %}
+                    </p>
+                </article>
 
-                </div>
-
+            </div>
 
             {% elif page.service_type == "api_integration" %}
 
-                <h2 class="mb-12 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-                    {% translate "Integrations that connect your technology ecosystem" %}
-                </h2>
+            <h2 class="mb-12 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+                {% translate "Bulletproof integrations that unify your systems and eliminate operational gaps" %}
+            </h2>
 
-                <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
 
-                    <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
-                        <h3 class="mb-2 font-bold text-emerald-700">
-                            {% translate "CRM and sales platforms" %}
-                        </h3>
+                <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
+                    <h3 class="mb-2 font-bold text-emerald-700">
+                        {% translate "Frictionless CRM & sales sync" %}
+                    </h3>
 
-                        <p class="text-sm leading-relaxed text-slate-600">
-                            {% translate "Secure synchronization between customer platforms, sales tools, and internal applications." %}
-                        </p>
-                    </article>
+                    <p class="text-sm leading-relaxed text-slate-600">
+                        {% translate "Secure, real-time synchronization between sales pipelines, customer databases, and internal operational platforms." %}
+                    </p>
+                </article>
 
-                    <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
-                        <h3 class="mb-2 font-bold text-emerald-700">
-                            {% translate "ERP and business systems" %}
-                        </h3>
+                <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
+                    <h3 class="mb-2 font-bold text-emerald-700">
+                        {% translate "Secure ERP & business systems" %}
+                    </h3>
 
-                        <p class="text-sm leading-relaxed text-slate-600">
-                            {% translate "Controlled exchange of financial, operational, inventory, and customer information." %}
-                        </p>
-                    </article>
+                    <p class="text-sm leading-relaxed text-slate-600">
+                        {% translate "Controlled, automated exchange of financial, operational, and inventory data across your core enterprise platforms." %}
+                    </p>
+                </article>
 
-                    <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
-                        <h3 class="mb-2 font-bold text-emerald-700">
-                            {% translate "Marketing platforms" %}
-                        </h3>
+                <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
+                    <h3 class="mb-2 font-bold text-emerald-700">
+                        {% translate "Unified marketing ecosystems" %}
+                    </h3>
 
-                        <p class="text-sm leading-relaxed text-slate-600">
-                            {% translate "Connections between advertising, analytics, email, customer engagement, and reporting platforms." %}
-                        </p>
-                    </article>
+                    <p class="text-sm leading-relaxed text-slate-600">
+                        {% translate "Seamless data pipelines connecting advertising, analytics, email campaigns, and automated marketing reporting tools." %}
+                    </p>
+                </article>
 
-                    <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
-                        <h3 class="mb-2 font-bold text-emerald-700">
-                            {% translate "Custom APIs" %}
-                        </h3>
+                <article class="rounded-xl border border-slate-200/50 bg-white p-6 shadow-sm">
+                    <h3 class="mb-2 font-bold text-emerald-700">
+                        {% translate "Custom API engineering" %}
+                    </h3>
 
-                        <p class="text-sm leading-relaxed text-slate-600">
-                            {% translate "Purpose-built APIs that allow proprietary applications and external services to communicate securely." %}
-                        </p>
-                    </article>
+                    <p class="text-sm leading-relaxed text-slate-600">
+                        {% translate "Purpose-built, high-performing APIs that allow your proprietary apps and external services to communicate safely under strict protocols." %}
+                    </p>
+                </article>
 
-                </div>
+            </div>
 
             {% endif %}
 
@@ -450,54 +458,79 @@
     <section class="bg-white py-20">
         <div class="mx-auto max-w-7xl px-4">
 
-            <h2 class="mb-16 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
-                {% translate "A structured development process" %}
-            </h2>
+            <div class="mx-auto mb-16 max-w-3xl text-center">
+            
+                <h2 class="mb-4 text-center text-2xl font-bold text-slate-900 sm:text-3xl">
+                    {% translate "A structured development process" %}
+                </h2>
+
+                <p class="mt-3 mb-8 leading-relaxed text-slate-600">
+                    {% translate "We don't build for the sake of coding. Our workflow is structured to mitigate risks, validate ideas early, and ensure robust, production-ready systems from start to finish." %}
+                </p>
+
+            </div>
 
             <div class="relative grid grid-cols-1 gap-6 sm:grid-cols-3 lg:grid-cols-6">
 
                 <div class="rounded-xl border border-slate-100 bg-slate-50 p-4">
                     <div class="text-xs font-bold text-emerald-600">01</div>
                     <h3 class="mt-1 text-sm font-bold text-slate-900">
-                        {% translate "Discovery and fit" %}
+                        {% translate "Discovery & alignment" %}
                     </h3>
+                    <p class="text-sm leading-relaxed text-slate-600">
+                        {% translate "We target the real business problem and define the impact metrics we want to improve before recommending any technical solution." %}
+                    </p>
                 </div>
 
                 <div class="rounded-xl border border-slate-100 bg-slate-50 p-4">
                     <div class="text-xs font-bold text-emerald-600">02</div>
                     <h3 class="mt-1 text-sm font-bold text-slate-900">
-                        {% translate "Requirements" %}
+                        {% translate "Simplified requirements" %}
                     </h3>
+                    <p class="text-sm leading-relaxed text-slate-600">
+                        {% translate "We distill technical complexity. We outline requirements focused on solving the core challenge, keeping the product intuitive and free of unnecessary bloat." %}
+                    </p>
                 </div>
 
                 <div class="rounded-xl border border-slate-100 bg-slate-50 p-4">
                     <div class="text-xs font-bold text-emerald-600">03</div>
                     <h3 class="mt-1 text-sm font-bold text-slate-900">
-                        {% translate "Solution design" %}
+                        {% translate "Solutions Lab prototyping" %}
                     </h3>
+                    <p class="text-sm leading-relaxed text-slate-600">
+                        {% translate "We test and validate technology viability using fast, functional prototypes and live demos before committing resources to final development." %}
+                    </p>
                 </div>
 
                 <div class="rounded-xl border border-slate-100 bg-slate-50 p-4">
                     <div class="text-xs font-bold text-emerald-600">04</div>
                     <h3 class="mt-1 text-sm font-bold text-slate-900">
-                        {% translate "Development" %}
+                        {% translate "Bulletproof development" %}
                     </h3>
+                    <p class="text-sm leading-relaxed text-slate-600">
+                        {% translate "We program the core Django and Python architecture following strict corporate standards for security, data redundancy, and high performance." %}
+                    </p>
                 </div>
 
                 <div class="rounded-xl border border-slate-100 bg-slate-50 p-4">
                     <div class="text-xs font-bold text-emerald-600">05</div>
                     <h3 class="mt-1 text-sm font-bold text-slate-900">
-                        {% translate "Testing and QA" %}
+                        {% translate "Testing & interactive documentation" %}
                     </h3>
+                    <p class="text-sm leading-relaxed text-slate-600">
+                        {% translate "We run rigorous quality assurance tests and structure clean, accessible documentation so your team can understand and scale the platform autonomously." %}
+                    </p>
                 </div>
 
                 <div class="rounded-xl border border-slate-100 bg-slate-50 p-4">
                     <div class="text-xs font-bold text-emerald-600">06</div>
                     <h3 class="mt-1 text-sm font-bold text-slate-900">
-                        {% translate "Deployment and support" %}
+                        {% translate "Infinite partnership & support" %}
                     </h3>
+                    <p class="text-sm leading-relaxed text-slate-600">
+                        {% translate "We safely deploy the solution and proactively support its evolution, giving decision-makers absolute peace of mind." %}
+                    </p>
                 </div>
-
             </div>
         </div>
     </section>
@@ -510,15 +543,18 @@
             <div class="mx-auto mb-16 max-w-3xl text-center">
 
                 <p class="mb-4 text-xs font-bold uppercase tracking-widest text-emerald-700">
-                    {% translate "Why work with me?" %}
+                    {% translate "Why work with Cooltimedia?" %}
                 </p>
 
                 <h2 class="text-2xl font-bold text-slate-900 sm:text-3xl">
-                    {% translate "Independent by design. Focused on measurable business outcomes." %}
+                    {% translate "Independent by design. Systematically reliable." %}
                 </h2>
 
                 <p class="mt-4 leading-relaxed text-slate-600">
-                    {% translate "I combine software engineering, data infrastructure, automation, and cloud technologies to solve specific operational problems and build reliable systems." %}
+                    {% translate "At Cooltimedia, we combine software engineering, process automation, and data infrastructure to eliminate operational chaos and build systems you can sleep easy with." %}
+                </p>
+                <p class="mt-4 leading-relaxed text-slate-600">
+                    {% translate "We operate as a highly specialized boutique studio, ensuring institutional reliability with direct expert execution." %}
                 </p>
 
             </div>
@@ -535,7 +571,7 @@
                     </h3>
 
                     <p class="text-sm leading-relaxed text-slate-600">
-                        {% translate "I begin with your goals, workflows, and operational constraints before recommending technology." %}
+                        {% translate "We start by understanding your goals, workflows, and operational constraints. Technology must earn its place by solving a concrete business problem." %}
                     </p>
                 </article>
 
@@ -545,11 +581,11 @@
                     </div>
 
                     <h3 class="mb-3 text-xl font-bold text-slate-900">
-                        {% translate "Vendor-neutral solutions" %}
+                        {% translate "Validated technical edge" %}
                     </h3>
 
                     <p class="text-sm leading-relaxed text-slate-600">
-                        {% translate "I select technologies according to the problem, existing systems, budget, and long-term maintenance needs." %}
+                        {% translate "Through our Solutions Lab, we actively research and safely integrate advanced tools and AI, ensuring your business gets modern, fully tested solutions." %}
                     </p>
                 </article>
 
@@ -559,11 +595,11 @@
                     </div>
 
                     <h3 class="mb-3 text-xl font-bold text-slate-900">
-                        {% translate "Direct collaboration" %}
+                        {% translate "Direct expert collaboration" %}
                     </h3>
 
                     <p class="text-sm leading-relaxed text-slate-600">
-                        {% translate "You work directly with the specialist designing and developing your solution, without unnecessary layers." %}
+                        {% translate "You work directly with the principal specialist designing and developing your solution. We eliminate unnecessary management layers to deliver real, hands-on partnership and clear communication." %}
                     </p>
                 </article>
 
@@ -573,11 +609,11 @@
                     </div>
 
                     <h3 class="mb-3 text-xl font-bold text-slate-900">
-                        {% translate "Built for growth" %}
+                        {% translate "Robust & documented systems" %}
                     </h3>
 
                     <p class="text-sm leading-relaxed text-slate-600">
-                        {% translate "I create maintainable systems that can evolve as your users, data, integrations, and operational needs grow." %}
+                        {% translate "We build systems under our strict 'No Doc, No Deploy' standard. Your business gains a clean, secure, and maintainable tech asset, fully documented so you are never held hostage by a single developer and can scale freely." %}
                     </p>
                 </article>
 
@@ -635,11 +671,11 @@
             </p>
 
             <h2 class="mt-6 text-4xl font-bold tracking-tight md:text-5xl">
-                {% translate "Let’s discuss the challenge you need to solve." %}
+                {% translate "Let's discuss the operational challenge you need to solve. " %}
             </h2>
 
             <p class="mt-8 text-xl leading-relaxed text-slate-300">
-                {% translate "Whether you need to remove a small productivity bottleneck or develop a larger operational platform, I can help you define a practical next step." %}
+                {% translate "Whether you are looking to remove a small bottleneck that eats up your time or develop a robust operational platform, I can help you outline a practical and direct next step." %}
             </p>
 
             <div class="mt-12 flex flex-col items-center justify-center gap-6 sm:flex-row">
