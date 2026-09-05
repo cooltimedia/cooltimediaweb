@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-05 12:49-0500\n"
+"POT-Creation-Date: 2026-09-05 17:28-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1027,19 +1027,18 @@ msgid "Flexible collaboration"
 msgstr "Colaboración flexible"
 
 #: home/templates/home/services/services_page.html:293
-msgid "Focused improvements or larger engineering projects."
-msgstr "Mejoras puntuales o proyectos de ingeniería de mayor alcance."
+msgid "Targeted improvements or full-scale engineering projects"
+msgstr "Mejoras puntuales o proyectos de ingeniería de mayor alcance"
 
 #: home/templates/home/services/services_page.html:299
 msgid ""
-"I can help remove a specific productivity bottleneck, improve an existing "
-"system, or develop a larger platform that automates critical operations. The "
-"scope begins with the problem that produces the greatest practical impact."
+"We help you eliminate specific productivity bottlenecks, optimize legacy "
+"systems, or develop full-scale platforms to automate critical business "
+"operations. Our approach is highly pragmatic: the scope of our collaboration "
+"always begins by solving the bottleneck that delivers the highest practical "
+"and direct impact for your business."
 msgstr ""
-"Puedo ayudar a eliminar un bloqueo específico de productividad, mejorar un "
-"sistema existente o desarrollar una plataforma de mayor alcance que "
-"automatice operaciones críticas. El alcance comienza con el problema que "
-"produce el mayor impacto práctico."
+"Ayudamos a eliminar bloqueos específicos de productividad, optimizar sistemas heredados o desarrollar plataformas completas que automaticen operaciones críticas de tu negocio. Nuestro enfoque es sumamente pragmático: el alcance de cada colaboración siempre comienza resolviendo el problema que genera el mayor impacto práctico y directo para tu organización."
 
 #: home/templates/home/services/services_page.html:320
 #, fuzzy
@@ -1051,7 +1050,10 @@ msgstr "Conversemos sobre el desafío operativo que necesitas resolver hoy."
 msgid ""
 "Whether you need to remove a small productivity bottleneck or develop a "
 "larger operational platform, I can help you define a practical next step."
-msgstr "Ya sea que busques eliminar un pequeño cuello de botella que te quita tiempo o desarrollar una plataforma operativa robusta, puedo ayudarte a definir una solución práctica y directa."
+msgstr ""
+"Ya sea que busques eliminar un pequeño cuello de botella que te quita tiempo "
+"o desarrollar una plataforma operativa robusta, puedo ayudarte a definir una "
+"solución práctica y directa."
 
 #: home/templates/home/services/services_page.html:375
 msgid "Based in Panama"
