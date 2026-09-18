@@ -9,6 +9,7 @@ app/settings/wsgi.py
 app/wsgi.py
 home/migrations/*
 media/images/*
+media/media/*
 media/original_images/*
 *manage.py*
 manage.py

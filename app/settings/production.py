@@ -25,8 +25,6 @@ STATIC_URL = "/static/"
 MEDIA_ROOT = PROJECT_DIR / "media"
 MEDIA_URL = "/media/"
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-
 # ManifestStaticFilesStorage is recommended in production, to prevent
 # outdated JavaScript / CSS assets being served from cache
 # (e.g. after a Wagtail upgrade).

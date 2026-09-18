@@ -236,9 +236,26 @@ WAGTAILIMAGES_FORMAT_CONVERSIONS = {
 }
 
 #Email
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 SENDGRID_API_KEY_ENV = config('SENDGRID_API_KEY_VALUE')
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'apikey'
 EMAIL_HOST_PASSWORD = str(SENDGRID_API_KEY_ENV)
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+EMAIL_TIMEOUT = 10
+
+DEFAULT_FROM_EMAIL = config(
+    "DEFAULT_FROM_EMAIL",
+    default="Cooltimedia <alerts@cooltimedia.com>",
+)
+
+SERVER_EMAIL = config(
+    "SERVER_EMAIL",
+    default="alerts@cooltimedia.com",
+)
+ADMIN_EMAIL = config("ADMIN_EMAIL")
+ADMINS = [
+    ("Jair", ADMIN_EMAIL),
+]
+EMAIL_SUBJECT_PREFIX = "[Cooltimedia] "
