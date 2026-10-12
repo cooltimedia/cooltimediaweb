@@ -32,7 +32,7 @@
     {# Listado de Posts #}
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {# Buscamos los hijos de esta página que sean BlogPages y estén publicados #}
-        {% for post in page.get_children.live.specific %}
+        {% for post in posts %}
             <article class="flex flex-col bg-white border border-slate-200 rounded-2xl shadow-sm hover:shadow-md transition-shadow overflow-hidden">
                 
                 {# Imagen de Previsualización (Opcional si tienes un campo image en BlogPage) #}

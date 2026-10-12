@@ -82,6 +82,24 @@ class BlogIndexPage(MetadataPageMixin, Page):
     # Ensures only one instance of the Blog Index can exist in the CMS
     max_count_per_parent = 1
 
+    def get_context(self, request, *args, **kwargs):
+        """Add blog posts ordered from newest to oldest."""
+
+        context = super().get_context(
+            request,
+            *args,
+            **kwargs,
+        )
+
+        context["posts"] = (
+            BlogPage.objects
+            .child_of(self)
+            .live()
+            .order_by("-date", "-first_published_at")
+        )
+
+        return context
+
     class Meta:
         verbose_name = "Blog Index Page"
 
