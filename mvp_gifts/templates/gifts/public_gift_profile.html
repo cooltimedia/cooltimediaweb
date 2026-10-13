@@ -445,7 +445,6 @@
         const originalFormHTML = reservationForm.innerHTML;
 
         function openReservationModal(itemId, itemName) {
-            // 🎯 LA CORRECCIÓN: Buscamos el placeholder vivo en el DOM en este preciso instante
             const currentPlaceholder = document.getElementById('modal-item-name');
             if (currentPlaceholder) {
                 currentPlaceholder.textContent = itemName;

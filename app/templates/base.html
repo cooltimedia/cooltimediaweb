@@ -116,9 +116,48 @@
         
         {# Global javascript #}
         <script type="text/javascript" src="{% static 'js/app.js' %}"></script>
+        <!-- Google Tag Manager (DataLayer) -->
+        <script>
+        (function () {
+            window.dataLayer = window.dataLayer || [];
+
+            document.addEventListener("click", function (event) {
+                const element = event.target.closest("[data-analytics-event]");
+
+                if (!element) {
+                    return;
+                }
+
+                const analyticsEvent = element.dataset.analyticsEvent;
+
+                const payload = {
+                    event: analyticsEvent,
+                    content_language:
+                        document.documentElement.lang || "unknown"
+                };
+
+                const attributes = {
+                    analyticsService: "service_name",
+                    analyticsSolution: "solution_name",
+                    analyticsCta: "cta_name",
+                    analyticsLocation: "cta_location",
+                    analyticsInteraction: "interaction_name",
+                    analyticsDestinationService: "destination_service"
+                };
+
+                Object.entries(attributes).forEach(function ([datasetKey, parameterName]) {
+                    if (element.dataset[datasetKey]) {
+                        payload[parameterName] = element.dataset[datasetKey];
+                    }
+                });
+
+                window.dataLayer.push(payload);
+            });
+        })();
+        </script>
 
         {% block extra_js %}
-        {# Override this in templates to add extra javascript #}     
+        {# Override this in templates to add extra javascript #}
         {% endblock %}
     </body>
 </html>
