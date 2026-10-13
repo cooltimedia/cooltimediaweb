@@ -394,8 +394,11 @@ class SmartQueueMVPPage(Page):
     template = "home/solutions/lab/smart_queue_mvp_page.html"
     description = RichTextField(blank=True)
 
+    demo_lab_key = models.CharField(max_length=255, blank=True, default="smart_queue_mvp")
+
     content_panels = Page.content_panels + [
         FieldPanel('description'),
+        FieldPanel('demo_lab_key'),
     ]
 
     # This page shouldn't have children
@@ -406,8 +409,11 @@ class SmartAccountingMVPPage(Page):
     template = "home/solutions/lab/smart_accounting_mvp_page.html"
     description = RichTextField(blank=True)
 
+    demo_lab_key = models.CharField(max_length=255, blank=True, default="smart_accounting_mvp")
+
     content_panels = Page.content_panels + [
         FieldPanel('description'),
+        FieldPanel('demo_lab_key'),
     ]
 
     # This page shouldn't have children

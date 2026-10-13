@@ -27,9 +27,6 @@
                         Explore the Proof of Concept
                     </a>
                 </div>
-                <div class="flex-1 w-full">
-                    <img src="{% static 'images/lab/smart-accounting-1.png' %}" alt="Smart Accounting OCR Extraction Interface" class="rounded-2xl shadow-2xl border border-slate-200">
-                </div>
             </div>
         </div>
     </section>
@@ -170,7 +167,12 @@
             <p class="text-slate-600 mb-10 text-lg">
                 Stop wasting human talent on data entry. Let's integrate a custom OCR and validation workflow into your existing accounting process.
             </p>
-            <a href="https://calendly.com/cooltimedia/15min" target="_blank" class="inline-flex items-center px-10 py-5 bg-slate-900 text-white font-black rounded-2xl hover:bg-emerald-600 transition-all transform hover:scale-105 shadow-xl">
+            <a 
+                href="https://calendly.com/cooltimedia/15min"
+                target="_blank"
+                class="inline-flex items-center px-10 py-5 bg-slate-900 text-white font-black rounded-2xl hover:bg-emerald-600 transition-all transform hover:scale-105 shadow-xl"
+                data-analytics-event="contact_calendly_click" data-analytics-cta="calendly_contact" data-analytics-location="demo_contact_section" data-analytics-solution="{{page.demo_lab_key}}" aria-label="Contact Cooltimedia through Calendly"
+            >
                 Schedule a Technical MVP Demo
                 <svg class="ml-2 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
             </a>

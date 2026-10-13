@@ -170,10 +170,6 @@
                                 <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                             </a>
                         </div>
-                        <a href="{% url 'mvp_smart_accounting:login' %}" class="inline-flex items-center px-8 py-4 bg-slate-900 text-white font-bold rounded-xl hover:bg-emerald-600 transition-all transform hover:-translate-y-1">
-                            {% translate "Explore the Demo" %}
-                            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                        </a>
                     </div>   
                 </div>
             </div>
@@ -428,7 +424,14 @@
                 <p class="text-slate-400 text-sm mb-6">
                     {% translate "Let's discuss your department's specific friction in a 15-min technical session." %}
                 </p>
-                <a target="_blank" data-event="demo_request" data-demo="15min_technical" data-source="cooltimedia_solutions" href="https://calendly.com/cooltimedia/15min" class="inline-block px-8 py-3 bg-emerald-600 text-white font-black rounded-xl hover:bg-emerald-500 transition-colors">
+                <a 
+                    target="_blank" 
+                    data-event="demo_request" 
+                    data-demo="15min_technical" 
+                    data-source="cooltimedia_solutions" href="https://calendly.com/cooltimedia/15min" 
+                    class="inline-block px-8 py-3 bg-emerald-600 text-white font-black rounded-xl hover:bg-emerald-500 transition-colors" 
+                    data-analytics-event="contact_calendly_click" data-analytics-cta="calendly_contact" data-analytics-location="demo_contact_section" data-analytics-solution="analytics-solution" aria-label="{% translate 'Contact Cooltimedia through WhatsApp' %}"
+                >
                     {% translate "Book a Quick Demo" %}
                 </a>
             </div>
