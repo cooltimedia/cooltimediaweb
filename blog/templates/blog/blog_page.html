@@ -1,7 +1,11 @@
 {% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags i18n %}
+{% load wagtailcore_tags wagtailimages_tags i18n seo_tags %}
 
 {% block extra_css %}
+{% canonical_page_url page as canonical_url %}
+{% if page.search_image %}
+    {% public_absolute_url page.search_image.url as article_image_url %}
+{% endif %}
 <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
 
 <script type="application/ld+json">
@@ -13,7 +17,7 @@
   "inLanguage": "{{ page.locale.language_code }}",
   "image": [
     {% if page.search_image %}
-        "{{ page.search_image.url }}"
+        "{{ article_image_url }}"
     {% endif %}
   ],
   "datePublished": "{{ page.date|date:'c' }}",
@@ -28,12 +32,12 @@
     "name": "Cooltimedia",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://cooltimedia.com/static/cooltimedia-logo.png"
+      "url": "https://cooltimedia.com/static/images/cooltimedia-logo.png"
     }
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "{{ page.full_url }}"
+    "@id": "{{ canonical_url }}"
   }
 }
 </script>

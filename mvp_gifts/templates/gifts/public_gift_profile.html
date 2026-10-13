@@ -1,5 +1,4 @@
 {% load static i18n wagtailcore_tags wagtailuserbar %}
-{% load i18n %}
 
 <!DOCTYPE html>
 <html lang="{{ request.LANGUAGE_CODE }}">
@@ -8,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ gift_event.title }} | {% translate "Gift Profile" %}</title>
 
+    <meta property="og:title" content="{{ gift_event.title }} | {% translate 'Gift Profile' %}">
     <meta property="og:description" content="{% translate 'Take a look at my gift ideas, sizes, and favorite preferences here!' %}">
 
     <meta property="og:image" content="https://{{ request.get_host }}/media/images/main_cover_v1-1.original.png">
@@ -16,10 +16,13 @@
     <meta property="og:image:height" content="720">
 
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://{{ request.get_host }}{{ request.path }}">
+    <meta property="og:url" content="https://cooltimedia.com{{ request.path }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ gift_event.title }} | {% translate 'Gift Profile' %}">
+    <meta name="twitter:description" content="{% translate 'Take a look at my gift ideas, sizes, and favorite preferences here!' %}">
 
-    <meta name="robots" content="noindex, nofollow, noarchive">
-    <meta name="googlebot" content="noindex, nofollow, noarchive">
+    <meta name="robots" content="noindex, follow, noarchive">
+    <meta name="googlebot" content="noindex, follow, noarchive">
 
     {# Global stylesheets #}
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,8 +47,6 @@
 
     gtag('config', 'G-9WGQKBP207');
     </script>   
-
-    {% include "wagtailmetadata/parts/tags.html" %}
 
     <style>
         body {

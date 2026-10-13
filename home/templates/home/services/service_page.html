@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags wagtailimages_tags i18n %}
+{% load wagtailcore_tags wagtailimages_tags i18n seo_tags %}
 
 
 {% block extra_css %}
+{% canonical_page_url page as canonical_url %}
 <link
     href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
     rel="stylesheet"
@@ -15,8 +16,8 @@
     "@graph": [
         {
             "@type": "Service",
-            "@id": "{% fullpageurl page %}#service",
-            "url": "{% fullpageurl page %}",
+            "@id": "{{ canonical_url }}#service",
+            "url": "{{ canonical_url }}",
             "name": "{{ page.hero_title|default:page.title|escapejs }}",
             "description": "{% if page.hero_subtitle %}{{ page.hero_subtitle|escapejs }}{% else %}{{ page.search_description|escapejs }}{% endif %}",
             "serviceType": "{{ page.get_service_type_display|default:page.title|escapejs }}",
@@ -39,7 +40,7 @@
         ,
         {
             "@type": "FAQPage",
-            "@id": "{% fullpageurl page %}#faq",
+            "@id": "{{ canonical_url }}#faq",
             "inLanguage": "{{ page.locale.language_code }}",
             "mainEntity": [
                 {% for faq in page.faq_items %}

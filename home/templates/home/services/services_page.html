@@ -1,13 +1,14 @@
 {% extends "base.html" %}
-{% load static wagtailcore_tags wagtailimages_tags i18n %}
+{% load static wagtailcore_tags wagtailimages_tags i18n seo_tags %}
 
 {% block ld_json %}
+{% canonical_page_url page as canonical_url %}
 <script type="application/ld+json">
 {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "@id": "{% fullpageurl page %}#services",
-    "url": "{% fullpageurl page %}",
+    "@id": "{{ canonical_url }}#services",
+    "url": "{{ canonical_url }}",
     "name": "{{ page.title|escapejs }}",
     "description": "{{ page.description|striptags|escapejs }}",
     "inLanguage": "{{ page.locale.language_code }}",
@@ -26,11 +27,12 @@
     ],
     "hasPart": [
         {% for service in page.get_children.live.specific %}
+        {% canonical_page_url service as service_url %}
         {
             "@type": "Service",
             "name": "{{ service.title|escapejs }}",
             "description": "{{ service.hero_subtitle|escapejs }}",
-            "url": "{% fullpageurl service %}"
+            "url": "{{ service_url }}"
         }{% if not forloop.last %},{% endif %}
         {% endfor %}
     ]

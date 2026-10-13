@@ -1,4 +1,4 @@
-"""Project-level views for LinGift."""
+"""Project-level views for Cooltimedia."""
 
 from django.conf import settings
 from django.http import HttpResponseRedirect, HttpResponse
@@ -6,6 +6,7 @@ from django.utils.http import url_has_allowed_host_and_scheme
 from django.contrib.sitemaps.views import sitemap as django_sitemap
 from django.urls import reverse
 from django.views.decorators.http import require_POST, require_safe
+from urllib.parse import urljoin
 
 from .sitemaps import MultilingualWagtailSitemap
 
@@ -59,10 +60,11 @@ def multilingual_sitemap(request):
 
 @require_safe
 def robots_txt(request):
-    """Serve crawler instructions for the LinGift website."""
+    """Serve crawler instructions with the canonical HTTPS sitemap."""
 
-    sitemap_url = request.build_absolute_uri(
-        reverse("sitemap")
+    sitemap_url = urljoin(
+        settings.WAGTAILADMIN_BASE_URL.rstrip("/") + "/",
+        reverse("sitemap").lstrip("/"),
     )
 
     lines = [

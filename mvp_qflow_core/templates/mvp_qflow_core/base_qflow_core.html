@@ -1,15 +1,27 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static seo_tags %}
 
 {% block title %}
     {% if custom_title %}{{ custom_title }}{% else %}Live Demo: Smart Queue & Flow Management System{% endif %}
 {% endblock %}
 
-{% block custom_site_description %}
+{% block meta_description %}
     <meta name="description" content="Test our hybrid ticketing MVP: Real-time notifications, QR access, and data-driven insights for modern businesses." />
-    <meta name="keywords" content="Queue Management System, Digital Waitlist MVP, Smart Ticketing Solution, QR Code Queue, Django Web Engineering, Real-time Flow Management, Data-Driven Operations, Customer Experience Software, SaaS for Small Banks, Automated Notifications, Hybrid Ticketing System, Scalable Web Architecture.">
+{% endblock %}
+
+{% block robots_meta %}
+    <meta name="robots" content="noindex, follow, noarchive">
+{% endblock %}
+
+{% block social_meta %}
+    {% canonical_page_url as canonical_url %}
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ canonical_url }}">
     <meta property="og:title" content="Live Demo: Smart Queue & Flow Management System">
     <meta property="og:description" content="Test our hybrid ticketing MVP: Real-time notifications, QR access, and data-driven insights for modern businesses.">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Live Demo: Smart Queue & Flow Management System">
+    <meta name="twitter:description" content="Test our hybrid ticketing MVP: Real-time notifications, QR access, and data-driven insights for modern businesses.">
 {% endblock %}
 
 {% block extra_css %}

@@ -1,4 +1,4 @@
-from home.models import HomePage
+from home.models import HomePage, ServicePage
 
 from wagtail.models import Page, Site
 from wagtail.test.utils import WagtailPageTestCase
@@ -40,3 +40,32 @@ class HomeTests(WagtailPageTestCase):
     def test_homepage_template_used(self):
         response = self.client.get(self.homepage.url)
         self.assertTemplateUsed(response, "home/home_page.html")
+
+
+class ServicePageSeoTests(WagtailPageTestCase):
+    def test_faq_items_remove_duplicate_questions(self):
+        page = ServicePage(
+            title="Django Development",
+            body=[
+                (
+                    "faq",
+                    {
+                        "question": "Can you modernize a Django app?",
+                        "answer": "Yes.",
+                    },
+                ),
+                (
+                    "faq",
+                    {
+                        "question": "  CAN you modernize a Django app? ",
+                        "answer": "Duplicate answer.",
+                    },
+                ),
+            ],
+        )
+
+        self.assertEqual(len(page.faq_items), 1)
+        self.assertEqual(
+            page.faq_items[0]["question"],
+            "Can you modernize a Django app?",
+        )

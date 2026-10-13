@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 {% load static wagtailcore_tags %}
 {% block title %}
-    500 - Internal Server Error
+    Internal server error | Cooltimedia
+{% endblock %}
+
+{% block robots_meta %}
+<meta name="robots" content="noindex, nofollow, noarchive">
 {% endblock %}
 
 {% block extra_css %}

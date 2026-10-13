@@ -1,4 +1,4 @@
-"""Sitemap definitions for LinGift."""
+"""Sitemap definitions for Cooltimedia."""
 
 from django.contrib.sitemaps import Sitemap
 from django.db.models import Q
@@ -9,6 +9,8 @@ from wagtail.models import Page, Site
 
 class MultilingualWagtailSitemap(Sitemap):
     """Generate sitemap entries for every published Wagtail locale."""
+
+    protocol = "https"
 
     def __init__(self, request):
         """Store the request used to resolve localized page URLs."""
@@ -41,6 +43,7 @@ class MultilingualWagtailSitemap(Sitemap):
         return (
             Page.objects
             .filter(page_filter)
+            .filter(alias_of__isnull=True)
             .live()
             .public()
             .select_related("locale")

@@ -115,7 +115,7 @@ class PublicGiftProfileView(TemplateView):
 
     def render_to_response(self, context, **response_kwargs):
         response = super().render_to_response(context, **response_kwargs)
-        response["X-Robots-Tag"] = "noindex, nofollow, noarchive"
+        response["X-Robots-Tag"] = "noindex, follow, noarchive"
         return response
 
 

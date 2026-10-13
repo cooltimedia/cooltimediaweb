@@ -1,27 +1,62 @@
-{% load static wagtailcore_tags wagtailuserbar wagtailimages_tags i18n %}
+{% load static wagtailcore_tags wagtailuserbar wagtailimages_tags i18n seo_tags %}
 {% get_current_language as LANGUAGE_CODE %}
+{% canonical_page_url page as canonical_url %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}">
     <head>
         <meta charset="utf-8" />
-        <title>
-            {% block title %}
-            {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}
-            {% endblock %}
-            {% block title_suffix %}
-            {% wagtail_site as current_site %}
-            {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
-            {% endblock %}
-        </title>
-        {% if page.search_description %}
-        <meta name="description" content="{{ page.search_description }}" />
-        <meta name="keywords" content="Web Engineering, Data Architecture, Data Pipelines, Python, Django, Data Consulting Panama, Software Development, Process Automation">
-        <meta property="og:title" content="{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}">
-        <meta property="og:description" content="{{ page.search_description }}" />
-        {% endif %}
-        {% block custom_site_description %}
+        <title>{% block title %}{% if page %}{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }} | Cooltimedia{% endif %}{% else %}Cooltimedia{% endif %}{% endblock %}</title>
 
+        {% block meta_description %}
+            {% if page and page.search_description %}
+                <meta name="description" content="{{ page.search_description }}">
+            {% endif %}
         {% endblock %}
+
+        {% block robots_meta %}
+            {% if request.in_preview_panel %}
+                <meta name="robots" content="noindex, nofollow, noarchive">
+            {% else %}
+                <meta name="robots" content="index, follow">
+            {% endif %}
+        {% endblock %}
+
+        <link rel="canonical" href="{{ canonical_url }}">
+
+        {% if page %}
+            <link rel="alternate" hreflang="{{ page.locale.language_code }}" href="{{ canonical_url }}">
+            {% for translation in page.get_translations.live %}
+                {% canonical_page_url translation as translation_url %}
+                <link rel="alternate" hreflang="{{ translation.locale.language_code }}" href="{{ translation_url }}">
+            {% endfor %}
+        {% endif %}
+
+        {% block social_meta %}
+            {% if page %}
+                {% if page.search_image %}
+                    {% public_absolute_url page.search_image.url as social_image_url %}
+                {% endif %}
+                <meta property="og:type" content="website">
+                <meta property="og:url" content="{{ canonical_url }}">
+                <meta property="og:site_name" content="Cooltimedia">
+                <meta property="og:title" content="{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }} | Cooltimedia{% endif %}">
+                {% if page.search_description %}
+                    <meta property="og:description" content="{{ page.search_description }}">
+                {% endif %}
+                {% if social_image_url %}
+                    <meta property="og:image" content="{{ social_image_url }}">
+                {% endif %}
+                <meta name="twitter:card" content="{% if social_image_url %}summary_large_image{% else %}summary{% endif %}">
+                <meta name="twitter:title" content="{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }} | Cooltimedia{% endif %}">
+                {% if page.search_description %}
+                    <meta name="twitter:description" content="{{ page.search_description }}">
+                {% endif %}
+                {% if social_image_url %}
+                    <meta name="twitter:image" content="{{ social_image_url }}">
+                {% endif %}
+            {% endif %}
+        {% endblock %}
+
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         {# Force all links in the live preview panel to be opened in a new tab #}
@@ -44,8 +79,6 @@
         <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}" />
         <link rel="manifest" href="{% static 'images/site.webmanifest' %}" />
 
-        {% include "wagtailmetadata/parts/tags.html" %}
-        
 	{% block extra_css %}
         {# Override this in templates to add extra stylesheets #}
     {% endblock %}

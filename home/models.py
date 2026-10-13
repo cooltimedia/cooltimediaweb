@@ -368,13 +368,26 @@ class ServicePage(Page):
 
     @property
     def faq_items(self):
-        """Return FAQ values for visible content and structured data."""
+        """Return unique FAQ values for visible content and JSON-LD."""
 
-        return [
-            block.value
-            for block in self.body
-            if block.block_type == "faq"
-        ]
+        faq_items = []
+        seen_questions = set()
+
+        for block in self.body:
+            if block.block_type != "faq":
+                continue
+
+            normalized_question = " ".join(
+                str(block.value.get("question", "")).split()
+            ).casefold()
+
+            if not normalized_question or normalized_question in seen_questions:
+                continue
+
+            seen_questions.add(normalized_question)
+            faq_items.append(block.value)
+
+        return faq_items
 
 class SmartQueueMVPPage(Page):
     """Page to detail individual solutions (Smart Queue MVP)"""

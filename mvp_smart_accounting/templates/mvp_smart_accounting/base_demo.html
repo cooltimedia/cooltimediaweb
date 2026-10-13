@@ -5,6 +5,10 @@
     {% if custom_title %}{{ custom_title }}{% else %}Smart Accounting MVP{% endif %}
 {% endblock %}
 
+{% block robots_meta %}
+    <meta name="robots" content="noindex, follow, noarchive">
+{% endblock %}
+
 {% block extra_css %}
     <style>
         [v-cloak] { display: none; }
